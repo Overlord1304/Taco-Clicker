@@ -1,12 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=13 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://bb3nhtyr0abt4" path="res://scripts/anims.gd" id="2_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://momc162twgmc" path="res://sprites/sunburst.png" id="2_tbgi4"]
+[ext_resource type="Script" uid="uid://bqtxa10bvitfb" path="res://scripts/indicator_fade_out.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://b4cm5mvaxsoaj" path="res://scripts/tacocount.gd" id="3_jyhfs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0.08166907, 0.66970944, 0.7802122, 1)
+
+[sub_resource type="Animation" id="Animation_tbgi4"]
+resource_name = "spin"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sunburst:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_tefeu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sunburst:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
+_data = {
+&"RESET": SubResource("Animation_tefeu"),
+&"spin": SubResource("Animation_tbgi4")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
 bg_color = Color(0, 0.30851838, 0.6632289, 1)
@@ -27,11 +67,42 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_sugp2")
 
+[node name="indicators" type="Control" parent="."]
+top_level = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="display" type="Label" parent="indicators"]
+visible = false
+layout_mode = 0
+offset_left = 44.0
+offset_right = 111.0
+offset_bottom = 50.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_tefeu")
+
+[node name="Timer" type="Timer" parent="indicators/display"]
+
 [node name="left" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 781.0
 offset_bottom = 653.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sugp2")
+
+[node name="sunburst" type="TextureRect" parent="left"]
+modulate = Color(1, 1, 1, 0.78431374)
+layout_mode = 0
+offset_right = 778.0
+offset_bottom = 658.0
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(389, 329)
+texture = ExtResource("2_tbgi4")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="left"]
 layout_mode = 0
@@ -64,6 +135,12 @@ layout_mode = 2
 texture_normal = ExtResource("1_o5qli")
 stretch_mode = 0
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="left"]
+libraries = {
+&"": SubResource("AnimationLibrary_o6xl0")
+}
+autoplay = "spin"
+
 [node name="right" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 781.0
@@ -82,7 +159,9 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_tbgi4")
 text = "UPGRADES"
 
+[connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
+[connection signal="timeout" from="indicators/display/Timer" to="indicators/display" method="_on_timer_timeout"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="." method="_on_tacobutton_button_down"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]

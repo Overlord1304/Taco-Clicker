@@ -5,12 +5,14 @@ var tacos = 0
 var amount_per_click = 1
 
 signal tacos_changed
+signal taco_clicked
 func _ready():
 	load_data()
 	emit_signal("tacos_changed", tacos)
 func _on_tacobutton_button_down() -> void:
 	tacos += amount_per_click
 	emit_signal("tacos_changed",tacos)
+	emit_signal("taco_clicked",amount_per_click)
 	save_data()
 
 func save_data():
