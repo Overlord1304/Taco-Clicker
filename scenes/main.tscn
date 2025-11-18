@@ -177,14 +177,19 @@ texture = ExtResource("1_o5qli")
 [node name="amountperclickupgrade1label" type="Label" parent="right/amtperclickupg1"]
 layout_mode = 0
 offset_left = 44.0
-offset_top = 10.000092
+offset_top = 33.00009
 offset_right = 283.0
-offset_bottom = 85.00009
-text = "UPGRADE AMOUNT PER CLICK
-Cost: 35 Tacos
-"
+offset_bottom = 108.00009
 
-[node name="autoclickupg1" type="Button" parent="right"]
+[node name="Label" type="Label" parent="right/amtperclickupg1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 7.0
+offset_right = 276.0
+offset_bottom = 30.0
+text = "UPGRADE AMOUNT PER CLICK"
+
+[node name="autoclickupg2" type="Button" parent="right"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 216.0
@@ -192,21 +197,32 @@ offset_right = 366.0
 offset_bottom = 286.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg1" type="Sprite2D" parent="right/autoclickupg1"]
+[node name="autoclickupg2" type="Sprite2D" parent="right/autoclickupg2"]
 position = Vector2(30, 17)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="autoclickupgsprite1" type="Label" parent="right/autoclickupg1"]
+[node name="autoclickupgsprite2" type="Label" parent="right/autoclickupg2"]
 layout_mode = 0
 offset_left = 44.0
-offset_top = 10.000092
+offset_top = 37.00009
 offset_right = 343.0
-offset_bottom = 85.00009
+offset_bottom = 112.00009
 theme_override_font_sizes/font_size = 16
-text = "UPGRADE AMOUNT GAINED OVERTIME
-Cost: 100 Tacos
+text = "
+
 "
+
+[node name="Label" type="Label" parent="right/autoclickupg2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 11.0
+offset_right = 343.0
+offset_bottom = 34.0
+text = "UPGRADE AMOUNT GAINED OVERTIME"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
@@ -215,4 +231,5 @@ Cost: 100 Tacos
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]
 [connection signal="button_down" from="right/amtperclickupg1" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="right/autoclickupg1" to="." method="_on_autoclickupg_1_button_down"]
+[connection signal="button_down" from="right/autoclickupg2" to="." method="_on_autoclickupg_1_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
