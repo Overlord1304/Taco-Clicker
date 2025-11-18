@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=14 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -9,6 +9,21 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0.08166907, 0.66970944, 0.7802122, 1)
+
+[sub_resource type="Animation" id="Animation_tefeu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sunburst:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_tbgi4"]
 resource_name = "spin"
@@ -25,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.2831855]
-}
-
-[sub_resource type="Animation" id="Animation_tefeu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sunburst:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
@@ -61,6 +61,8 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tefeu"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -159,9 +161,58 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_tbgi4")
 text = "UPGRADES"
 
+[node name="amtperclickupg1" type="Button" parent="right"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 131.0
+offset_right = 365.0
+offset_bottom = 201.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="amountperclickupgrade1" type="Sprite2D" parent="right/amtperclickupg1"]
+position = Vector2(30, 17)
+rotation = 0.8377581
+texture = ExtResource("1_o5qli")
+
+[node name="amountperclickupgrade1label" type="Label" parent="right/amtperclickupg1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 10.000092
+offset_right = 283.0
+offset_bottom = 85.00009
+text = "UPGRADE AMOUNT PER CLICK
+Cost: 35 Tacos
+"
+
+[node name="autoclickupg1" type="Button" parent="right"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 216.0
+offset_right = 366.0
+offset_bottom = 286.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="autoclickupg1" type="Sprite2D" parent="right/autoclickupg1"]
+position = Vector2(30, 17)
+rotation = 0.8377581
+texture = ExtResource("1_o5qli")
+
+[node name="autoclickupgsprite1" type="Label" parent="right/autoclickupg1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 10.000092
+offset_right = 343.0
+offset_bottom = 85.00009
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE AMOUNT GAINED OVERTIME
+Cost: 100 Tacos
+"
+
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
 [connection signal="timeout" from="indicators/display/Timer" to="indicators/display" method="_on_timer_timeout"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="." method="_on_tacobutton_button_down"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]
+[connection signal="button_down" from="right/amtperclickupg1" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="right/autoclickupg1" to="." method="_on_autoclickupg_1_button_down"]
