@@ -189,7 +189,7 @@ offset_right = 276.0
 offset_bottom = 30.0
 text = "UPGRADE AMOUNT PER CLICK"
 
-[node name="autoclickupg2" type="Button" parent="right"]
+[node name="autoclickupg1" type="Button" parent="right"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 216.0
@@ -197,12 +197,11 @@ offset_right = 366.0
 offset_bottom = 286.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg2" type="Sprite2D" parent="right/autoclickupg2"]
+[node name="autoclickupg1" type="Sprite2D" parent="right/autoclickupg1"]
 position = Vector2(30, 17)
 rotation = 0.8377581
-texture = ExtResource("1_o5qli")
 
-[node name="autoclickupgsprite2" type="Label" parent="right/autoclickupg2"]
+[node name="autoclickupgsprite1" type="Label" parent="right/autoclickupg1"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -213,13 +212,44 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="right/autoclickupg2"]
+[node name="Label" type="Label" parent="right/autoclickupg1"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 11.0
 offset_right = 343.0
 offset_bottom = 34.0
 text = "UPGRADE AMOUNT GAINED OVERTIME"
+
+[node name="golden taco" type="Button" parent="right"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 300.0
+offset_right = 366.0
+offset_bottom = 370.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="golden taco sprite" type="Sprite2D" parent="right/golden taco"]
+position = Vector2(30, 17)
+rotation = 0.8377581
+
+[node name="golden taco label" type="Label" parent="right/golden taco"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="right/golden taco"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 11.0
+offset_right = 343.0
+offset_bottom = 34.0
+text = "GOLDEN TACO"
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -231,5 +261,6 @@ autostart = true
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]
 [connection signal="button_down" from="right/amtperclickupg1" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="right/autoclickupg2" to="." method="_on_autoclickupg_1_button_down"]
+[connection signal="button_down" from="right/autoclickupg1" to="." method="_on_autoclickupg_1_button_down"]
+[connection signal="button_down" from="right/golden taco" to="." method="_on_golden_taco_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

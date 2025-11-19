@@ -6,14 +6,18 @@ var amount_per_click = 1
 var passive_gains = 0
 var upg1cost:int = 35
 var upg2cost:int = 100
+var upg3cost: int = 750
+var golden_taco_bought = false
+var golden_taco_activated = false
 signal tacos_changed
 signal taco_clicked
 func _ready():
 	load_data()
 	emit_signal("tacos_changed", tacos)
 	$right/amtperclickupg1/amountperclickupgrade1label.text = str(upg1cost)+" Tacos"
-	$right/autoclickupg2/autoclickupgsprite2.text = str(upg2cost)+" Tacos"
-
+	$right/autoclickupg1/autoclickupgsprite1.text = str(upg2cost)+" Tacos"
+	$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
+	$"right/golden taco/golden taco label".text = str(upg3cost)+" Tacos"
 func _on_tacobutton_button_down() -> void:
 	tacos += amount_per_click
 	emit_signal("tacos_changed",tacos)
@@ -26,7 +30,9 @@ func save_data():
 		"amount_per_click": amount_per_click,
 		"passive_gains" : passive_gains,
 		"upg1cost" : upg1cost,
-		"upg2cost" : upg2cost
+		"upg2cost" : upg2cost,
+		"upg3cost" : upg3cost,
+		"gtacodisabled" : $"right/golden taco".disabled,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -50,20 +56,21 @@ func load_data():
 
 func _on_button_button_down() -> void:
 	if tacos >= upg1cost: 
+		amount_per_click += 1
+		tacos -= upg1cost
 		upg1cost *= 1.25
 		$right/amtperclickupg1/amountperclickupgrade1label.text = str(upg1cost)+" Tacos"
-		amount_per_click += 1
-		tacos -= 35
 		emit_signal("tacos_changed",tacos)
 		save_data() 
 
 
 func _on_autoclickupg_1_button_down() -> void:
-	if tacos >= 100: 
+	if tacos >= upg2cost: 
+		$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
+		passive_gains += 1
+		tacos -= upg2cost
 		upg2cost *= 1.25
 		$right/autoclickupg2/autoclickupgsprite2.text = str(upg2cost)+" Tacos"
-		passive_gains += 1
-		tacos -= 100
 		emit_signal("tacos_changed",tacos)
 		save_data() 
 
@@ -72,3 +79,13 @@ func _on_timer_timeout() -> void:
 	emit_signal("tacos_changed",tacos)
 	tacos += passive_gains
 	save_data()
+
+
+func _on_golden_taco_button_down() -> void:
+	if tacos >= upg3cost: 
+		golden_taco_bought = true
+		tacos -= upg3cost
+		$"right/golden taco/golden taco label".text = str(upg3cost)+" Tacos"
+		emit_signal("tacos_changed",tacos)
+		save_data() 
+		$"right/golden taco".disabled = true
