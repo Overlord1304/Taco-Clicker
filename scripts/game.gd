@@ -4,17 +4,22 @@ const saves =  "user://userdata.save"
 var tacos = 0
 var base_amount_per_click = 1
 var amount_per_click = 1
+var base_passive_gains = 0
 var passive_gains = 0
 var upg1cost:int = 35
 var upg2cost:int = 100
 var upg3cost:int = 750
 var upg4cost:int = 1500
 var upg5cost:int = 3000
+var upg6cost:int = 10000
 var golden_taco_bought = false
 var golden_taco_activated = false
+var disco_sauce_bought = false
+var disco_sauce_activated = false
 var gtaco_texture = preload("res://sprites/gtaco.png")
 var taco_texture = preload("res://sprites/taco.png")
 @onready var gtaco_timer = $gtacotimer
+@onready var dsauce_timer = $dsaucetimer
 signal tacos_changed
 signal taco_clicked
 func _ready():
@@ -26,38 +31,56 @@ func _ready():
 	$"right/golden taco/golden taco label".text = str(upg3cost)+" Tacos"
 	$right/amtperclickupg2/amountperclickupgrade2label.text = str(upg4cost)+" Tacos"
 	$right/autoclickupg2/autoclickupgsprite2.text = str(upg5cost)+" Tacos"
+	$right/disco_sauce/disco_sauce_label.text = str(upg6cost)+" Tacos"
 	if golden_taco_bought == true:
 		$"right/golden taco".disabled = true
+	if disco_sauce_bought == true:
+		$right/disco_sauce.disabled = true
 func _on_tacobutton_button_down() -> void:
 	tacos += amount_per_click
 	emit_signal("tacos_changed",tacos)
 	emit_signal("taco_clicked",amount_per_click)
 	save_data()
-func _process(_float):
+func _process(delta):
 	if golden_taco_bought and golden_taco_activated == false:
+		var rand = randi() % 3000
+		
+		match rand:
+			!2999:
+				pass
+			2999:
+				
+				$left/MarginContainer/tacobutton.texture_normal = gtaco_texture
+				golden_taco_activated = true
+				amount_per_click = base_amount_per_click * 10
+				
+				gtaco_timer.start(10.0)
+	if disco_sauce_bought and disco_sauce_activated == false:
 		var rand = randi() % 3000
 		print(rand)
 		match rand:
 			!2999:
 				pass
 			2999:
-				print("hi")
-				$left/MarginContainer/tacobutton.texture_normal = gtaco_texture
-				golden_taco_activated = true
-				amount_per_click = base_amount_per_click * 10
-				gtaco_timer.start(10.0)
-	print(golden_taco_bought)
+				disco_sauce_activated = true
+				passive_gains = base_passive_gains * 50
+				$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
+				$AnimationPlayer.play("disco_anim")
+				dsauce_timer.start(10.0)
+	
 func save_data():
 	var data = {
 		"tacos" : tacos,
 		"base_amount_per_click": base_amount_per_click,
-		"passive_gains" : passive_gains,
+		"base_passive_gains" : base_passive_gains,
 		"upg1cost" : upg1cost,
 		"upg2cost" : upg2cost,
 		"upg3cost" : upg3cost,
 		"golden_taco_bought": golden_taco_bought,
 		"upg4cost" : upg4cost,
-		"upg5cost" : upg5cost
+		"upg5cost" : upg5cost,
+		"upg6cost" : upg6cost,
+		"disco_sauce_bought" : disco_sauce_bought
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -72,13 +95,16 @@ func load_data():
 			tacos = data.get("tacos",0)
 			base_amount_per_click = data.get("base_amount_per_click",1)
 			amount_per_click = base_amount_per_click
-			passive_gains = data.get("passive_gains",0)
+			base_passive_gains = data.get("base_passive_gains",0)
+			passive_gains = base_passive_gains
 			upg1cost = data.get("upg1cost",35)
 			upg2cost = data.get("upg2cost",100)
 			upg3cost = data.get("upg3cost",750)
 			upg4cost = data.get("upg4cost",1500)
 			upg5cost = data.get("upg5cost",3000)
-			golden_taco_bought = data.get("golden_taco_bought")
+			upg6cost = data.get("upg6cost",10000)
+			golden_taco_bought = data.get("golden_taco_bought",false)
+			disco_sauce_bought = data.get("disco_sauce_bought",false)
 			
 	else:
 		save_data()
@@ -99,9 +125,13 @@ func _on_button_button_down() -> void:
 
 func _on_autoclickupg_1_button_down() -> void:
 	if tacos >= upg2cost: 
-		passive_gains += 1
-		$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
+		base_passive_gains += 1
 
+		if disco_sauce_activated:
+			passive_gains = base_passive_gains * 10
+		else:
+			passive_gains = base_passive_gains
+		$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
 		tacos -= upg2cost
 		upg2cost *= 1.25
 		$right/autoclickupg1/autoclickupgsprite1.text = str(upg2cost)+" Tacos"
@@ -148,11 +178,30 @@ func _on_amtperclickupg_2_button_down() -> void:
 
 func _on_autoclickupg_2_button_down() -> void:
 	if tacos >= upg5cost: 
-		passive_gains += 10
+		base_passive_gains += 10
+		if disco_sauce_activated:
+			passive_gains = base_passive_gains * 10
+		else:
+			passive_gains = base_passive_gains
 		$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
-
 		tacos -= upg5cost
 		upg5cost *= 1.25
 		$right/autoclickupg2/autoclickupgsprite2.text = str(upg5cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data() 
+
+
+func _on_disco_sauce_button_down() -> void:
+	if tacos >= upg6cost and disco_sauce_bought == false: 
+		disco_sauce_bought = true
+		tacos -= upg6cost
+		$right/disco_sauce/disco_sauce_label.text = str(upg6cost)+" Tacos"
+		emit_signal("tacos_changed",tacos)
+		save_data() 
+
+
+func _on_dsaucetimer_timeout() -> void:
+	disco_sauce_activated = false
+	passive_gains = base_passive_gains
+	$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
+	$AnimationPlayer.play("reset")

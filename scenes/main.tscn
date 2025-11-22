@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=22 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://jbgq1yplxp3r" path="res://sprites/Pixel Cursor (png).png" id="7_tipki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
-bg_color = Color(0.08166907, 0.66970944, 0.7802122, 1)
+bg_color = Color(0, 0.6, 0.9647059, 1)
 
 [sub_resource type="Animation" id="Animation_tefeu"]
 length = 0.001
@@ -80,6 +80,47 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_tipki"]
+resource_name = "disco_anim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.4745098, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.43137255, 1, 1), Color(0.5019608, 0, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_85g3d"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_choun"]
+resource_name = "reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.6, 0.9647059, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
+_data = {
+&"RESET": SubResource("Animation_85g3d"),
+&"disco_anim": SubResource("Animation_tipki"),
+&"reset": SubResource("Animation_choun")
+}
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -332,12 +373,53 @@ offset_bottom = 62.0
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +10"
 
+[node name="disco_sauce" type="Button" parent="right"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 554.0
+offset_right = 366.0
+offset_bottom = 624.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="disco_sauce_sprite" type="AnimatedSprite2D" parent="right/disco_sauce"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="disco_sauce_label" type="Label" parent="right/disco_sauce"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="right/disco_sauce"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 368.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "DISCO SAUCE"
+
 [node name="passivegainstimer" type="Timer" parent="."]
 autostart = true
 
 [node name="gtacotimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="dsaucetimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ya4ey")
+}
 
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
@@ -350,5 +432,7 @@ one_shot = true
 [connection signal="button_down" from="right/golden taco" to="." method="_on_golden_taco_button_down"]
 [connection signal="button_down" from="right/amtperclickupg2" to="." method="_on_amtperclickupg_2_button_down"]
 [connection signal="button_down" from="right/autoclickupg2" to="." method="_on_autoclickupg_2_button_down"]
+[connection signal="button_down" from="right/disco_sauce" to="." method="_on_disco_sauce_button_down"]
 [connection signal="timeout" from="passivegainstimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="gtacotimer" to="." method="_on_gtacotimer_timeout"]
+[connection signal="timeout" from="dsaucetimer" to="." method="_on_dsaucetimer_timeout"]
