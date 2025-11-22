@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=18 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://momc162twgmc" path="res://sprites/sunburst.png" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://bqtxa10bvitfb" path="res://scripts/indicator_fade_out.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://b4cm5mvaxsoaj" path="res://scripts/tacocount.gd" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://jbgq1yplxp3r" path="res://sprites/Pixel Cursor (png).png" id="7_tipki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0.08166907, 0.66970944, 0.7802122, 1)
@@ -63,6 +65,21 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tefeu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
+atlas = ExtResource("7_tipki")
+region = Rect2(1107, 0, 369, 533)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_choun"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85g3d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -187,7 +204,7 @@ offset_left = 44.0
 offset_top = 7.0
 offset_right = 276.0
 offset_bottom = 30.0
-text = "UPGRADE AMOUNT PER CLICK"
+text = "UPGRADE AMOUNT PER CLICK +1"
 
 [node name="autoclickupg1" type="Button" parent="right"]
 layout_mode = 0
@@ -197,9 +214,10 @@ offset_right = 366.0
 offset_bottom = 286.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg1" type="Sprite2D" parent="right/autoclickupg1"]
-position = Vector2(30, 17)
-rotation = 0.8377581
+[node name="autoclickupg1" type="AnimatedSprite2D" parent="right/autoclickupg1"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
 
 [node name="autoclickupgsprite1" type="Label" parent="right/autoclickupg1"]
 layout_mode = 0
@@ -214,11 +232,12 @@ text = "
 
 [node name="Label" type="Label" parent="right/autoclickupg1"]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 11.0
-offset_right = 343.0
-offset_bottom = 34.0
-text = "UPGRADE AMOUNT GAINED OVERTIME"
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 368.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE GAINED PER SECOND +1"
 
 [node name="golden taco" type="Button" parent="right"]
 layout_mode = 0
@@ -231,6 +250,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 [node name="golden taco sprite" type="Sprite2D" parent="right/golden taco"]
 position = Vector2(30, 17)
 rotation = 0.8377581
+texture = ExtResource("7_o6xl0")
 
 [node name="golden taco label" type="Label" parent="right/golden taco"]
 layout_mode = 0
@@ -251,8 +271,12 @@ offset_right = 343.0
 offset_bottom = 34.0
 text = "GOLDEN TACO"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="passivegainstimer" type="Timer" parent="."]
 autostart = true
+
+[node name="gtacotimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
@@ -263,4 +287,5 @@ autostart = true
 [connection signal="button_down" from="right/amtperclickupg1" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="right/autoclickupg1" to="." method="_on_autoclickupg_1_button_down"]
 [connection signal="button_down" from="right/golden taco" to="." method="_on_golden_taco_button_down"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="passivegainstimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="gtacotimer" to="." method="_on_gtacotimer_timeout"]
