@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=23 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -50,8 +50,51 @@ _data = {
 &"spin": SubResource("Animation_tbgi4")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
-bg_color = Color(0, 0.30851838, 0.6632289, 1)
+[sub_resource type="Animation" id="Animation_85g3d"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_tipki"]
+resource_name = "disco_anim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.4745098, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.43137255, 1, 1), Color(0.5019608, 0, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_choun"]
+resource_name = "reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.6, 0.9647059, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
+_data = {
+&"RESET": SubResource("Animation_85g3d"),
+&"disco_anim": SubResource("Animation_tipki"),
+&"reset": SubResource("Animation_choun")
+}
+
+[sub_resource type="Theme" id="Theme_tipki"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.04810849, 0.22577411, 0.6626802, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
 content_margin_left = 20.0
@@ -80,47 +123,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="Animation" id="Animation_tipki"]
-resource_name = "disco_anim"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 1), Color(1, 0.4745098, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.43137255, 1, 1), Color(0.5019608, 0, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_85g3d"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_choun"]
-resource_name = "reset"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0.6, 0.9647059, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
-_data = {
-&"RESET": SubResource("Animation_85g3d"),
-&"disco_anim": SubResource("Animation_tipki"),
-&"reset": SubResource("Animation_choun")
-}
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -201,211 +203,6 @@ libraries = {
 }
 autoplay = "spin"
 
-[node name="right" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 781.0
-offset_top = -1.0
-offset_right = 1151.0
-offset_bottom = 649.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
-
-[node name="Label" type="Label" parent="right"]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 19.0
-offset_right = 334.0
-offset_bottom = 98.0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_tbgi4")
-text = "UPGRADES"
-
-[node name="amtperclickupg1" type="Button" parent="right"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 131.0
-offset_right = 365.0
-offset_bottom = 201.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
-
-[node name="amountperclickupgrade1" type="Sprite2D" parent="right/amtperclickupg1"]
-position = Vector2(30, 17)
-rotation = 0.8377581
-texture = ExtResource("1_o5qli")
-
-[node name="amountperclickupgrade1label" type="Label" parent="right/amtperclickupg1"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 33.00009
-offset_right = 283.0
-offset_bottom = 108.00009
-
-[node name="Label" type="Label" parent="right/amtperclickupg1"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 7.0
-offset_right = 276.0
-offset_bottom = 30.0
-text = "UPGRADE AMOUNT PER CLICK +1"
-
-[node name="autoclickupg1" type="Button" parent="right"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 216.0
-offset_right = 366.0
-offset_bottom = 286.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
-
-[node name="autoclickupg1" type="AnimatedSprite2D" parent="right/autoclickupg1"]
-position = Vector2(31, 20)
-scale = Vector2(0.12, 0.12)
-sprite_frames = SubResource("SpriteFrames_choun")
-
-[node name="autoclickupgsprite1" type="Label" parent="right/autoclickupg1"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 37.00009
-offset_right = 343.0
-offset_bottom = 112.00009
-theme_override_font_sizes/font_size = 16
-text = "
-
-"
-
-[node name="Label" type="Label" parent="right/autoclickupg1"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 4.0
-offset_right = 368.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 16
-text = "UPGRADE GAINED PER SECOND +1"
-
-[node name="golden taco" type="Button" parent="right"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 300.0
-offset_right = 366.0
-offset_bottom = 370.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
-
-[node name="golden taco sprite" type="Sprite2D" parent="right/golden taco"]
-position = Vector2(30, 17)
-rotation = 0.8377581
-texture = ExtResource("7_o6xl0")
-
-[node name="golden taco label" type="Label" parent="right/golden taco"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 37.00009
-offset_right = 343.0
-offset_bottom = 112.00009
-theme_override_font_sizes/font_size = 16
-text = "
-
-"
-
-[node name="Label" type="Label" parent="right/golden taco"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 11.0
-offset_right = 343.0
-offset_bottom = 34.0
-text = "GOLDEN TACO"
-
-[node name="amtperclickupg2" type="Button" parent="right"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 385.0
-offset_right = 365.0
-offset_bottom = 455.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
-
-[node name="amountperclickupgrade2" type="Sprite2D" parent="right/amtperclickupg2"]
-position = Vector2(30, 16)
-rotation = 0.8377581
-texture = ExtResource("1_o5qli")
-
-[node name="amountperclickupgrade2label" type="Label" parent="right/amtperclickupg2"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 33.00009
-offset_right = 283.0
-offset_bottom = 108.00009
-
-[node name="Label" type="Label" parent="right/amtperclickupg2"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 7.0
-offset_right = 276.0
-offset_bottom = 30.0
-text = "UPGRADE AMOUNT PER CLICK +10"
-
-[node name="autoclickupg2" type="Button" parent="right"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 470.0
-offset_right = 366.0
-offset_bottom = 540.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
-
-[node name="autoclickupg2" type="AnimatedSprite2D" parent="right/autoclickupg2"]
-position = Vector2(31, 20)
-scale = Vector2(0.12, 0.12)
-sprite_frames = SubResource("SpriteFrames_choun")
-
-[node name="autoclickupgsprite2" type="Label" parent="right/autoclickupg2"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 37.00009
-offset_right = 343.0
-offset_bottom = 112.00009
-theme_override_font_sizes/font_size = 16
-text = "
-
-"
-
-[node name="Label" type="Label" parent="right/autoclickupg2"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 4.0
-offset_right = 368.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 16
-text = "UPGRADE GAINED PER SECOND +10"
-
-[node name="disco_sauce" type="Button" parent="right"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 554.0
-offset_right = 366.0
-offset_bottom = 624.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
-
-[node name="disco_sauce_sprite" type="AnimatedSprite2D" parent="right/disco_sauce"]
-position = Vector2(31, 20)
-scale = Vector2(0.12, 0.12)
-sprite_frames = SubResource("SpriteFrames_choun")
-
-[node name="disco_sauce_label" type="Label" parent="right/disco_sauce"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 37.00009
-offset_right = 343.0
-offset_bottom = 112.00009
-theme_override_font_sizes/font_size = 16
-text = "
-
-"
-
-[node name="Label" type="Label" parent="right/disco_sauce"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 4.0
-offset_right = 368.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 16
-text = "DISCO SAUCE"
-
 [node name="passivegainstimer" type="Timer" parent="."]
 autostart = true
 
@@ -421,18 +218,266 @@ libraries = {
 &"": SubResource("AnimationLibrary_ya4ey")
 }
 
+[node name="scroller" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 781.0
+offset_right = 1151.0
+offset_bottom = 649.0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="scroller"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="right" type="Panel" parent="scroller/VBoxContainer"]
+custom_minimum_size = Vector2(399.925, 850)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_tipki")
+theme_override_styles/panel = SubResource("StyleBoxFlat_85g3d")
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 12.0
+offset_right = 332.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbgi4")
+text = "UPGRADES"
+
+[node name="amtperclickupg1" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 105.0
+offset_right = 342.0
+offset_bottom = 172.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="amountperclickupgrade1" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg1"]
+position = Vector2(30, 17)
+rotation = 0.8377581
+texture = ExtResource("1_o5qli")
+
+[node name="amountperclickupgrade1label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 33.00009
+offset_right = 283.0
+offset_bottom = 108.00009
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 7.0
+offset_right = 276.0
+offset_bottom = 30.0
+text = "UPGRADE AMOUNT PER CLICK +1"
+
+[node name="autoclickupg1" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 188.0
+offset_right = 342.0
+offset_bottom = 255.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="autoclickupg1" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg1"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="autoclickupgsprite1" type="Label" parent="scroller/VBoxContainer/right/autoclickupg1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg1"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE GAINED PER SECOND +1"
+
+[node name="golden taco" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 273.0
+offset_right = 342.0
+offset_bottom = 340.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="golden taco sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/golden taco"]
+position = Vector2(30, 17)
+rotation = 0.8377581
+texture = ExtResource("7_o6xl0")
+
+[node name="golden taco label" type="Label" parent="scroller/VBoxContainer/right/golden taco"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/golden taco"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 11.0
+offset_right = 343.0
+offset_bottom = 34.0
+text = "GOLDEN TACO"
+
+[node name="amtperclickupg2" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 360.0
+offset_right = 342.0
+offset_bottom = 427.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="amountperclickupgrade2" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg2"]
+position = Vector2(30, 16)
+rotation = 0.8377581
+texture = ExtResource("1_o5qli")
+
+[node name="amountperclickupgrade2label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 33.00009
+offset_right = 283.0
+offset_bottom = 108.00009
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 7.0
+offset_right = 276.0
+offset_bottom = 30.0
+text = "UPGRADE AMOUNT PER CLICK +10"
+
+[node name="autoclickupg2" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 455.0
+offset_right = 342.0
+offset_bottom = 522.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="autoclickupg2" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg2"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="autoclickupgsprite2" type="Label" parent="scroller/VBoxContainer/right/autoclickupg2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg2"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 368.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE GAINED PER SECOND +10"
+
+[node name="disco_sauce" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 549.0
+offset_right = 342.0
+offset_bottom = 616.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="disco_sauce_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/disco_sauce"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="disco_sauce_label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "DISCO SAUCE"
+
+[node name="disco_sauce2" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 638.0
+offset_right = 342.0
+offset_bottom = 705.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="disco_sauce_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/disco_sauce2"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="disco_sauce_label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce2"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "DISCO SAUCE"
+
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
 [connection signal="timeout" from="indicators/display/Timer" to="indicators/display" method="_on_timer_timeout"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="." method="_on_tacobutton_button_down"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]
-[connection signal="button_down" from="right/amtperclickupg1" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="right/autoclickupg1" to="." method="_on_autoclickupg_1_button_down"]
-[connection signal="button_down" from="right/golden taco" to="." method="_on_golden_taco_button_down"]
-[connection signal="button_down" from="right/amtperclickupg2" to="." method="_on_amtperclickupg_2_button_down"]
-[connection signal="button_down" from="right/autoclickupg2" to="." method="_on_autoclickupg_2_button_down"]
-[connection signal="button_down" from="right/disco_sauce" to="." method="_on_disco_sauce_button_down"]
 [connection signal="timeout" from="passivegainstimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="gtacotimer" to="." method="_on_gtacotimer_timeout"]
 [connection signal="timeout" from="dsaucetimer" to="." method="_on_dsaucetimer_timeout"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/amtperclickupg1" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg1" to="." method="_on_autoclickupg_1_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/golden taco" to="." method="_on_golden_taco_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/amtperclickupg2" to="." method="_on_amtperclickupg_2_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg2" to="." method="_on_autoclickupg_2_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/disco_sauce" to="." method="_on_disco_sauce_button_down"]

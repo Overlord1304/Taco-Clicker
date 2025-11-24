@@ -25,17 +25,17 @@ signal taco_clicked
 func _ready():
 	load_data()
 	emit_signal("tacos_changed", tacos)
-	$right/amtperclickupg1/amountperclickupgrade1label.text = str(upg1cost)+" Tacos"
-	$right/autoclickupg1/autoclickupgsprite1.text = str(upg2cost)+" Tacos"
+	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = str(upg1cost)+" Tacos"
+	$scroller/VBoxContainer/right/autoclickupg1/autoclickupgsprite1.text = str(upg2cost)+" Tacos"
 	$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
-	$"right/golden taco/golden taco label".text = str(upg3cost)+" Tacos"
-	$right/amtperclickupg2/amountperclickupgrade2label.text = str(upg4cost)+" Tacos"
-	$right/autoclickupg2/autoclickupgsprite2.text = str(upg5cost)+" Tacos"
-	$right/disco_sauce/disco_sauce_label.text = str(upg6cost)+" Tacos"
+	$"scroller/VBoxContainer/right/golden taco/golden taco label".text = str(upg3cost)+" Tacos"
+	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = str(upg4cost)+" Tacos"
+	$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = str(upg5cost)+" Tacos"
+	$scroller/VBoxContainer/right/disco_sauce/disco_sauce_label.text = str(upg6cost)+" Tacos"
 	if golden_taco_bought == true:
-		$"right/golden taco".disabled = true
+		$"scroller/VBoxContainer/right/golden taco".disabled = true
 	if disco_sauce_bought == true:
-		$right/disco_sauce.disabled = true
+		$scroller/VBoxContainer/right/disco_sauce.disabled = true
 func _on_tacobutton_button_down() -> void:
 	tacos += amount_per_click
 	emit_signal("tacos_changed",tacos)
@@ -118,7 +118,7 @@ func _on_button_button_down() -> void:
 			amount_per_click = base_amount_per_click
 		tacos -= upg1cost
 		upg1cost *= 1.25
-		$right/amtperclickupg1/amountperclickupgrade1label.text = str(upg1cost)+" Tacos"
+		$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = str(upg1cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data() 
 
@@ -134,7 +134,7 @@ func _on_autoclickupg_1_button_down() -> void:
 		$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
 		tacos -= upg2cost
 		upg2cost *= 1.25
-		$right/autoclickupg1/autoclickupgsprite1.text = str(upg2cost)+" Tacos"
+		$scroller/VBoxContainer/right/autoclickupg1/autoclickupgsprite1.text = str(upg2cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data() 
 
@@ -149,7 +149,7 @@ func _on_golden_taco_button_down() -> void:
 	if tacos >= upg3cost and golden_taco_bought == false: 
 		golden_taco_bought = true
 		tacos -= upg3cost
-		$"right/golden taco/golden taco label".text = str(upg3cost)+" Tacos"
+		$"scroller/VBoxContainer/right/golden taco/golden taco label".text = str(upg3cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data() 
 
@@ -171,7 +171,7 @@ func _on_amtperclickupg_2_button_down() -> void:
 			amount_per_click = base_amount_per_click
 		tacos -= upg4cost
 		upg4cost *= 1.25
-		$right/amtperclickupg2/amountperclickupgrade2label.text = str(upg4cost)+" Tacos"
+		$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = str(upg4cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
 
@@ -186,7 +186,7 @@ func _on_autoclickupg_2_button_down() -> void:
 		$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
 		tacos -= upg5cost
 		upg5cost *= 1.25
-		$right/autoclickupg2/autoclickupgsprite2.text = str(upg5cost)+" Tacos"
+		$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = str(upg5cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data() 
 
@@ -195,7 +195,7 @@ func _on_disco_sauce_button_down() -> void:
 	if tacos >= upg6cost and disco_sauce_bought == false: 
 		disco_sauce_bought = true
 		tacos -= upg6cost
-		$right/disco_sauce/disco_sauce_label.text = str(upg6cost)+" Tacos"
+		$scroller/VBoxContainer/right/disco_sauce/disco_sauce_label.text = str(upg6cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data() 
 
