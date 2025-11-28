@@ -204,6 +204,7 @@ libraries = {
 autoplay = "spin"
 
 [node name="passivegainstimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="gtacotimer" type="Timer" parent="."]
@@ -230,7 +231,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="right" type="Panel" parent="scroller/VBoxContainer"]
-custom_minimum_size = Vector2(399.925, 850)
+custom_minimum_size = Vector2(380, 850)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
@@ -433,20 +434,20 @@ offset_bottom = 62.0
 theme_override_font_sizes/font_size = 16
 text = "DISCO SAUCE"
 
-[node name="disco_sauce2" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="T_A_C_O_BUTTON" type="Button" parent="scroller/VBoxContainer/right"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 638.0
+offset_top = 640.0
 offset_right = 342.0
-offset_bottom = 705.0
+offset_bottom = 707.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="disco_sauce_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/disco_sauce2"]
+[node name="T_A_C_O_SPRITE" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON"]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="disco_sauce_label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce2"]
+[node name="T_A_C_O_LABEL" type="Label" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -457,14 +458,57 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce2"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON"]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 62.0
 theme_override_font_sizes/font_size = 16
-text = "DISCO SAUCE"
+text = "T.A.C.O"
+
+[node name="T_A_C_O" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 407.0
+offset_right = 240.0
+offset_bottom = 653.0
+
+[node name="MarginContainer" type="MarginContainer" parent="T_A_C_O"]
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 250.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="T_A_C_O/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="T_A_C_O/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "T.A.C.O"
+horizontal_alignment = 1
+
+[node name="amountperclickupgrade2" type="Sprite2D" parent="T_A_C_O/MarginContainer"]
+position = Vector2(30, 74)
+rotation = 0.8377581
+texture = ExtResource("1_o5qli")
+
+[node name="HSlider" type="HSlider" parent="T_A_C_O"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 71.0
+offset_right = 198.0
+offset_bottom = 87.0
+min_value = 0.5
+max_value = 10.0
+step = 0.5
+value = 0.5
+
+[node name="click_multiplier_label" type="Label" parent="T_A_C_O"]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 68.0
+offset_right = 237.0
+offset_bottom = 91.0
 
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
@@ -481,3 +525,5 @@ text = "DISCO SAUCE"
 [connection signal="button_down" from="scroller/VBoxContainer/right/amtperclickupg2" to="." method="_on_amtperclickupg_2_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg2" to="." method="_on_autoclickupg_2_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/disco_sauce" to="." method="_on_disco_sauce_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/T_A_C_O_BUTTON" to="." method="_on_t_a_c_o_button_button_down"]
+[connection signal="value_changed" from="T_A_C_O/HSlider" to="." method="_on_h_slider_value_changed"]
