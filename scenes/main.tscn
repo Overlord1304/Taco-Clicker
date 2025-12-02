@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=25 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://momc162twgmc" path="res://sprites/sunburst.png" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://bqtxa10bvitfb" path="res://scripts/indicator_fade_out.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://b4cm5mvaxsoaj" path="res://scripts/tacocount.gd" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://b6plrukyqypgf" path="res://scripts/entropycount.gd" id="7_choun"]
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://jbgq1yplxp3r" path="res://sprites/Pixel Cursor (png).png" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://x6q7pmb57wet" path="res://icon.svg" id="8_ya4ey"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0, 0.6, 0.9647059, 1)
@@ -202,6 +204,32 @@ libraries = {
 &"": SubResource("AnimationLibrary_o6xl0")
 }
 autoplay = "spin"
+
+[node name="entropy" type="Node2D" parent="left"]
+script = ExtResource("7_choun")
+
+[node name="Sprite2D" type="Sprite2D" parent="left/entropy"]
+position = Vector2(34.999996, 30.25)
+scale = Vector2(0.43750006, 0.3945312)
+texture = ExtResource("8_ya4ey")
+
+[node name="entropycount" type="Label" parent="left/entropy"]
+offset_left = 76.0
+offset_right = 123.0
+offset_bottom = 57.0
+size_flags_horizontal = 8
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 41
+
+[node name="entropypersecondcount" type="Label" parent="left/entropy"]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 9.0
+offset_top = 60.0
+offset_right = 209.0
+offset_bottom = 83.0
+size_flags_horizontal = 0
+size_flags_vertical = 2
+text = "0 PER SECOND"
 
 [node name="passivegainstimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -492,11 +520,21 @@ position = Vector2(30, 74)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="HSlider" type="HSlider" parent="T_A_C_O"]
+[node name="passivegainsupgradesprite" type="AnimatedSprite2D" parent="T_A_C_O/MarginContainer"]
+position = Vector2(31.000002, 120)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="entropyupgradesprite" type="Sprite2D" parent="T_A_C_O/MarginContainer"]
+position = Vector2(23.899998, 173.95299)
+scale = Vector2(0.2828125, 0.25073424)
+texture = ExtResource("8_ya4ey")
+
+[node name="amountsperclickslider" type="HSlider" parent="T_A_C_O"]
 layout_mode = 0
-offset_left = 40.0
+offset_left = 43.0
 offset_top = 71.0
-offset_right = 198.0
+offset_right = 201.0
 offset_bottom = 87.0
 min_value = 0.5
 max_value = 10.0
@@ -505,11 +543,51 @@ value = 0.5
 
 [node name="click_multiplier_label" type="Label" parent="T_A_C_O"]
 layout_mode = 0
-offset_left = 197.0
-offset_top = 68.0
-offset_right = 237.0
-offset_bottom = 91.0
+offset_left = 203.0
+offset_top = 69.0
+offset_right = 239.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 14
 
+[node name="passivegains_multiplier_label" type="Label" parent="T_A_C_O"]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 119.0
+offset_right = 236.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 14
+
+[node name="passivegainsperclickslider" type="HSlider" parent="T_A_C_O"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 122.0
+offset_right = 202.0
+offset_bottom = 138.0
+min_value = 0.5
+max_value = 10.0
+step = 0.5
+value = 0.5
+
+[node name="entropy_multiplier_label" type="Label" parent="T_A_C_O"]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 162.0
+offset_right = 239.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 14
+
+[node name="passivegainsperclickslider2" type="HSlider" parent="T_A_C_O"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 167.0
+offset_right = 202.0
+offset_bottom = 183.0
+min_value = 0.5
+max_value = 10.0
+step = 0.5
+value = 0.5
+
+[connection signal="entropy_changed" from="." to="left/entropy" method="_on_main_entropy_changed"]
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
 [connection signal="timeout" from="indicators/display/Timer" to="indicators/display" method="_on_timer_timeout"]
@@ -526,4 +604,5 @@ offset_bottom = 91.0
 [connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg2" to="." method="_on_autoclickupg_2_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/disco_sauce" to="." method="_on_disco_sauce_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/T_A_C_O_BUTTON" to="." method="_on_t_a_c_o_button_button_down"]
-[connection signal="value_changed" from="T_A_C_O/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]

@@ -1,6 +1,6 @@
-extends VBoxContainer
+extends Node2D
 
-@onready var taco_label = $tacocount
+@onready var entropy_label = $entropycount
 func format_number(n: float) -> String:
 	if n < 1000:
 		return str(n)
@@ -13,5 +13,6 @@ func format_number(n: float) -> String:
 	if text.ends_with(".0"):
 		text = text.trim_suffix(".0")
 	return text + suffixes[tier]
-func _on_main_tacos_changed(amount) -> void:
-	taco_label.text =  format_number(amount) + " Tacos"
+
+func _on_main_entropy_changed(amount) -> void:
+	entropy_label.text = format_number(amount)
