@@ -2,6 +2,9 @@ extends Control
 
 const saves =  "user://userdata.save"
 var entropy = 0
+var entropy_consumption_click = 0
+var entropy_consumption_passive = 0
+var entropy_consumption_slider = 0
 var tacos = 0
 var base_amount_per_click = 1
 var amount_per_click = 1
@@ -16,10 +19,14 @@ var upg4cost:int = 1500
 var upg5cost:int = 3000
 var upg6cost:int = 10000
 var upg7cost:int = 100000
+var upg8cost:int = 50000
+var upg9cost:int = 500000
 var golden_taco_bought = false
 var golden_taco_activated = false
 var disco_sauce_bought = false
 var disco_sauce_activated = false
+var cosmic_tortilla_bought = false
+var cosmic_tortilla_activated = false
 var TACO_bought = false
 var TACO_click_multiplier = 1.0
 var TACO_gains_multiplier = 1.0
@@ -35,6 +42,13 @@ signal entropy_changed
 
 func _ready():
 	load_data()
+	
+	if not TACO_bought:
+		$T_A_C_O.visible = false
+		$left/entropy.visible = false
+	else:
+		$T_A_C_O.visible = true
+		$left/entropy.visible = true
 	emit_signal("tacos_changed", tacos)
 	emit_signal("entropy_changed",entropy)
 	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = str(upg1cost)+" Tacos"
@@ -46,10 +60,14 @@ func _ready():
 	$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = str(upg5cost)+" Tacos"
 	$scroller/VBoxContainer/right/disco_sauce/disco_sauce_label.text = str(upg6cost)+" Tacos"
 	$scroller/VBoxContainer/right/T_A_C_O_BUTTON/T_A_C_O_LABEL.text = str(upg7cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = str(upg8cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = str(upg9cost)+" Tacos"
 	$T_A_C_O/amountsperclickslider.value = TACO_click_multiplier
 	$T_A_C_O/passivegainsperclickslider.value = TACO_gains_multiplier
+	$T_A_C_O/entropymultiplierperclickslider.value = TACO_entropy_multiplier
 	_on_h_slider_value_changed(TACO_click_multiplier)
 	_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
+	_on_entropymultiplierperclickslider_value_changed(TACO_entropy_multiplier)
 
 func update_amount_per_click() -> void:
 	var click_mult = TACO_click_multiplier
@@ -62,6 +80,9 @@ func update_passive_gains() -> void:
 		gains_mult *= 50
 	passive_gains = base_passive_gains * gains_mult
 	$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains) + " PER SECOND"
+func update_entropy_gains():
+	entropy_gains = base_entropy_gains * TACO_entropy_multiplier
+	$left/entropy/entropypersecondcount.text = str(entropy_gains) + " PER SECOND"
 func _on_tacobutton_button_down() -> void:
 	tacos += amount_per_click
 	emit_signal("tacos_changed",tacos)
@@ -97,8 +118,8 @@ func _process(delta):
 				$left/MarginContainer/VBoxContainer/persecondcount.text = str(passive_gains)+" PER SECOND"
 				$AnimationPlayer.play("disco_anim")
 				dsauce_timer.start(10.0)
-	if TACO_bought:
-		$T_A_C_O.z_index = 1
+	
+		
 
 func save_data():
 	var data = {
@@ -114,9 +135,15 @@ func save_data():
 		"upg6cost" : upg6cost,
 		"disco_sauce_bought" : disco_sauce_bought,
 		"upg7cost" : upg7cost,
+		"upg8cost" : upg8cost,
+		"upg9cost" : upg9cost,
 		"TACO_bought" : TACO_bought,
+		"entropy": entropy,
+		"base_entropy_gains" : base_entropy_gains,
+		"entropy_gains": entropy_gains,
 		"TACO_click_multiplier": TACO_click_multiplier,
-		"TACO_gains_multiplier": TACO_gains_multiplier
+		"TACO_gains_multiplier": TACO_gains_multiplier,
+		"TACO_entropy_multiplier": TACO_entropy_multiplier
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -139,13 +166,21 @@ func load_data():
 			upg5cost = data.get("upg5cost",3000)
 			upg6cost = data.get("upg6cost",10000)
 			upg7cost = data.get("upg7cost",100000)
+			upg8cost = data.get("upg8cost",50000)
+			upg9cost = data.get("upg9cost",500000)
 			golden_taco_bought = data.get("golden_taco_bought",false)
 			disco_sauce_bought = data.get("disco_sauce_bought",false)
 			TACO_bought = data.get("TACO_bought",false)
+			entropy = data.get("entropy", 0)
+			base_entropy_gains = data.get("base_entropy_gains", 1)
+			entropy_gains = data.get("entropy_gains",1)
+			entropy_gains = base_entropy_gains
 			TACO_click_multiplier = data.get("TACO_click_multiplier",1.0)
 			TACO_gains_multiplier = data.get("TACO_gains_multiplier",1.0)
+			TACO_entropy_multiplier = data.get("TACO_entropy_multiplier", 1.0)
 			update_amount_per_click()
 			update_passive_gains()
+			update_entropy_gains()
 	else:
 		save_data()
 
@@ -174,8 +209,45 @@ func _on_autoclickupg_1_button_down() -> void:
 		save_data()
 
 func _on_timer_timeout() -> void:
-	emit_signal("tacos_changed",tacos)
+	
+	entropy += entropy_gains
+
+	
+	if TACO_click_multiplier > 1.0:
+		var cost = cost_click_mult(TACO_click_multiplier)
+		if entropy >= cost:
+			entropy -= cost
+		else:
+			
+			var new_val = get_affordable_value(TACO_click_multiplier, func(v): return cost_click_mult(v), entropy)
+			$T_A_C_O/amountsperclickslider.value = new_val
+			_on_h_slider_value_changed(new_val)
+
+	
+	if TACO_gains_multiplier > 1.0:
+		var cost = cost_passive_mult(TACO_gains_multiplier)
+		if entropy >= cost:
+			entropy -= cost
+		else:
+			var new_val = get_affordable_value(TACO_gains_multiplier, func(v): return cost_passive_mult(v), entropy)
+			$T_A_C_O/passivegainsperclickslider.value = new_val
+			_on_passivegainsperclickslider_value_changed(new_val)
+
+	
+	if TACO_entropy_multiplier > 1.0:
+		var cost = cost_entropy_boost(TACO_entropy_multiplier)
+		if tacos >= cost:
+			tacos -= cost
+		else:
+			var new_val = get_affordable_value(TACO_entropy_multiplier, func(v): return cost_entropy_boost(v), tacos)
+			$T_A_C_O/entropymultiplierperclickslider.value = new_val
+			_on_entropymultiplierperclickslider_value_changed(new_val)
+
+	
 	tacos += passive_gains
+
+	emit_signal("tacos_changed", tacos)
+	emit_signal("entropy_changed", entropy)
 	save_data()
 
 func _on_golden_taco_button_down() -> void:
@@ -232,6 +304,8 @@ func _on_dsaucetimer_timeout() -> void:
 func _on_t_a_c_o_button_button_down() -> void:
 	if tacos >= upg7cost and TACO_bought == false:
 		TACO_bought = true
+		$T_A_C_O.visible = true
+		$left/entropy.visible = true
 		tacos -= upg7cost
 		$scroller/VBoxContainer/right/T_A_C_O_BUTTON/T_A_C_O_LABEL.text = str(upg7cost)+" Tacos"
 		$T_A_C_O/amountsperclickslider.value = 1.0
@@ -240,13 +314,96 @@ func _on_t_a_c_o_button_button_down() -> void:
 		_on_passivegainsperclickslider_value_changed(1.0)
 		emit_signal("tacos_changed",tacos)
 		save_data()
+func get_affordable_value(current_value: float, cost_func: Callable, resource_amount: float) -> float:
+	var test = current_value
+	if test <= 1.0:
+		return current_value
+	
+	while test > 1.0:
+		if cost_func.call(test) <= resource_amount:
+			return test
+		test -= 0.5
+		test = round(test*10) / 10
+	return 1.0
+func cost_click_mult(value: float) -> float:
+	return (value - 1.0) * 50  
 
+func cost_passive_mult(value: float) -> float:
+	return (value - 1.0) * 75  
+
+func cost_entropy_boost(value: float) -> float:
+	return ((value - 1.0) * 10)*base_entropy_gains  
 func _on_h_slider_value_changed(value: float) -> void:
+	var affordable = get_affordable_value(
+		value,
+		func(v): return cost_click_mult(v),
+		entropy
+	)
+	if affordable != value:
+		$T_A_C_O/amountsperclickslider.value = affordable
+		value = affordable
 	TACO_click_multiplier = value
 	$T_A_C_O/click_multiplier_label.text = str(value) + "x"
 	update_amount_per_click()
 
 func _on_passivegainsperclickslider_value_changed(value: float) -> void:
+	var affordable = get_affordable_value(
+		value,
+		func(v): return cost_passive_mult(v),
+		entropy
+	)
+
+	if affordable != value:
+		$T_A_C_O/passivegainsperclickslider.value = affordable
+		value = affordable
+
 	TACO_gains_multiplier = value
 	$T_A_C_O/passivegains_multiplier_label.text = str(value) + "x"
+
 	update_passive_gains()
+	
+func _on_entropymultiplierperclickslider_value_changed(value: float) -> void:
+	var affordable = get_affordable_value(
+		value,
+		func(v): return cost_entropy_boost(v),
+		tacos
+	)
+
+	if affordable != value:
+		$T_A_C_O/entropymultiplierperclickslider.value = affordable
+		value = affordable
+
+	TACO_entropy_multiplier = value
+	update_entropy_gains()
+	$left/entropy/entropypersecondcount.text = str(entropy_gains) + " PER SECOND"
+	$T_A_C_O/entropy_multiplier_label.text = str(value) + "x"
+
+
+func _on_entropyupg_1_button_button_down() -> void:
+	if tacos >= upg8cost:
+		base_entropy_gains += 1
+		if cosmic_tortilla_activated:
+			entropy_gains = base_entropy_gains * 50
+		else:
+			update_entropy_gains()
+		$left/entropy/entropypersecondcount.text = str(entropy_gains)+" PER SECOND"
+		tacos -= upg8cost
+		upg8cost *= 1.25
+		$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = str(upg8cost)+" Tacos"
+		emit_signal("tacos_changed",tacos)
+		save_data()
+
+
+func _on_entropyupg_2_button_2_button_down() -> void:
+	if tacos >= upg9cost:
+		base_entropy_gains += 10
+		if cosmic_tortilla_activated:
+			entropy_gains = base_entropy_gains * 50
+		else:
+			update_entropy_gains()
+		$left/entropy/entropypersecondcount.text = str(entropy_gains)+" PER SECOND"
+		tacos -= upg9cost
+		upg9cost *= 1.25
+		$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = str(upg9cost)+" Tacos"
+		emit_signal("tacos_changed",tacos)
+		save_data()

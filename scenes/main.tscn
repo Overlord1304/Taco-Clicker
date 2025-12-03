@@ -259,7 +259,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="right" type="Panel" parent="scroller/VBoxContainer"]
-custom_minimum_size = Vector2(380, 850)
+custom_minimum_size = Vector2(380, 1100)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
@@ -495,6 +495,72 @@ offset_bottom = 62.0
 theme_override_font_sizes/font_size = 16
 text = "T.A.C.O"
 
+[node name="entropyupg1button" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 736.0
+offset_right = 342.0
+offset_bottom = 803.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="entropyupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg1button"]
+position = Vector2(22, 28)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_ya4ey")
+
+[node name="entropyupg1label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE ENTROPY PER SECOND+1"
+
+[node name="entropyupg2button2" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 832.0
+offset_right = 342.0
+offset_bottom = 899.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="entropyupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg2button2"]
+position = Vector2(22, 28)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_ya4ey")
+
+[node name="entropyupg2label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE ENTROPY PER SECOND+10"
+
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
 offset_top = 407.0
@@ -570,17 +636,17 @@ value = 0.5
 
 [node name="entropy_multiplier_label" type="Label" parent="T_A_C_O"]
 layout_mode = 0
-offset_left = 207.0
+offset_left = 204.0
 offset_top = 162.0
-offset_right = 239.0
+offset_right = 236.0
 offset_bottom = 185.0
 theme_override_font_sizes/font_size = 14
 
-[node name="passivegainsperclickslider2" type="HSlider" parent="T_A_C_O"]
+[node name="entropymultiplierperclickslider" type="HSlider" parent="T_A_C_O"]
 layout_mode = 0
-offset_left = 44.0
+offset_left = 46.0
 offset_top = 167.0
-offset_right = 202.0
+offset_right = 204.0
 offset_bottom = 183.0
 min_value = 0.5
 max_value = 10.0
@@ -604,5 +670,8 @@ value = 0.5
 [connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg2" to="." method="_on_autoclickupg_2_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/disco_sauce" to="." method="_on_disco_sauce_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/T_A_C_O_BUTTON" to="." method="_on_t_a_c_o_button_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg1button" to="." method="_on_entropyupg_1_button_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg2button2" to="." method="_on_entropyupg_2_button_2_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
+[connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]
