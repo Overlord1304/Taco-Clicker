@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=33 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://jbgq1yplxp3r" path="res://sprites/Pixel Cursor (png).png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://x6q7pmb57wet" path="res://icon.svg" id="8_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://5bdfvrul7x52" path="res://sprites/storm-sheet.png" id="11_ya4ey"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0, 0.6, 0.9647059, 1)
@@ -120,6 +121,56 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_85g3d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
+atlas = ExtResource("11_ya4ey")
+region = Rect2(0, 0, 256, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("11_ya4ey")
+region = Rect2(256, 0, 256, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
+atlas = ExtResource("11_ya4ey")
+region = Rect2(512, 0, 256, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = ExtResource("11_ya4ey")
+region = Rect2(768, 0, 256, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("11_ya4ey")
+region = Rect2(1024, 0, 256, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("11_ya4ey")
+region = Rect2(1280, 0, 256, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dp3eg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb6dy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trceg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8y0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muem4")
 }],
 "loop": true,
 "name": &"default",
@@ -558,8 +609,102 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 62.0
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 text = "UPGRADE ENTROPY PER SECOND+10"
+
+[node name="amtperclickupg3" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 928.0
+offset_right = 342.0
+offset_bottom = 995.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="amountperclickupgrade3" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg3"]
+position = Vector2(30, 16)
+rotation = 0.8377581
+texture = ExtResource("1_o5qli")
+
+[node name="amountperclickupgrade3label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg3"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 33.00009
+offset_right = 283.0
+offset_bottom = 108.00009
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg3"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 7.0
+offset_right = 276.0
+offset_bottom = 30.0
+text = "UPGRADE AMOUNT PER CLICK +100"
+
+[node name="autoclickupg3" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1020.0
+offset_right = 342.0
+offset_bottom = 1087.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="autoclickupg3" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg3"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="autoclickupgsprite3" type="Label" parent="scroller/VBoxContainer/right/autoclickupg3"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg3"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 368.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 14
+text = "UPGRADE GAINED PER SECOND +100"
+
+[node name="cosmic_overflow" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1110.0
+offset_right = 342.0
+offset_bottom = 1177.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="cosmic_overflow_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/cosmic_overflow"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="cosmic_overflow_label" type="Label" parent="scroller/VBoxContainer/right/cosmic_overflow"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/cosmic_overflow"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "DISCO SAUCE"
 
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
@@ -653,6 +798,59 @@ max_value = 10.0
 step = 0.5
 value = 0.5
 
+[node name="coverflowtimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(81.00001, 1212.0001)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(1041, 1212.0002)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(1201, 1213)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(721, 1212.0002)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(881, 1213)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(401, 1212.0002)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(561, 1213)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(241, 1212.0002)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+
 [connection signal="entropy_changed" from="." to="left/entropy" method="_on_main_entropy_changed"]
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
@@ -672,6 +870,10 @@ value = 0.5
 [connection signal="button_down" from="scroller/VBoxContainer/right/T_A_C_O_BUTTON" to="." method="_on_t_a_c_o_button_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg1button" to="." method="_on_entropyupg_1_button_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg2button2" to="." method="_on_entropyupg_2_button_2_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/amtperclickupg3" to="." method="_on_amtperclickupg_3_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg3" to="." method="_on_autoclickupg_3_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/cosmic_overflow" to="." method="_on_cosmic_overflow_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]
+[connection signal="timeout" from="coverflowtimer" to="." method="_on_coverflowtimer_timeout"]
