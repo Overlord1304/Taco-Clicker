@@ -39,6 +39,7 @@ var taco_texture = preload("res://sprites/taco.png")
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
+var coverflow_original_position = {}
 signal tacos_changed
 signal taco_clicked
 signal entropy_changed
@@ -47,6 +48,7 @@ func _ready():
 	load_data()
 	for sprite in get_tree().get_nodes_in_group("coverflow"):
 		sprite.play()
+		coverflow_original_position[sprite] = sprite.position
 	if not TACO_bought:
 		$T_A_C_O.visible = false
 		$left/entropy.visible = false
@@ -106,6 +108,8 @@ func _process(delta):
 		$scroller/VBoxContainer/right/disco_sauce.disabled = true
 	if TACO_bought == true:
 		$scroller/VBoxContainer/right/T_A_C_O_BUTTON.disabled = true
+	if cosmic_overflow_bought == true:
+		$scroller/VBoxContainer/right/cosmic_overflow.disabled = true
 	if golden_taco_bought and golden_taco_activated == false:
 		var rand = randi() % 3000
 		match rand:
@@ -129,6 +133,7 @@ func _process(delta):
 				dsauce_timer.start(10.0)
 	if cosmic_overflow_bought and cosmic_overflow_activated == false:
 		var rand = randi() % 3000
+		print(rand)
 		match rand:
 			!2999:
 				pass
@@ -137,7 +142,9 @@ func _process(delta):
 				update_entropy_gains()
 				$left/entropy/entropypersecondcount.text = str(entropy_gains)+" PER SECOND"
 				coverflow_timer.start(10.0)
-		
+				for sprite in get_tree().get_nodes_in_group("coverflow"):
+					var tween = create_tween()
+					tween.tween_property(sprite, "position:y", sprite.position.y - 150, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 func save_data():
 	var data = {
@@ -158,6 +165,7 @@ func save_data():
 		"upg10cost" : upg10cost,
 		"upg11cost" : upg11cost,
 		"upg12cost" : upg12cost,
+		"cosmic_overflow_bought" : cosmic_overflow_bought,
 		"TACO_bought" : TACO_bought,
 		"entropy": entropy,
 		"base_entropy_gains" : base_entropy_gains,
@@ -194,6 +202,7 @@ func load_data():
 			upg12cost = data.get("upg12cost",2000000)
 			golden_taco_bought = data.get("golden_taco_bought",false)
 			disco_sauce_bought = data.get("disco_sauce_bought",false)
+			cosmic_overflow_bought = data.get("cosmic_overflow_bought",false)
 			TACO_bought = data.get("TACO_bought",false)
 			entropy = data.get("entropy", 0)
 			base_entropy_gains = data.get("base_entropy_gains", 1)
@@ -472,4 +481,6 @@ func _on_coverflowtimer_timeout() -> void:
 	cosmic_overflow_activated = false
 	update_entropy_gains()
 	$left/entropy/entropypersecondcount.text = str(entropy_gains)+" PER SECOND"
-	$AnimationPlayer.play("reset")
+	for sprite in get_tree().get_nodes_in_group("coverflow"):
+		var tween = create_tween()
+		tween.tween_property(sprite, "position", coverflow_original_position[sprite], 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)

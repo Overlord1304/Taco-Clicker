@@ -310,7 +310,8 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="right" type="Panel" parent="scroller/VBoxContainer"]
-custom_minimum_size = Vector2(380, 1100)
+z_index = 1
+custom_minimum_size = Vector2(380, 1500)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
@@ -704,13 +705,14 @@ offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 62.0
 theme_override_font_sizes/font_size = 16
-text = "DISCO SAUCE"
+text = "COSMIC OVERFLOW"
 
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
-offset_top = 407.0
-offset_right = 240.0
-offset_bottom = 653.0
+offset_left = -5.0
+offset_top = 214.0
+offset_right = 235.0
+offset_bottom = 460.0
 
 [node name="MarginContainer" type="MarginContainer" parent="T_A_C_O"]
 layout_mode = 0
@@ -802,53 +804,24 @@ value = 0.5
 wait_time = 10.0
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 78)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(81.00001, 1212.0001)
+position = Vector2(192, 2044.0001)
 rotation = -1.5707964
-scale = Vector2(5, 5)
+scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(1041, 1212.0002)
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(576, 2044)
 rotation = -1.5707964
-scale = Vector2(5, 5)
+scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(1201, 1213)
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+position = Vector2(958.99994, 2044)
 rotation = -1.5707964
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_dp3eg")
-
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(721, 1212.0002)
-rotation = -1.5707964
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_dp3eg")
-
-[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(881, 1213)
-rotation = -1.5707964
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_dp3eg")
-
-[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(401, 1212.0002)
-rotation = -1.5707964
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_dp3eg")
-
-[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(561, 1213)
-rotation = -1.5707964
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_dp3eg")
-
-[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(241, 1212.0002)
-rotation = -1.5707964
-scale = Vector2(5, 5)
+scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
 [connection signal="entropy_changed" from="." to="left/entropy" method="_on_main_entropy_changed"]
