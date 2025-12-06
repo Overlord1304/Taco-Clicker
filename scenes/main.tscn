@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=34 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -53,9 +53,6 @@ _data = {
 &"spin": SubResource("Animation_tbgi4")
 }
 
-[sub_resource type="Animation" id="Animation_85g3d"]
-length = 0.001
-
 [sub_resource type="Animation" id="Animation_tipki"]
 resource_name = "disco_anim"
 loop_mode = 1
@@ -72,6 +69,22 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 1), Color(1, 0.4745098, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.43137255, 1, 1), Color(0.5019608, 0, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ya4ey"]
+resource_name = "overclock_anim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("T_A_C_O:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.39607844, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.3137255, 1, 1), Color(0.35686275, 0.3137255, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_choun"]
 resource_name = "reset"
 tracks/0/type = "value"
@@ -86,11 +99,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0.6, 0.9647059, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("T_A_C_O:theme_override_styles/panel:border_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
 _data = {
-&"RESET": SubResource("Animation_85g3d"),
 &"disco_anim": SubResource("Animation_tipki"),
+&"overclock_anim": SubResource("Animation_ya4ey"),
 &"reset": SubResource("Animation_choun")
 }
 
@@ -126,6 +151,16 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
+bg_color = Color(0.24356923, 0.24356925, 0.24356908, 0.5764706)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
 atlas = ExtResource("11_ya4ey")
@@ -311,7 +346,7 @@ size_flags_vertical = 3
 
 [node name="right" type="Panel" parent="scroller/VBoxContainer"]
 z_index = 1
-custom_minimum_size = Vector2(380, 1500)
+custom_minimum_size = Vector2(360, 1500)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
@@ -707,12 +742,46 @@ offset_bottom = 62.0
 theme_override_font_sizes/font_size = 16
 text = "COSMIC OVERFLOW"
 
+[node name="TACO_overclock" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1200.0
+offset_right = 342.0
+offset_bottom = 1267.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="TACO_overclock_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/TACO_overclock"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="TACO_overclock_label" type="Label" parent="scroller/VBoxContainer/right/TACO_overclock"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/TACO_overclock"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 363.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 16
+text = "TACO Overclock"
+
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
 offset_left = -5.0
 offset_top = 214.0
 offset_right = 235.0
 offset_bottom = 460.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eb6dy")
 
 [node name="MarginContainer" type="MarginContainer" parent="T_A_C_O"]
 layout_mode = 0
@@ -804,7 +873,7 @@ value = 0.5
 wait_time = 10.0
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(0, 78)
+position = Vector2(0, 114)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
 position = Vector2(192, 2044.0001)
@@ -823,6 +892,9 @@ position = Vector2(958.99994, 2044)
 rotation = -1.5707964
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
+
+[node name="overclocktimer" type="Timer" parent="."]
+wait_time = 10.0
 
 [connection signal="entropy_changed" from="." to="left/entropy" method="_on_main_entropy_changed"]
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
@@ -846,7 +918,9 @@ sprite_frames = SubResource("SpriteFrames_dp3eg")
 [connection signal="button_down" from="scroller/VBoxContainer/right/amtperclickupg3" to="." method="_on_amtperclickupg_3_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg3" to="." method="_on_autoclickupg_3_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/cosmic_overflow" to="." method="_on_cosmic_overflow_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/TACO_overclock" to="." method="_on_taco_overclock_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]
 [connection signal="timeout" from="coverflowtimer" to="." method="_on_coverflowtimer_timeout"]
+[connection signal="timeout" from="overclocktimer" to="." method="_on_overclocktimer_timeout"]
