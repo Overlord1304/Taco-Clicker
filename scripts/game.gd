@@ -85,17 +85,20 @@ func _ready():
 	_on_h_slider_value_changed(TACO_click_multiplier)
 	_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 	_on_entropymultiplierperclickslider_value_changed(TACO_entropy_multiplier)
-func format_number(n: float) -> String:
+func format_number(n) -> String:
 	if n < 1000:
-		return str(n)
+		return str(n if n != int(n) else int(n))
+	
 	var suffixes = ["", "K", "M", "B", "T", "Q"]
 	var tier = int(floor(log(n) / log(1000)))
 	if tier >= suffixes.size():
 		tier = suffixes.size() - 1
+	
 	var scaled = n / pow(1000, tier)
-	var text = str(round(scaled * 10) / 10.0)
-	if text.ends_with(".0"):
-		text = text.trim_suffix(".0")
+	var rounded = round(scaled * 10) / 10.0
+	
+	var text = str(rounded if rounded != int(rounded) else int(rounded))
+	
 	return text + suffixes[tier]
 func update_amount_per_click() -> void:
 	var click_mult = TACO_click_multiplier
@@ -159,7 +162,7 @@ func _process(delta):
 				disco_sauce_activated = true
 				update_passive_gains()	
 				$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
-				$AnimationPlayer.play("disco_anim")
+				$disco.play("disco_anim")
 				dsauce_timer.start(10.0)
 	if cosmic_overflow_bought and cosmic_overflow_activated == false:
 		var rand = randi() % 3000
@@ -183,7 +186,7 @@ func _process(delta):
 			999:
 				overclock_activated = true
 				update_taco_sliders()
-				$AnimationPlayer.play("overclock_anim")
+				$overclock.play("overclock_anim")
 				overclock_timer.start(10.0)
 
 func save_data():
@@ -376,7 +379,7 @@ func _on_dsaucetimer_timeout() -> void:
 	disco_sauce_activated = false
 	update_passive_gains()
 	$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
-	$AnimationPlayer.play("reset")
+	$disco.play("reset")
 
 func _on_t_a_c_o_button_button_down() -> void:
 	if tacos >= upg7cost and TACO_bought == false:
@@ -541,5 +544,5 @@ func _on_taco_overclock_button_down() -> void:
 func _on_overclocktimer_timeout() -> void:
 	overclock_activated = false
 	update_taco_sliders()
-	$AnimationPlayer.play("reset")
+	$overclock.play("reset")
 	

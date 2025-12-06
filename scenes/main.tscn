@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=38 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://jbgq1yplxp3r" path="res://sprites/Pixel Cursor (png).png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://x6q7pmb57wet" path="res://icon.svg" id="8_ya4ey"]
+[ext_resource type="FontFile" uid="uid://crg07qg7f4136" path="res://fonts/Fredoka-Bold.ttf" id="9_trceg"]
+[ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="10_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://5bdfvrul7x52" path="res://sprites/storm-sheet.png" id="11_ya4ey"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
@@ -69,7 +71,28 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 1), Color(1, 0.4745098, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.43137255, 1, 1), Color(0.5019608, 0, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ya4ey"]
+[sub_resource type="Animation" id="Animation_choun"]
+resource_name = "reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.6, 0.9647059, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
+_data = {
+&"disco_anim": SubResource("Animation_tipki"),
+&"reset": SubResource("Animation_choun")
+}
+
+[sub_resource type="Animation" id="Animation_trceg"]
 resource_name = "overclock_anim"
 loop_mode = 1
 tracks/0/type = "value"
@@ -85,38 +108,25 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 1), Color(1, 0.39607844, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0.3137255, 1, 1), Color(0.35686275, 0.3137255, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_choun"]
+[sub_resource type="Animation" id="Animation_a8y0u"]
 resource_name = "reset"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("left:theme_override_styles/panel:bg_color")
+tracks/0/path = NodePath("T_A_C_O:theme_override_styles/panel:border_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0.6, 0.9647059, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("T_A_C_O:theme_override_styles/panel:border_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
 "values": [Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jkv2x"]
 _data = {
-&"disco_anim": SubResource("Animation_tipki"),
-&"overclock_anim": SubResource("Animation_ya4ey"),
-&"reset": SubResource("Animation_choun")
+&"overclock_anim": SubResource("Animation_trceg"),
+&"reset": SubResource("Animation_a8y0u")
 }
 
 [sub_resource type="Theme" id="Theme_tipki"]
@@ -230,6 +240,7 @@ offset_left = 44.0
 offset_right = 111.0
 offset_bottom = 50.0
 theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 30
 text = "+0"
 horizontal_alignment = 1
@@ -237,6 +248,7 @@ vertical_alignment = 1
 script = ExtResource("2_tefeu")
 
 [node name="Timer" type="Timer" parent="indicators/display"]
+wait_time = 0.001
 
 [node name="left" type="Panel" parent="."]
 layout_mode = 0
@@ -268,6 +280,7 @@ script = ExtResource("3_jyhfs")
 [node name="tacocount" type="Label" parent="left/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 60
 text = "0 Tacos"
 horizontal_alignment = 1
@@ -275,6 +288,7 @@ horizontal_alignment = 1
 [node name="persecondcount" type="Label" parent="left/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 20
 text = "0 PER SECOND"
 horizontal_alignment = 1
@@ -285,7 +299,7 @@ layout_mode = 2
 texture_normal = ExtResource("1_o5qli")
 stretch_mode = 0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="left"]
+[node name="sunburst2" type="AnimationPlayer" parent="left"]
 libraries = {
 &"": SubResource("AnimationLibrary_o6xl0")
 }
@@ -305,6 +319,8 @@ offset_right = 123.0
 offset_bottom = 57.0
 size_flags_horizontal = 8
 size_flags_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 41
 
 [node name="entropypersecondcount" type="Label" parent="left/entropy"]
@@ -315,6 +331,8 @@ offset_right = 209.0
 offset_bottom = 83.0
 size_flags_horizontal = 0
 size_flags_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "0 PER SECOND"
 
 [node name="passivegainstimer" type="Timer" parent="."]
@@ -328,12 +346,18 @@ one_shot = true
 [node name="dsaucetimer" type="Timer" parent="."]
 wait_time = 10.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="disco" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ya4ey")
 }
 
+[node name="overclock" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jkv2x")
+}
+
 [node name="scroller" type="ScrollContainer" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = 781.0
 offset_right = 1151.0
@@ -358,6 +382,7 @@ offset_left = 31.0
 offset_top = 12.0
 offset_right = 332.0
 offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("9_trceg")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_tbgi4")
 text = "UPGRADES"
@@ -381,6 +406,7 @@ offset_left = 44.0
 offset_top = 33.00009
 offset_right = 283.0
 offset_bottom = 108.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 
 [node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg1"]
 layout_mode = 0
@@ -388,6 +414,7 @@ offset_left = 44.0
 offset_top = 7.0
 offset_right = 276.0
 offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +1"
 
 [node name="autoclickupg1" type="Button" parent="scroller/VBoxContainer/right"]
@@ -409,6 +436,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -420,6 +448,7 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +1"
 
@@ -442,6 +471,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -453,6 +483,7 @@ offset_left = 44.0
 offset_top = 11.0
 offset_right = 343.0
 offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "GOLDEN TACO"
 
 [node name="amtperclickupg2" type="Button" parent="scroller/VBoxContainer/right"]
@@ -474,6 +505,7 @@ offset_left = 44.0
 offset_top = 33.00009
 offset_right = 283.0
 offset_bottom = 108.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 
 [node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg2"]
 layout_mode = 0
@@ -481,6 +513,7 @@ offset_left = 44.0
 offset_top = 7.0
 offset_right = 276.0
 offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +10"
 
 [node name="autoclickupg2" type="Button" parent="scroller/VBoxContainer/right"]
@@ -502,6 +535,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -513,6 +547,7 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 368.0
 offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +10"
 
@@ -535,6 +570,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -546,6 +582,7 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "DISCO SAUCE"
 
@@ -568,6 +605,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -579,6 +617,7 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "T.A.C.O"
 
@@ -591,8 +630,8 @@ offset_bottom = 803.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
 [node name="entropyupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg1button"]
-position = Vector2(22, 28)
-scale = Vector2(0.3, 0.3)
+position = Vector2(18.899988, 31.100012)
+scale = Vector2(0.25156233, 0.25156233)
 texture = ExtResource("8_ya4ey")
 
 [node name="entropyupg1label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button"]
@@ -601,6 +640,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -608,10 +648,11 @@ text = "
 
 [node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button"]
 layout_mode = 0
-offset_left = 43.0
+offset_left = 39.0
 offset_top = 4.0
-offset_right = 363.0
+offset_right = 359.0
 offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE ENTROPY PER SECOND+1"
 
@@ -623,17 +664,13 @@ offset_right = 342.0
 offset_bottom = 899.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="entropyupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg2button2"]
-position = Vector2(22, 28)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("8_ya4ey")
-
 [node name="entropyupg2label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -641,12 +678,18 @@ text = "
 
 [node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2"]
 layout_mode = 0
-offset_left = 43.0
+offset_left = 39.0
 offset_top = 4.0
-offset_right = 363.0
+offset_right = 359.0
 offset_bottom = 62.0
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
 text = "UPGRADE ENTROPY PER SECOND+10"
+
+[node name="entropyupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg2button2"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(0.252, 0.252)
+texture = ExtResource("8_ya4ey")
 
 [node name="amtperclickupg3" type="Button" parent="scroller/VBoxContainer/right"]
 layout_mode = 0
@@ -667,6 +710,7 @@ offset_left = 44.0
 offset_top = 33.00009
 offset_right = 283.0
 offset_bottom = 108.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 
 [node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg3"]
 layout_mode = 0
@@ -674,6 +718,7 @@ offset_left = 44.0
 offset_top = 7.0
 offset_right = 276.0
 offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +100"
 
 [node name="autoclickupg3" type="Button" parent="scroller/VBoxContainer/right"]
@@ -695,6 +740,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -706,7 +752,8 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 368.0
 offset_bottom = 62.0
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +100"
 
 [node name="cosmic_overflow" type="Button" parent="scroller/VBoxContainer/right"]
@@ -728,6 +775,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -739,6 +787,7 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "COSMIC OVERFLOW"
 
@@ -761,6 +810,7 @@ offset_left = 44.0
 offset_top = 37.00009
 offset_right = 343.0
 offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "
 
@@ -772,6 +822,7 @@ offset_left = 43.0
 offset_top = 4.0
 offset_right = 363.0
 offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "TACO Overclock"
 
@@ -793,6 +844,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="T_A_C_O/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 35
 text = "T.A.C.O"
 horizontal_alignment = 1
@@ -829,6 +882,8 @@ offset_left = 203.0
 offset_top = 69.0
 offset_right = 239.0
 offset_bottom = 92.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 14
 
 [node name="passivegains_multiplier_label" type="Label" parent="T_A_C_O"]
@@ -837,6 +892,8 @@ offset_left = 203.0
 offset_top = 119.0
 offset_right = 236.0
 offset_bottom = 142.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 14
 
 [node name="passivegainsperclickslider" type="HSlider" parent="T_A_C_O"]
@@ -856,6 +913,8 @@ offset_left = 204.0
 offset_top = 162.0
 offset_right = 236.0
 offset_bottom = 185.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 14
 
 [node name="entropymultiplierperclickslider" type="HSlider" parent="T_A_C_O"]
@@ -888,9 +947,9 @@ scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
 [node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
-position = Vector2(958.99994, 2044)
+position = Vector2(951.21875, 2044)
 rotation = -1.5707964
-scale = Vector2(12, 12)
+scale = Vector2(12, 11.51368)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
 [node name="overclocktimer" type="Timer" parent="."]
