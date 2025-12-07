@@ -293,6 +293,51 @@ theme_override_font_sizes/font_size = 20
 text = "0 PER SECOND"
 horizontal_alignment = 1
 
+[node name="notenoughmoneylabel" type="Label" parent="left/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+text = "You Don't Have Enough Tacos"
+horizontal_alignment = 1
+
+[node name="gtacoactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+text = "Golden Taco Activated. Tacos per Click Increased By 5x"
+horizontal_alignment = 1
+
+[node name="dsauceactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+text = "Disco Sauce Activated. Clicks per Second Increased By 50x"
+horizontal_alignment = 1
+
+[node name="coverflowactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+text = "Cosmic Overflow Activated. Entropy per Second Increased By 50x"
+horizontal_alignment = 1
+
+[node name="overclockactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+text = "Overclock Activated. T.A.C.O Multipliers Increased By 10x"
+horizontal_alignment = 1
+
 [node name="tacobutton" type="TextureButton" parent="left/MarginContainer"]
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 2
@@ -370,7 +415,7 @@ size_flags_vertical = 3
 
 [node name="right" type="Panel" parent="scroller/VBoxContainer"]
 z_index = 1
-custom_minimum_size = Vector2(360, 1500)
+custom_minimum_size = Vector2(360, 1400)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
@@ -391,7 +436,7 @@ text = "UPGRADES"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 105.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 172.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -421,7 +466,7 @@ text = "UPGRADE AMOUNT PER CLICK +1"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 188.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 255.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -456,7 +501,7 @@ text = "UPGRADE GAINED PER SECOND +1"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 273.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 340.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -490,7 +535,7 @@ text = "GOLDEN TACO"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 360.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 427.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -520,7 +565,7 @@ text = "UPGRADE AMOUNT PER CLICK +10"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 455.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 522.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -555,7 +600,7 @@ text = "UPGRADE GAINED PER SECOND +10"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 549.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 616.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -590,7 +635,7 @@ text = "DISCO SAUCE"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 640.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 707.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -625,7 +670,7 @@ text = "T.A.C.O"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 736.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 803.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -654,13 +699,13 @@ offset_right = 359.0
 offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
-text = "UPGRADE ENTROPY PER SECOND+1"
+text = "UPGRADE ENTROPY PER SECOND +1"
 
 [node name="entropyupg2button2" type="Button" parent="scroller/VBoxContainer/right"]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 832.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 899.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -684,7 +729,7 @@ offset_right = 359.0
 offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
-text = "UPGRADE ENTROPY PER SECOND+10"
+text = "UPGRADE ENTROPY PER SECOND +10"
 
 [node name="entropyupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg2button2"]
 position = Vector2(19.249989, 30.08001)
@@ -695,7 +740,7 @@ texture = ExtResource("8_ya4ey")
 layout_mode = 0
 offset_left = 22.0
 offset_top = 928.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 995.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -725,7 +770,7 @@ text = "UPGRADE AMOUNT PER CLICK +100"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1020.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 1087.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -760,7 +805,7 @@ text = "UPGRADE GAINED PER SECOND +100"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1110.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 1177.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -795,7 +840,7 @@ text = "COSMIC OVERFLOW"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1200.0
-offset_right = 342.0
+offset_right = 357.0
 offset_bottom = 1267.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -825,6 +870,41 @@ offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "TACO Overclock"
+
+[node name="entropyupg3button3" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1290.0
+offset_right = 357.0
+offset_bottom = 1357.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="entropyupg3label" type="Label" parent="scroller/VBoxContainer/right/entropyupg3button3"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg3button3"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 4.0
+offset_right = 359.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE ENTROPY PER SECOND +100"
+
+[node name="entropyupg3sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg3button3"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(0.252, 0.252)
+texture = ExtResource("8_ya4ey")
 
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
@@ -978,6 +1058,7 @@ wait_time = 10.0
 [connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg3" to="." method="_on_autoclickupg_3_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/cosmic_overflow" to="." method="_on_cosmic_overflow_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/TACO_overclock" to="." method="_on_taco_overclock_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg3button3" to="." method="_on_entropyupg_3_button_3_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]
