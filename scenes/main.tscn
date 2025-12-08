@@ -415,7 +415,7 @@ size_flags_vertical = 3
 
 [node name="right" type="Panel" parent="scroller/VBoxContainer"]
 z_index = 1
-custom_minimum_size = Vector2(360, 1400)
+custom_minimum_size = Vector2(360, 1500)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
@@ -906,6 +906,41 @@ position = Vector2(19.249989, 30.08001)
 scale = Vector2(0.252, 0.252)
 texture = ExtResource("8_ya4ey")
 
+[node name="tacoupg1button" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1380.0
+offset_right = 357.0
+offset_bottom = 1447.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="tacoupg1label" type="Label" parent="scroller/VBoxContainer/right/tacoupg1button"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg1button"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 4.0
+offset_right = 359.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE T.A.C.O MULTIPLIER +1"
+
+[node name="tacoupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg1button"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(0.252, 0.252)
+texture = ExtResource("8_ya4ey")
+
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
 offset_left = -5.0
@@ -1059,6 +1094,7 @@ wait_time = 10.0
 [connection signal="button_down" from="scroller/VBoxContainer/right/cosmic_overflow" to="." method="_on_cosmic_overflow_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/TACO_overclock" to="." method="_on_taco_overclock_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg3button3" to="." method="_on_entropyupg_3_button_3_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg1button" to="." method="_on_tacoupg_1_button_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]

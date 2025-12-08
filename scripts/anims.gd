@@ -26,7 +26,12 @@ func _on_tacobutton_button_up() -> void:
 
 
 func _on_main_taco_clicked(amount) -> void:
+	var rand = randi() % 10
 	var indicator = indicator_display.duplicate()
+	match rand:
+		9:
+			amount *= 5
+			indicator.add_theme_color_override("font_color", Color(1, 0, 0))
 	indicator.text = "+" + format_number(amount)
 	indicator.position = get_global_mouse_position()
 	indicator.visible = true

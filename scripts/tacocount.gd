@@ -13,4 +13,5 @@ func format_number(n) -> String:
 	var text = str(rounded if rounded != int(rounded) else int(rounded))
 	return text + suffixes[tier]
 func _on_main_tacos_changed(amount) -> void:
+	
 	taco_label.text =  format_number(amount) + " Tacos"
