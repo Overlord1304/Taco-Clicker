@@ -186,11 +186,8 @@ func _update_notification_positions():
 
 func _on_tacobutton_button_down() -> void:
 	var rand = randi() % 10
-	match rand:
-		9:
-			tacos += amount_per_click * 5
-		!9:
-			tacos += amount_per_click
+
+	tacos += amount_per_click
 	emit_signal("tacos_changed",tacos)
 	emit_signal("taco_clicked",amount_per_click)
 	save_data()
@@ -226,6 +223,7 @@ func _process(delta):
 				show_notification(dsaucelabel)
 				disco_sauce_activated = true
 				update_passive_gains()
+				_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 				$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 				$disco.play("disco_anim")
 				dsauce_timer.start(10.0)
@@ -455,6 +453,7 @@ func _on_disco_sauce_button_down() -> void:
 func _on_dsaucetimer_timeout() -> void:
 	disco_sauce_activated = false
 	update_passive_gains()
+	_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 	$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 	$disco.play("reset")
 

@@ -9,10 +9,10 @@
 [ext_resource type="Script" uid="uid://b6plrukyqypgf" path="res://scripts/entropycount.gd" id="7_choun"]
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://jbgq1yplxp3r" path="res://sprites/Pixel Cursor (png).png" id="7_tipki"]
-[ext_resource type="Texture2D" uid="uid://x6q7pmb57wet" path="res://icon.svg" id="8_ya4ey"]
 [ext_resource type="FontFile" uid="uid://crg07qg7f4136" path="res://fonts/Fredoka-Bold.ttf" id="9_trceg"]
 [ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="10_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://5bdfvrul7x52" path="res://sprites/storm-sheet.png" id="11_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://di34dyv2qcuus" path="res://sprites/entropy.png" id="13_a8y0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0, 0.6, 0.9647059, 1)
@@ -354,9 +354,9 @@ autoplay = "spin"
 script = ExtResource("7_choun")
 
 [node name="Sprite2D" type="Sprite2D" parent="left/entropy"]
-position = Vector2(34.999996, 30.25)
-scale = Vector2(0.43750006, 0.3945312)
-texture = ExtResource("8_ya4ey")
+position = Vector2(24.999996, 30.25)
+scale = Vector2(2, 2)
+texture = ExtResource("13_a8y0u")
 
 [node name="entropycount" type="Label" parent="left/entropy"]
 offset_left = 76.0
@@ -676,8 +676,8 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
 [node name="entropyupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg1button"]
 position = Vector2(18.899988, 31.100012)
-scale = Vector2(0.25156233, 0.25156233)
-texture = ExtResource("8_ya4ey")
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
 
 [node name="entropyupg1label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button"]
 layout_mode = 0
@@ -733,8 +733,8 @@ text = "UPGRADE ENTROPY PER SECOND +10"
 
 [node name="entropyupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg2button2"]
 position = Vector2(19.249989, 30.08001)
-scale = Vector2(0.252, 0.252)
-texture = ExtResource("8_ya4ey")
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
 
 [node name="amtperclickupg3" type="Button" parent="scroller/VBoxContainer/right"]
 layout_mode = 0
@@ -809,10 +809,10 @@ offset_right = 357.0
 offset_bottom = 1177.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="cosmic_overflow_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/cosmic_overflow"]
+[node name="cosmic_overflow_sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/cosmic_overflow"]
 position = Vector2(31, 20)
-scale = Vector2(0.12, 0.12)
-sprite_frames = SubResource("SpriteFrames_choun")
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
 
 [node name="cosmic_overflow_label" type="Label" parent="scroller/VBoxContainer/right/cosmic_overflow"]
 layout_mode = 0
@@ -844,10 +844,10 @@ offset_right = 357.0
 offset_bottom = 1267.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="TACO_overclock_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/TACO_overclock"]
+[node name="TACO_overclock_sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/TACO_overclock"]
 position = Vector2(31, 20)
-scale = Vector2(0.12, 0.12)
-sprite_frames = SubResource("SpriteFrames_choun")
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
 
 [node name="TACO_overclock_label" type="Label" parent="scroller/VBoxContainer/right/TACO_overclock"]
 layout_mode = 0
@@ -903,8 +903,8 @@ text = "UPGRADE ENTROPY PER SECOND +100"
 
 [node name="entropyupg3sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg3button3"]
 position = Vector2(19.249989, 30.08001)
-scale = Vector2(0.252, 0.252)
-texture = ExtResource("8_ya4ey")
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
 
 [node name="tacoupg1button" type="Button" parent="scroller/VBoxContainer/right"]
 layout_mode = 0
@@ -938,8 +938,8 @@ text = "UPGRADE T.A.C.O MULTIPLIER +1"
 
 [node name="tacoupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg1button"]
 position = Vector2(19.249989, 30.08001)
-scale = Vector2(0.252, 0.252)
-texture = ExtResource("8_ya4ey")
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
 
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
@@ -976,9 +976,9 @@ scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
 [node name="entropyupgradesprite" type="Sprite2D" parent="T_A_C_O/MarginContainer"]
-position = Vector2(23.899998, 173.95299)
-scale = Vector2(0.2828125, 0.25073424)
-texture = ExtResource("8_ya4ey")
+position = Vector2(23.6875, 175.48236)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_a8y0u")
 
 [node name="amountsperclickslider" type="HSlider" parent="T_A_C_O"]
 layout_mode = 0
