@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=39 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -54,6 +54,8 @@ _data = {
 &"RESET": SubResource("Animation_tefeu"),
 &"spin": SubResource("Animation_tbgi4")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
 
 [sub_resource type="Animation" id="Animation_tipki"]
 resource_name = "disco_anim"
@@ -222,7 +224,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="main" type="Control"]
+[node name="main" type="Control" groups=["game"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_sugp2")
@@ -379,6 +381,17 @@ size_flags_vertical = 2
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "0 PER SECOND"
+
+[node name="achievementsbutton" type="Button" parent="left"]
+layout_mode = 0
+offset_left = 657.0
+offset_top = 6.0
+offset_right = 774.0
+offset_bottom = 37.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
+text = "Achievements"
 
 [node name="passivegainstimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -1077,6 +1090,7 @@ wait_time = 10.0
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="." method="_on_tacobutton_button_down"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]
+[connection signal="button_up" from="left/achievementsbutton" to="." method="_on_achievementsbutton_button_up"]
 [connection signal="timeout" from="passivegainstimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="gtacotimer" to="." method="_on_gtacotimer_timeout"]
 [connection signal="timeout" from="dsaucetimer" to="." method="_on_dsaucetimer_timeout"]

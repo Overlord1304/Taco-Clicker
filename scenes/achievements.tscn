@@ -1,0 +1,144 @@
+[gd_scene load_steps=17 format=3 uid="uid://c8o3dkunjoddl"]
+
+[ext_resource type="Script" uid="uid://bt6gajy4nmr68" path="res://scripts/achievements.gd" id="1_jqgop"]
+[ext_resource type="FontFile" uid="uid://crg07qg7f4136" path="res://fonts/Fredoka-Bold.ttf" id="2_ttb8s"]
+[ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="3_ttb8s"]
+[ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="3_uhxyi"]
+[ext_resource type="PackedScene" uid="uid://byvydm0y21j0r" path="res://scenes/main.tscn" id="5_uhxyi"]
+[ext_resource type="Texture2D" uid="uid://c83jx6vodcu1q" path="res://sprites/Sprite-0005.png" id="5_wf1mw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf1mw"]
+bg_color = Color(0.047058824, 0.22745098, 0.6627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gq3ih"]
+bg_color = Color(0.124488644, 0.1376167, 0.12455808, 0.37254903)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttb8s"]
+bg_color = Color(0.21568628, 0.21568628, 0.21568628, 0.3647059)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqgop"]
+bg_color = Color(0.6, 0.6, 0.6, 0.21568628)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhxyi"]
+bg_color = Color(0.19607843, 0.19607843, 0.19607843, 0.49411765)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqgop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnbt2"]
+bg_color = Color(0, 0, 0, 0.44705883)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svwer"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6gvo"]
+bg_color = Color(0.6, 0.6, 0.6, 0.44705883)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wf1mw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jqgop")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wf1mw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 1146.0
+offset_bottom = 112.0
+
+[node name="Label" type="Label" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ttb8s")
+theme_override_font_sizes/font_size = 64
+text = "Achievements"
+
+[node name="A1" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 122.0
+offset_right = 452.0
+offset_bottom = 257.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Bought 10 +1 Tacos Per
+ Click upgrades"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/A1"]
+position = Vector2(389.00003, 55)
+rotation = 0.85695666
+scale = Vector2(2.234375, 2.359375)
+texture = ExtResource("3_uhxyi")
+
+[node name="Back" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 71.0
+offset_right = 151.0
+offset_bottom = 132.0
+rotation = -3.1415927
+theme_override_styles/normal = SubResource("StyleBoxFlat_jnbt2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_svwer")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u6gvo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wf1mw")
+icon = ExtResource("5_wf1mw")
+icon_alignment = 1
+expand_icon = true
+
+[node name="main" parent="." instance=ExtResource("5_uhxyi")]
+visible = false
+layout_mode = 0
+
+[connection signal="button_up" from="Panel/A1" to="." method="_on_a_1_button_up"]
+[connection signal="button_up" from="Panel/Back" to="." method="_on_back_button_up"]

@@ -25,13 +25,11 @@ func _on_tacobutton_button_up() -> void:
 	tween.tween_property(taco, "scale", Vector2(1,1), .1)
 
 
-func _on_main_taco_clicked(amount) -> void:
-	var rand = randi() % 10
+func _on_main_taco_clicked(amount,crit_hit) -> void:
+
 	var indicator = indicator_display.duplicate()
-	match rand:
-		9:
-			amount *= 5
-			indicator.add_theme_color_override("font_color", Color(1, 0, 0))
+	if crit_hit:
+		indicator.add_theme_color_override("font_color", Color(1, 0, 0))
 	indicator.text = "+" + format_number(amount)
 	indicator.position = get_global_mouse_position()
 	indicator.visible = true

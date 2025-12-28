@@ -44,6 +44,7 @@ var notification_offset = 30
 var base_notification_y = 0
 var gtaco_texture = preload("res://sprites/gtaco.png")
 var taco_texture = preload("res://sprites/taco.png")
+var upg1_bought_count = 0
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -64,6 +65,7 @@ signal entropy_changed
 func _ready():
 	base_notification_y = gtacolabel.position.y
 	load_data()
+	
 	for sprite in get_tree().get_nodes_in_group("coverflow"):
 		sprite.play()
 		coverflow_original_position[sprite] = sprite.position
@@ -98,6 +100,11 @@ func _ready():
 	_on_h_slider_value_changed(TACO_click_multiplier)
 	_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 	_on_entropymultiplierperclickslider_value_changed(TACO_entropy_multiplier)
+	if Global.pending_taco_reward > 0:
+		tacos += Global.pending_taco_reward
+		Global.pending_taco_reward = 0
+		emit_signal("tacos_changed", tacos)
+		save_data()
 func format_number(n) -> String:
 	if n < 1000:
 		return str(n if n != int(n) else int(n))
@@ -185,11 +192,15 @@ func _update_notification_positions():
 				.set_ease(Tween.EASE_OUT)
 
 func _on_tacobutton_button_down() -> void:
-	var rand = randi() % 10
-
-	tacos += amount_per_click
+	var rand = randi() % 25
+	match rand:
+		0:
+			tacos += amount_per_click*5
+			emit_signal("taco_clicked",amount_per_click*5,true)
+		_:
+			tacos += amount_per_click
+			emit_signal("taco_clicked",amount_per_click,false)
 	emit_signal("tacos_changed",tacos)
-	emit_signal("taco_clicked",amount_per_click)
 	save_data()
 
 func _process(delta):
@@ -284,7 +295,10 @@ func save_data():
 		"entropy_gains": entropy_gains,
 		"TACO_click_multiplier": TACO_click_multiplier,
 		"TACO_gains_multiplier": TACO_gains_multiplier,
-		"TACO_entropy_multiplier": TACO_entropy_multiplier
+		"TACO_entropy_multiplier": TACO_entropy_multiplier,
+		"upg1_bought_count" : upg1_bought_count,
+		"Global.upg1_achievement_unlocked": Global.upg1_achievement_unlocked,
+		"Global.a1_claimed": Global.a1_claimed
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -327,6 +341,9 @@ func load_data():
 			TACO_click_multiplier = data.get("TACO_click_multiplier",1.0)
 			TACO_gains_multiplier = data.get("TACO_gains_multiplier",1.0)
 			TACO_entropy_multiplier = data.get("TACO_entropy_multiplier", 1.0)
+			upg1_bought_count = data.get("upg1_bought_count",0)
+			Global.upg1_achievement_unlocked = data.get("Global.upg1_achievement_unlocked",false)
+			Global.a1_claimed = data.get("Global.a1_claimed",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -339,7 +356,10 @@ func _on_button_button_down() -> void:
 		update_amount_per_click()
 		tacos -= upg1cost
 		upg1cost *= 1.25
+		upg1_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
+		if upg1_bought_count >= 10:
+			Global.upg1_achievement_unlocked = true
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -661,3 +681,16 @@ func _on_tacoupg_1_button_button_down() -> void:
 	else:
 		show_cost_warning()
 	
+
+
+func _on_achievementsbutton_button_up() -> void:
+	var ach = load("res://scenes/achievements.tscn").instantiate()
+	ach.connect("a1_reward", Callable(self, "_on_achievement_reward"))
+	var transition = preload("res://scenes/swipe.tscn").instantiate()
+	get_tree().root.add_child(transition)
+	transition.swipe_to("res://scenes/achievements.tscn", 1)
+	
+func _on_achievement_reward():
+	tacos += 1_000_000
+	emit_signal("tacos_changed", tacos)
+	save_data()
