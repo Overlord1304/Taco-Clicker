@@ -5,7 +5,7 @@ var entropy = 0
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 0
+var tacos = 10000
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -45,6 +45,9 @@ var base_notification_y = 0
 var gtaco_texture = preload("res://sprites/gtaco.png")
 var taco_texture = preload("res://sprites/taco.png")
 var upg1_bought_count = 0
+var upg2_bought_count = 0
+var gtaco_activated_count = 0
+var dsauce_activated_count = 0
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -100,11 +103,7 @@ func _ready():
 	_on_h_slider_value_changed(TACO_click_multiplier)
 	_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 	_on_entropymultiplierperclickslider_value_changed(TACO_entropy_multiplier)
-	if Global.pending_taco_reward > 0:
-		tacos += Global.pending_taco_reward
-		Global.pending_taco_reward = 0
-		emit_signal("tacos_changed", tacos)
-		save_data()
+
 func format_number(n) -> String:
 	if n < 1000:
 		return str(n if n != int(n) else int(n))
@@ -224,6 +223,9 @@ func _process(delta):
 				$left/MarginContainer/tacobutton.texture_normal = gtaco_texture
 				golden_taco_activated = true
 				update_amount_per_click()
+				gtaco_activated_count += 1
+				if gtaco_activated_count >= 3:
+					Global.upg3_achievement_unlocked = true
 				gtaco_timer.start(10.0)
 	if disco_sauce_bought and disco_sauce_activated == false:
 		var rand = randi() % 3000
@@ -237,6 +239,9 @@ func _process(delta):
 				_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 				$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 				$disco.play("disco_anim")
+				dsauce_activated_count += 1
+				if dsauce_activated_count >= 3:
+					Global.upg4_achievement_unlocked = true
 				dsauce_timer.start(10.0)
 	if cosmic_overflow_bought and cosmic_overflow_activated == false:
 		var rand = randi() % 3000
@@ -298,7 +303,16 @@ func save_data():
 		"TACO_entropy_multiplier": TACO_entropy_multiplier,
 		"upg1_bought_count" : upg1_bought_count,
 		"Global.upg1_achievement_unlocked": Global.upg1_achievement_unlocked,
-		"Global.a1_claimed": Global.a1_claimed
+		"Global.a1_claimed": Global.a1_claimed,
+		"upg2_bought_count": upg2_bought_count,
+		"Global.upg2_achievement_unlocked": Global.upg2_achievement_unlocked,
+		"Global.a2_claimed": Global.a2_claimed,
+		"gtaco_activated_count": gtaco_activated_count,
+		"Global.upg3_achievement_unlocked": Global.upg3_achievement_unlocked,
+		"Global.a3_claimed": Global.a3_claimed,
+		"dsauce_activated_count": dsauce_activated_count,
+		"Global.upg4_achievement_unlocked": Global.upg4_achievement_unlocked,
+		"Global.a4_claimed": Global.a4_claimed,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -344,6 +358,15 @@ func load_data():
 			upg1_bought_count = data.get("upg1_bought_count",0)
 			Global.upg1_achievement_unlocked = data.get("Global.upg1_achievement_unlocked",false)
 			Global.a1_claimed = data.get("Global.a1_claimed",false)
+			upg2_bought_count = data.get("upg2_bought_count",0)
+			Global.upg2_achievement_unlocked = data.get("Global.upg2_achievement_unlocked",false)
+			Global.a2_claimed = data.get("Global.a2_claimed",false)
+			gtaco_activated_count = data.get("gtaco_activated_count",0)
+			Global.upg3_achievement_unlocked = data.get("Global.upg3_achievement_unlocked",false)
+			Global.a3_claimed = data.get("Global.a3_claimed",false)
+			dsauce_activated_count = data.get("dsauce_activated_count",0)
+			Global.upg4_achievement_unlocked = data.get("Global.upg4_achievement_unlocked",false)
+			Global.a4_claimed = data.get("Global.a4_claimed",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -355,7 +378,7 @@ func _on_button_button_down() -> void:
 		base_amount_per_click += 1
 		update_amount_per_click()
 		tacos -= upg1cost
-		upg1cost *= 1.25
+		upg1cost *= 1.75
 		upg1_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 		if upg1_bought_count >= 10:
@@ -373,8 +396,11 @@ func _on_autoclickupg_1_button_down() -> void:
 			passive_gains = base_passive_gains
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg2cost
-		upg2cost *= 1.25
+		upg2cost *= 1.75
+		upg2_bought_count += 1
 		$scroller/VBoxContainer/right/autoclickupg1/autoclickupgsprite1.text = format_number(upg2cost)+" Tacos"
+		if upg2_bought_count >= 10:
+			Global.upg2_achievement_unlocked = true
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -440,7 +466,7 @@ func _on_amtperclickupg_2_button_down() -> void:
 		base_amount_per_click += 10
 		update_amount_per_click()
 		tacos -= upg4cost
-		upg4cost *= 1.25
+		upg4cost *= 1.75
 		$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -455,7 +481,7 @@ func _on_autoclickupg_2_button_down() -> void:
 			passive_gains = base_passive_gains
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg5cost
-		upg5cost *= 1.25
+		upg5cost *= 1.75
 		$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = format_number(upg5cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -566,7 +592,7 @@ func _on_entropyupg_1_button_button_down() -> void:
 			update_entropy_gains()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg8cost
-		upg8cost *= 1.25
+		upg8cost *= 1.75
 		$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = format_number(upg8cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -582,7 +608,7 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 			update_entropy_gains()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg9cost
-		upg9cost *= 1.25
+		upg9cost *= 1.75
 		$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = format_number(upg9cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -594,7 +620,7 @@ func _on_amtperclickupg_3_button_down() -> void:
 		base_amount_per_click += 100
 		update_amount_per_click()
 		tacos -= upg10cost
-		upg10cost *= 1.25
+		upg10cost *= 1.75
 		$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -610,7 +636,7 @@ func _on_autoclickupg_3_button_down() -> void:
 			passive_gains = base_passive_gains
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg11cost
-		upg11cost *= 1.25
+		upg11cost *= 1.75
 		$scroller/VBoxContainer/right/autoclickupg3/autoclickupgsprite3.text = format_number(upg11cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -660,7 +686,7 @@ func _on_entropyupg_3_button_3_button_down() -> void:
 			update_entropy_gains()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg14cost
-		upg14cost *= 1.25
+		upg14cost *= 1.75
 		$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -674,7 +700,7 @@ func _on_tacoupg_1_button_button_down() -> void:
 		base_entropy_max_value += 1
 		update_taco_sliders()
 		tacos -= upg15cost
-		upg15cost *= 1.25
+		upg15cost *= 1.75
 		$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
 		emit_signal("tacos_changed",tacos)
 		save_data()
@@ -688,9 +714,5 @@ func _on_achievementsbutton_button_up() -> void:
 	ach.connect("a1_reward", Callable(self, "_on_achievement_reward"))
 	var transition = preload("res://scenes/swipe.tscn").instantiate()
 	get_tree().root.add_child(transition)
-	transition.swipe_to("res://scenes/achievements.tscn", 1)
+	transition.swipe_in("res://scenes/achievements.tscn", 1)
 	
-func _on_achievement_reward():
-	tacos += 1_000_000
-	emit_signal("tacos_changed", tacos)
-	save_data()
