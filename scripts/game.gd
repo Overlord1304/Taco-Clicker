@@ -5,7 +5,7 @@ var entropy = 0
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 999999
+var tacos = 9999999999
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -52,6 +52,14 @@ var a5_bought_count = 0
 var a6_bought_count = 0
 var a7_bought_count = 0
 var a8_bought_count = 0
+var a9_bought_count = 0
+var a10_bought_count = 0
+var coverflow_activated_count = 0
+var overclock_activated_count = 0
+var a13_bought_count = 0
+var a14_bought_count = 0
+var a15_timer = 0
+var a16_timer = 0
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -64,6 +72,7 @@ var a8_bought_count = 0
 @onready var dsaucelabel = $left/MarginContainer/VBoxContainer/dsauceactivated
 @onready var coverflowlabel = $left/MarginContainer/VBoxContainer/coverflowactivated
 @onready var overclocklabel = $left/MarginContainer/VBoxContainer/overclockactivated
+@onready var achievementlabel = $left/MarginContainer/VBoxContainer/achievementunlocked
 var coverflow_original_position = {}
 signal tacos_changed
 signal taco_clicked
@@ -137,7 +146,7 @@ func update_passive_gains() -> void:
 func update_entropy_gains():
 	var entropy_mult = TACO_entropy_multiplier
 	if cosmic_overflow_activated:
-		entropy_mult *= 50
+		entropy_mult *= 25
 	entropy_gains = base_entropy_gains * entropy_mult
 	$left/entropy/entropypersecondcount.text = format_number(entropy_gains) + " PER SECOND"
 func update_taco_sliders():
@@ -162,7 +171,6 @@ func show_cost_warning():
 	
 	var tween = create_tween()
 	costlabel.set_meta("tween", tween)  
-
 	tween.tween_property(costlabel, "modulate:a", 0.0, 0.5)
 	tween.tween_callback(Callable(costlabel, "hide"))
 func show_notification(label: Label):
@@ -183,6 +191,11 @@ func show_notification(label: Label):
 		active_notifications.erase(label)
 		_update_notification_positions()
 	)
+func unlock_achievement(no):
+	if Global.get(no) == false:
+		Global.set(no,true)
+		show_notification(achievementlabel)
+		save_data()
 func _update_notification_positions():
 	for i in range(active_notifications.size()):
 		var lbl = active_notifications[i]
@@ -229,7 +242,7 @@ func _process(delta):
 				update_amount_per_click()
 				gtaco_activated_count += 1
 				if gtaco_activated_count >= 3:
-					Global.a3_unlocked = true
+					unlock_achievement("a3_unlocked")
 				gtaco_timer.start(10.0)
 	if disco_sauce_bought and disco_sauce_activated == false:
 		var rand = randi() % 3000
@@ -245,18 +258,21 @@ func _process(delta):
 				$disco.play("disco_anim")
 				dsauce_activated_count += 1
 				if dsauce_activated_count >= 3:
-					Global.a4_unlocked = true
+					unlock_achievement("a4_unlocked")
 				dsauce_timer.start(10.0)
 	if cosmic_overflow_bought and cosmic_overflow_activated == false:
-		var rand = randi() % 3000
+		var rand = randi() % 6000
 		match rand:
-			!2999:
+			!5999:
 				pass
-			2999:
+			5999:
 				show_notification(coverflowlabel)
 				cosmic_overflow_activated = true
 				update_entropy_gains()
 				$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
+				coverflow_activated_count += 1
+				if coverflow_activated_count >= 3:
+					unlock_achievement("a11_unlocked")
 				coverflow_timer.start(10.0)
 				for sprite in get_tree().get_nodes_in_group("coverflow"):
 					var tween = create_tween()
@@ -272,8 +288,22 @@ func _process(delta):
 				overclock_activated = true
 				update_taco_sliders()
 				$overclock.play("overclock_anim")
+				overclock_activated_count += 1
+				if overclock_activated_count >= 3:
+					unlock_achievement("a12_unlocked")
 				overclock_timer.start(10.0)
-
+	if not Global.a15_unlocked and a15_helper():
+		a15_timer += delta
+		if a15_timer >= 10:
+			unlock_achievement("a15_unlocked")
+	else:
+		a15_timer = 0
+	if not Global.a16_unlocked and a16_helper():
+		a16_timer += delta
+		if a16_timer >= 10:
+			unlock_achievement("a16_unlocked")
+	else:
+		a16_timer = 0
 func save_data():
 	var data = {
 		"tacos" : tacos,
@@ -329,6 +359,28 @@ func save_data():
 		"a8_bought_count": a8_bought_count,
 		"Global.a8_unlocked": Global.a8_unlocked,
 		"Global.a8_claimed": Global.a8_claimed,
+		"a9_bought_count": a9_bought_count,
+		"Global.a9_unlocked": Global.a9_unlocked,
+		"Global.a9_claimed": Global.a9_claimed,
+		"a10_bought_count": a10_bought_count,
+		"Global.a10_unlocked": Global.a10_unlocked,
+		"Global.a10_claimed": Global.a10_claimed,
+		"coverflow_activated_count": coverflow_activated_count,
+		"Global.a11_unlocked": Global.a11_unlocked,
+		"Global.a11_claimed": Global.a11_claimed,
+		"overclock_activated_count": overclock_activated_count,
+		"Global.a12_unlocked": Global.a12_unlocked,
+		"Global.a12_claimed": Global.a12_claimed,
+		"a13_bought_count": a13_bought_count,
+		"Global.a13_unlocked": Global.a13_unlocked,
+		"Global.a13_claimed": Global.a13_claimed,
+		"a14_bought_count": a14_bought_count,
+		"Global.a14_unlocked": Global.a14_unlocked,
+		"Global.a14_claimed": Global.a14_claimed,
+		"Global.a15_unlocked": Global.a15_unlocked,
+		"Global.a15_claimed": Global.a15_claimed,
+		"Global.a16_unlocked": Global.a16_unlocked,
+		"Global.a16_claimed": Global.a16_claimed
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -395,6 +447,28 @@ func load_data():
 			a8_bought_count = data.get("a8_bought_count",0)
 			Global.a8_unlocked = data.get("Global.a8_unlocked",false)
 			Global.a8_claimed = data.get("Global.a8_claimed",false)
+			a9_bought_count = data.get("a9_bought_count",0)
+			Global.a9_unlocked = data.get("Global.a9_unlocked",false)
+			Global.a9_claimed = data.get("Global.a9_claimed",false)
+			a10_bought_count = data.get("Global.a10_claimed",false)
+			Global.a10_unlocked = data.get("Global.a10_unlocked",false)
+			Global.a10_claimed = data.get("Global.a10_claimed",false)
+			coverflow_activated_count = data.get("coverflow_activated_count",false)
+			Global.a11_unlocked = data.get("Global.a11_unlocked",false)
+			Global.a11_claimed = data.get("Global.a11_claimed",false)
+			overclock_activated_count = data.get("overclock_activated_count",false)
+			Global.a12_unlocked = data.get("Global.a12_unlocked",false)
+			Global.a12_claimed = data.get("Global.a12_claimed",false)
+			a13_bought_count = data.get("a13_bought_count",false)
+			Global.a13_unlocked = data.get("Global.a13_unlocked",false)
+			Global.a13_claimed = data.get("Global.a13_claimed",false)
+			a14_bought_count = data.get("a14_bought_count",false)
+			Global.a14_unlocked = data.get("Global.a14_unlocked",false)
+			Global.a14_claimed = data.get("Global.a14_claimed",false)
+			Global.a15_unlocked = data.get("Global.a15_unlocked",false)
+			Global.a15_claimed = data.get("Global.a15_claimed",false)
+			Global.a16_unlocked = data.get("Global.a16_unlocked",false)
+			Global.a16_claimed = data.get("Global.a16_claimed",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -410,7 +484,7 @@ func _on_button_button_down() -> void:
 		a1_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 		if a1_bought_count >= 10:
-			Global.a1_unlocked = true
+			unlock_achievement("a1_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -428,7 +502,7 @@ func _on_autoclickupg_1_button_down() -> void:
 		a2_bought_count += 1
 		$scroller/VBoxContainer/right/autoclickupg1/autoclickupgsprite1.text = format_number(upg2cost)+" Tacos"
 		if a2_bought_count >= 10:
-			Global.a2_unlocked = true
+			unlock_achievement("a2_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -499,7 +573,7 @@ func _on_amtperclickupg_2_button_down() -> void:
 		a5_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 		if a5_bought_count >= 10:
-			Global.a5_unlocked = true
+			unlock_achievement("a5_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -517,7 +591,7 @@ func _on_autoclickupg_2_button_down() -> void:
 		a6_bought_count += 1
 		$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = format_number(upg5cost)+" Tacos"
 		if a6_bought_count >= 10:
-			Global.a6_unlocked = true
+			unlock_achievement("a6_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -631,7 +705,7 @@ func _on_entropyupg_1_button_button_down() -> void:
 		a7_bought_count += 1
 		$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = format_number(upg8cost)+" Tacos"
 		if a7_bought_count >= 10:
-			Global.a7_unlocked = true
+			unlock_achievement("a7_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -650,7 +724,7 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 		a8_bought_count += 1
 		$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = format_number(upg9cost)+" Tacos"
 		if a8_bought_count >= 10:
-			Global.a8_unlocked = true
+			unlock_achievement("a8_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -662,7 +736,10 @@ func _on_amtperclickupg_3_button_down() -> void:
 		update_amount_per_click()
 		tacos -= upg10cost
 		upg10cost *= 1.35
+		a9_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
+		if a9_bought_count >= 10:
+			unlock_achievement("a9_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -678,7 +755,10 @@ func _on_autoclickupg_3_button_down() -> void:
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg11cost
 		upg11cost *= 1.35
+		a10_bought_count += 1
 		$scroller/VBoxContainer/right/autoclickupg3/autoclickupgsprite3.text = format_number(upg11cost)+" Tacos"
+		if a10_bought_count >= 10:
+			unlock_achievement("a10_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -697,11 +777,19 @@ func _on_cosmic_overflow_button_down() -> void:
 func _on_coverflowtimer_timeout() -> void:
 	cosmic_overflow_activated = false
 	update_entropy_gains()
-	$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
+	$left/entropy/entropypersecondcount.text = format_number(entropy_gains) + " PER SECOND"
+	#coverflow_original_position[sprite] = sprite.position
 	for sprite in get_tree().get_nodes_in_group("coverflow"):
-		var tween = create_tween()
-		tween.tween_property(sprite, "position", coverflow_original_position[sprite], 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		if not coverflow_original_position.has(sprite):
+			continue
 
+		var tween = create_tween()
+		tween.tween_property(
+			sprite,
+			"position",
+			coverflow_original_position[sprite],
+			0.5
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)	
 func _on_taco_overclock_button_down() -> void:
 	if tacos >= upg13cost and overclock_bought == false:
 		overclock_bought = true
@@ -728,7 +816,11 @@ func _on_entropyupg_3_button_3_button_down() -> void:
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg14cost
 		upg14cost *= 1.35
+		a13_bought_count += 1
+		
 		$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
+		if a13_bought_count >= 10:
+			unlock_achievement("a13_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -742,7 +834,10 @@ func _on_tacoupg_1_button_button_down() -> void:
 		update_taco_sliders()
 		tacos -= upg15cost
 		upg15cost *= 1.35
+		a14_bought_count += 1
 		$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
+		if a14_bought_count >= 10:
+			unlock_achievement("a14_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
@@ -751,7 +846,13 @@ func _on_tacoupg_1_button_button_down() -> void:
 
 
 func _on_achievementsbutton_button_up() -> void:
+	#var ach = preload("res://scenes/achievements.tscn")
+	#ach.connect("a1_reward", Callable(self, "_on_achievement_reward"))
 	var transition = preload("res://scenes/swipe.tscn").instantiate()
 	get_tree().root.add_child(transition)
 	transition.swipe_in("res://scenes/achievements.tscn", 1)
 	
+func a15_helper():
+	return (TACO_click_multiplier >= 5 and TACO_gains_multiplier >= 5 and TACO_entropy_multiplier >= 5)
+func a16_helper():
+	return(TACO_click_multiplier >= 10 and TACO_gains_multiplier >= 10 and TACO_entropy_multiplier >= 10)

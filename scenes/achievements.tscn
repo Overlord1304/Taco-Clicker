@@ -102,7 +102,7 @@ offset_bottom = 646.0
 layout_mode = 2
 
 [node name="Panel" type="Panel" parent="scroll/hbox"]
-custom_minimum_size = Vector2(1600, 648)
+custom_minimum_size = Vector2(2800, 648)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wf1mw")
 
@@ -226,6 +226,41 @@ rotation = -0.143117
 scale = Vector2(2.234375, 2.359375)
 sprite_frames = SubResource("SpriteFrames_svwer")
 
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A2/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A2/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="A3" type="Button" parent="scroll/hbox/Panel"]
 layout_mode = 0
 offset_left = 21.0
@@ -253,6 +288,41 @@ position = Vector2(400.00006, 69)
 rotation = 0.85695666
 scale = Vector2(2.234375, 2.359375)
 texture = ExtResource("7_jnbt2")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A3/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A3/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="A4" type="Button" parent="scroll/hbox/Panel"]
 layout_mode = 0
@@ -282,6 +352,41 @@ rotation = -0.143117
 scale = Vector2(2.234375, 2.359375)
 sprite_frames = SubResource("SpriteFrames_svwer")
 
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A4/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A4/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="A5" type="Button" parent="scroll/hbox/Panel"]
 layout_mode = 0
 offset_left = 480.0
@@ -309,6 +414,41 @@ position = Vector2(389.00003, 55)
 rotation = 0.85695666
 scale = Vector2(2.234375, 2.359375)
 texture = ExtResource("3_uhxyi")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A5"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A5/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A5/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="A6" type="Button" parent="scroll/hbox/Panel"]
 layout_mode = 0
@@ -338,6 +478,41 @@ rotation = -0.143117
 scale = Vector2(2.234375, 2.359375)
 sprite_frames = SubResource("SpriteFrames_svwer")
 
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A6"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A6/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A6/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="A7" type="Button" parent="scroll/hbox/Panel"]
 layout_mode = 0
 offset_left = 939.0
@@ -364,6 +539,41 @@ vertical_icon_alignment = 0
 position = Vector2(379, 76)
 scale = Vector2(4, 4.224)
 texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A7"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A7/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A7/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="A8" type="Button" parent="scroll/hbox/Panel"]
 layout_mode = 0
@@ -392,6 +602,538 @@ position = Vector2(379, 76)
 scale = Vector2(4, 4.224)
 texture = ExtResource("9_svwer")
 
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A8"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A8/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A8/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A9" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 939.0
+offset_top = 456.0
+offset_right = 1370.0
+offset_bottom = 608.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Buy 10 (+100 Tacos 
+ Per Click Upgrades)
+ Reward: 15M Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A9"]
+position = Vector2(379, 76)
+scale = Vector2(4, 4.224)
+texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A9"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A9/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A9/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A10" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 1398.0
+offset_top = 96.0
+offset_right = 1829.0
+offset_bottom = 248.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Buy 10 (+100 Tacos Per
+ Second Upgrades)
+ Reward: 30M Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="scroll/hbox/Panel/A10"]
+position = Vector2(389.00003, 55)
+rotation = -0.143117
+scale = Vector2(2.234375, 2.359375)
+sprite_frames = SubResource("SpriteFrames_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A10"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A10/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A10/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A11" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 1398.0
+offset_top = 276.0
+offset_right = 1829.0
+offset_bottom = 428.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Activated Cosmic 
+ Overflow 3 Times
+ Reward: 500K Entropy"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A11"]
+position = Vector2(379, 76)
+scale = Vector2(4, 4.224)
+texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A11"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A11/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A11/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A12" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 1398.0
+offset_top = 456.0
+offset_right = 1829.0
+offset_bottom = 608.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Activate T.A.C.O
+ Overlock 3 times
+ Reward: 500K Entropy"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A12"]
+position = Vector2(379, 76)
+scale = Vector2(4, 4.224)
+texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A12"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A12/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A12/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A13" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 1857.0
+offset_top = 96.0
+offset_right = 2288.0
+offset_bottom = 248.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Buy 10 (+100 Entropy Per
+ Second Upgrades)
+ Reward: 30M Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A13"]
+position = Vector2(379, 76)
+scale = Vector2(4, 4.224)
+texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A13"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A13/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A13/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A14" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 1857.0
+offset_top = 276.0
+offset_right = 2288.0
+offset_bottom = 428.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Buy 10 (+1 T.A.C.O Slider 
+ Upgrades)
+ Reward: 15M Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A14"]
+position = Vector2(379, 76)
+scale = Vector2(4, 4.224)
+texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A14"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A14/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A14/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A15" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 1857.0
+offset_top = 456.0
+offset_right = 2288.0
+offset_bottom = 608.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Run All T.A.C.O Sliders
+ at 5x for 10 seconds
+ Reward: 5M Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A15"]
+position = Vector2(379, 76)
+scale = Vector2(4, 4.224)
+texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A15"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A15/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A15/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A16" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 2316.0
+offset_top = 96.0
+offset_right = 2747.0
+offset_bottom = 248.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Run All T.A.C.O Sliders
+ at 10x for 10 Seconds
+ Reward: 30M Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A16"]
+position = Vector2(379, 76)
+scale = Vector2(4, 4.224)
+texture = ExtResource("9_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A16"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A16/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A16/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a_1_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a1_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/Back" to="." method="_on_back_button_up"]
@@ -402,3 +1144,11 @@ texture = ExtResource("9_svwer")
 [connection signal="button_up" from="scroll/hbox/Panel/A6" to="." method="_on_a_6_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A7" to="." method="_on_a_7_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A8" to="." method="_on_a_8_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A9" to="." method="_on_a_9_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A10" to="." method="_on_a_10_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A11" to="." method="_on_a_11_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A12" to="." method="_on_a_12_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A13" to="." method="_on_a_13_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A14" to="." method="_on_a_14_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A15" to="." method="_on_a_15_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A16" to="." method="_on_a_16_button_up"]

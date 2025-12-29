@@ -328,7 +328,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("10_a8y0u")
-text = "Cosmic Overflow Activated. Entropy per Second Increased By 50x"
+text = "Cosmic Overflow Activated. Entropy per Second Increased By 25x"
 horizontal_alignment = 1
 
 [node name="overclockactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
@@ -338,6 +338,15 @@ theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "Overclock Activated. T.A.C.O Multipliers Increased By 10x"
+horizontal_alignment = 1
+
+[node name="achievementunlocked" type="Label" parent="left/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+text = "Achievement Unlocked"
 horizontal_alignment = 1
 
 [node name="tacobutton" type="TextureButton" parent="left/MarginContainer"]
@@ -361,8 +370,8 @@ scale = Vector2(2, 2)
 texture = ExtResource("13_a8y0u")
 
 [node name="entropycount" type="Label" parent="left/entropy"]
-offset_left = 76.0
-offset_right = 123.0
+offset_left = 55.0
+offset_right = 102.0
 offset_bottom = 57.0
 size_flags_horizontal = 8
 size_flags_vertical = 2
@@ -681,9 +690,9 @@ text = "T.A.C.O"
 
 [node name="entropyupg1button" type="Button" parent="scroller/VBoxContainer/right"]
 layout_mode = 0
-offset_left = 22.0
+offset_left = 23.0
 offset_top = 736.0
-offset_right = 357.0
+offset_right = 358.0
 offset_bottom = 803.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -716,9 +725,9 @@ text = "UPGRADE ENTROPY PER SECOND +1"
 
 [node name="entropyupg2button2" type="Button" parent="scroller/VBoxContainer/right"]
 layout_mode = 0
-offset_left = 22.0
+offset_left = 23.0
 offset_top = 832.0
-offset_right = 357.0
+offset_right = 358.0
 offset_bottom = 899.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
@@ -906,9 +915,9 @@ text = "
 
 [node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg3button3"]
 layout_mode = 0
-offset_left = 39.0
+offset_left = 43.0
 offset_top = 4.0
-offset_right = 359.0
+offset_right = 363.0
 offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
