@@ -110,9 +110,7 @@ func _ready():
 	$scroller/VBoxContainer/right/TACO_overclock/TACO_overclock_label.text = format_number(upg13cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
-	$T_A_C_O/amountsperclickslider.value = TACO_click_multiplier
-	$T_A_C_O/passivegainsperclickslider.value = TACO_gains_multiplier
-	$T_A_C_O/entropymultiplierperclickslider.value = TACO_entropy_multiplier
+	update_taco_sliders()
 	_on_h_slider_value_changed(TACO_click_multiplier)
 	_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 	_on_entropymultiplierperclickslider_value_changed(TACO_entropy_multiplier)
@@ -335,6 +333,9 @@ func save_data():
 		"TACO_click_multiplier": TACO_click_multiplier,
 		"TACO_gains_multiplier": TACO_gains_multiplier,
 		"TACO_entropy_multiplier": TACO_entropy_multiplier,
+		"base_apc_max_value" : base_apc_max_value,
+		"base_cps_max_value" : base_cps_max_value,
+		"base_entropy_max_value": base_entropy_max_value,
 		"a1_bought_count" : a1_bought_count,
 		"Global.a1_unlocked": Global.a1_unlocked,
 		"Global.a1_claimed": Global.a1_claimed,
@@ -423,6 +424,9 @@ func load_data():
 			TACO_click_multiplier = data.get("TACO_click_multiplier",1.0)
 			TACO_gains_multiplier = data.get("TACO_gains_multiplier",1.0)
 			TACO_entropy_multiplier = data.get("TACO_entropy_multiplier", 1.0)
+			base_apc_max_value = data.get("base_apc_max_value",10)
+			base_cps_max_value = data.get("base_cps_max_value",10)
+			base_entropy_max_value = data.get("base_entropy_max_value",10)
 			a1_bought_count = data.get("a1_bought_count",0)
 			Global.a1_unlocked = data.get("Global.a1_unlocked",false)
 			Global.a1_claimed = data.get("Global.a1_claimed",false)

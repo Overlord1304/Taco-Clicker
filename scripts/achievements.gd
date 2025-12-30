@@ -16,7 +16,9 @@ extends Control
 	$scroll/hbox/Panel/A13,
 	$scroll/hbox/Panel/A14,
 	$scroll/hbox/Panel/A15,
-	$scroll/hbox/Panel/A16
+	$scroll/hbox/Panel/A16,
+	$scroll/hbox/Panel/A17,
+	$scroll/hbox/Panel/A18,
 ]
 
 const rewards := [
@@ -35,7 +37,9 @@ const rewards := [
 	{"type": "tacos", "amount": 30000000},
 	{"type": "tacos", "amount": 15000000},
 	{"type": "tacos", "amount": 5000000},
-	{"type": "tacos", "amount": 30000000}
+	{"type": "tacos", "amount": 30000000},
+	{"type": "tacos", "amount": 100000000},
+	{"type": "key_to_tree","amount": 1}
 ]
 
 func _ready():
@@ -107,3 +111,10 @@ func _on_a_15_button_up(): claim_reward(14)
 
 
 func _on_a_16_button_up(): claim_reward(15)
+
+
+func _on_a_17_button_up(): claim_reward(16)
+
+
+func _on_a_18_button_up() -> void:
+	pass # Replace with function body.
