@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://momc162twgmc" path="res://sprites/sunburst.png" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://bqtxa10bvitfb" path="res://scripts/indicator_fade_out.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://b4cm5mvaxsoaj" path="res://scripts/tacocount.gd" id="3_jyhfs"]
-[ext_resource type="Script" uid="uid://b6plrukyqypgf" path="res://scripts/entropycount.gd" id="7_choun"]
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://jbgq1yplxp3r" path="res://sprites/Pixel Cursor (png).png" id="7_tipki"]
 [ext_resource type="FontFile" uid="uid://crg07qg7f4136" path="res://fonts/Fredoka-Bold.ttf" id="9_trceg"]
@@ -54,6 +53,27 @@ _data = {
 &"RESET": SubResource("Animation_tefeu"),
 &"spin": SubResource("Animation_tbgi4")
 }
+
+[sub_resource type="GDScript" id="GDScript_eb6dy"]
+script/source = "extends Node2D
+
+@onready var entropy_label = $entropycount
+func format_number(n: float) -> String:
+	if n < 1000:
+		return str(n)
+	var suffixes = [\"\", \"K\", \"M\", \"B\", \"T\", \"Q\"]
+	var tier = int(floor(log(n) / log(1000)))
+	if tier >= suffixes.size():
+		tier = suffixes.size() - 1
+	var scaled = n / pow(1000, tier)
+	var text = str(round(scaled * 10) / 10.0)
+	if text.ends_with(\".0\"):
+		text = text.trim_suffix(\".0\")
+	return text + suffixes[tier]
+
+func _on_main_entropy_changed(amount) -> void:
+	entropy_label.text = format_number(amount)
+"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
 
@@ -362,7 +382,7 @@ libraries = {
 autoplay = "spin"
 
 [node name="entropy" type="Node2D" parent="left"]
-script = ExtResource("7_choun")
+script = SubResource("GDScript_eb6dy")
 
 [node name="Sprite2D" type="Sprite2D" parent="left/entropy"]
 position = Vector2(24.999996, 30.25)
@@ -401,6 +421,18 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
 text = "Achievements"
+
+[node name="skilltreebutton" type="Button" parent="left"]
+visible = false
+layout_mode = 0
+offset_left = 657.0
+offset_top = 41.0
+offset_right = 774.0
+offset_bottom = 72.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
+text = "Skill Tree"
 
 [node name="passivegainstimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -1092,7 +1124,8 @@ sprite_frames = SubResource("SpriteFrames_dp3eg")
 [node name="overclocktimer" type="Timer" parent="."]
 wait_time = 10.0
 
-[connection signal="entropy_changed" from="." to="left/entropy" method="_on_main_entropy_changed"]
+[connection signal="entropy_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_entropy_changed"]
+[connection signal="key_to_tree_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_key_to_tree_changed"]
 [connection signal="taco_clicked" from="." to="left/MarginContainer" method="_on_main_taco_clicked"]
 [connection signal="tacos_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_tacos_changed"]
 [connection signal="timeout" from="indicators/display/Timer" to="indicators/display" method="_on_timer_timeout"]

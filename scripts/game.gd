@@ -5,7 +5,7 @@ var entropy = 0
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 9999999999
+var tacos = 999999900
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -60,6 +60,8 @@ var a13_bought_count = 0
 var a14_bought_count = 0
 var a15_timer = 0
 var a16_timer = 0
+var a17_timer = 0
+var key_to_tree = 0
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -77,6 +79,7 @@ var coverflow_original_position = {}
 signal tacos_changed
 signal taco_clicked
 signal entropy_changed
+signal key_to_tree_changed
 
 func _ready():
 	base_notification_y = gtacolabel.position.y
@@ -111,10 +114,14 @@ func _ready():
 	$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
 	update_taco_sliders()
+	$T_A_C_O/amountsperclickslider.value = TACO_click_multiplier
+	$T_A_C_O/passivegainsperclickslider.value = TACO_gains_multiplier
+	$T_A_C_O/entropymultiplierperclickslider.value = TACO_entropy_multiplier
 	_on_h_slider_value_changed(TACO_click_multiplier)
 	_on_passivegainsperclickslider_value_changed(TACO_gains_multiplier)
 	_on_entropymultiplierperclickslider_value_changed(TACO_entropy_multiplier)
-
+	if Global.a18_claimed:
+		$left/skilltreebutton.show()
 func format_number(n) -> String:
 	if n < 1000:
 		return str(n if n != int(n) else int(n))
@@ -302,6 +309,16 @@ func _process(delta):
 			unlock_achievement("a16_unlocked")
 	else:
 		a16_timer = 0
+	if not Global.a17_unlocked and a17_helper():
+		a17_timer += delta
+		if a16_timer >= 20:
+			unlock_achievement("a17_unlocked")
+	else:
+		a17_timer = 0
+	if not Global.a18_unlocked:
+		if tacos >= 1000000000:
+			unlock_achievement("a18_unlocked")
+
 func save_data():
 	var data = {
 		"tacos" : tacos,
@@ -381,7 +398,11 @@ func save_data():
 		"Global.a15_unlocked": Global.a15_unlocked,
 		"Global.a15_claimed": Global.a15_claimed,
 		"Global.a16_unlocked": Global.a16_unlocked,
-		"Global.a16_claimed": Global.a16_claimed
+		"Global.a16_claimed": Global.a16_claimed,
+		"Global.a17_unlocked": Global.a17_unlocked,
+		"Global.a17_claimed": Global.a17_claimed,
+		"Global.a18_unlocked": Global.a18_unlocked,
+		"Global.a18_claimed": Global.a18_claimed
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -473,6 +494,10 @@ func load_data():
 			Global.a15_claimed = data.get("Global.a15_claimed",false)
 			Global.a16_unlocked = data.get("Global.a16_unlocked",false)
 			Global.a16_claimed = data.get("Global.a16_claimed",false)
+			Global.a17_unlocked = data.get("Global.a17_unlocked",false)
+			Global.a17_claimed = data.get("Global.a17_claimed",false)
+			Global.a18_unlocked = data.get("Global.a18_unlocked",false)
+			Global.a18_claimed = data.get("Global.a18_claimed",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -482,7 +507,7 @@ func load_data():
 func _on_button_button_down() -> void:
 	if tacos >= upg1cost:
 		base_amount_per_click += 1
-		update_amount_per_click()
+		recalc()
 		tacos -= upg1cost
 		upg1cost *= 1.35
 		a1_bought_count += 1
@@ -496,10 +521,7 @@ func _on_button_button_down() -> void:
 func _on_autoclickupg_1_button_down() -> void:
 	if tacos >= upg2cost:
 		base_passive_gains += 1
-		if disco_sauce_activated:
-			passive_gains = base_passive_gains * 50
-		else:
-			passive_gains = base_passive_gains
+		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg2cost
 		upg2cost *= 1.35
@@ -571,7 +593,7 @@ func _on_gtacotimer_timeout() -> void:
 func _on_amtperclickupg_2_button_down() -> void:
 	if tacos >= upg4cost:
 		base_amount_per_click += 10
-		update_amount_per_click()
+		recalc()
 		tacos -= upg4cost
 		upg4cost *= 1.35
 		a5_bought_count += 1
@@ -585,10 +607,7 @@ func _on_amtperclickupg_2_button_down() -> void:
 func _on_autoclickupg_2_button_down() -> void:
 	if tacos >= upg5cost:
 		base_passive_gains += 10
-		if disco_sauce_activated:
-			passive_gains = base_passive_gains * 50
-		else:
-			passive_gains = base_passive_gains
+		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg5cost
 		upg5cost *= 1.35
@@ -699,10 +718,7 @@ func _on_entropymultiplierperclickslider_value_changed(value: float) -> void:
 func _on_entropyupg_1_button_button_down() -> void:
 	if tacos >= upg8cost:
 		base_entropy_gains += 1
-		if cosmic_overflow_activated:
-			entropy_gains = base_entropy_gains * 50
-		else:
-			update_entropy_gains()
+		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg8cost
 		upg8cost *= 1.35
@@ -718,10 +734,7 @@ func _on_entropyupg_1_button_button_down() -> void:
 func _on_entropyupg_2_button_2_button_down() -> void:
 	if tacos >= upg9cost:
 		base_entropy_gains += 10
-		if cosmic_overflow_activated:
-			entropy_gains = base_entropy_gains * 50
-		else:
-			update_entropy_gains()
+		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg9cost
 		upg9cost *= 1.35
@@ -737,7 +750,7 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 func _on_amtperclickupg_3_button_down() -> void:
 	if tacos >= upg10cost:
 		base_amount_per_click += 100
-		update_amount_per_click()
+		recalc()
 		tacos -= upg10cost
 		upg10cost *= 1.35
 		a9_bought_count += 1
@@ -752,10 +765,7 @@ func _on_amtperclickupg_3_button_down() -> void:
 func _on_autoclickupg_3_button_down() -> void:
 	if tacos >= upg11cost:
 		base_passive_gains += 100
-		if disco_sauce_activated:
-			passive_gains = base_passive_gains * 50
-		else:
-			passive_gains = base_passive_gains
+		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg11cost
 		upg11cost *= 1.35
@@ -813,10 +823,7 @@ func _on_overclocktimer_timeout() -> void:
 func _on_entropyupg_3_button_3_button_down() -> void:
 	if tacos >= upg14cost:
 		base_entropy_gains += 100
-		if cosmic_overflow_activated:
-			entropy_gains = base_entropy_gains * 50
-		else:
-			update_entropy_gains()
+		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg14cost
 		upg14cost *= 1.35
@@ -860,3 +867,10 @@ func a15_helper():
 	return (TACO_click_multiplier >= 5 and TACO_gains_multiplier >= 5 and TACO_entropy_multiplier >= 5)
 func a16_helper():
 	return(TACO_click_multiplier >= 10 and TACO_gains_multiplier >= 10 and TACO_entropy_multiplier >= 10)
+func a17_helper():
+	return(TACO_click_multiplier >= 20 and TACO_gains_multiplier >= 20 and TACO_entropy_multiplier >= 20)
+
+func recalc():
+	update_amount_per_click()
+	update_passive_gains()
+	update_entropy_gains()

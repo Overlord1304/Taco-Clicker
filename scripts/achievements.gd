@@ -73,7 +73,7 @@ func claim_reward(index: int):
 	achievement_buttons[index].disabled = true
 	var coverlay = achievement_buttons[index].get_node_or_null("ClaimOverlay")
 	coverlay.show()
-
+	
 
 func _on_back_button_up():
 	var swipe = get_meta("swipe")
@@ -116,5 +116,4 @@ func _on_a_16_button_up(): claim_reward(15)
 func _on_a_17_button_up(): claim_reward(16)
 
 
-func _on_a_18_button_up() -> void:
-	pass # Replace with function body.
+func _on_a_18_button_up(): claim_reward(17)

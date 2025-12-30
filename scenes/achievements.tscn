@@ -1196,6 +1196,68 @@ text = "Claimed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="A18" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 2316.0
+offset_top = 456.0
+offset_right = 2747.0
+offset_bottom = 608.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Reach 1B Tacos
+ Reward: ??"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A18"]
+position = Vector2(389, 55)
+rotation = 0.85695666
+scale = Vector2(2.234375, 2.359375)
+texture = ExtResource("3_uhxyi")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A18"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A18/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A18/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a1_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a_1_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/Back" to="." method="_on_back_button_up"]
@@ -1214,3 +1276,5 @@ vertical_alignment = 1
 [connection signal="button_up" from="scroll/hbox/Panel/A14" to="." method="_on_a_14_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A15" to="." method="_on_a_15_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A16" to="." method="_on_a_16_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A17" to="." method="_on_a_17_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A18" to="." method="_on_a_18_button_up"]
