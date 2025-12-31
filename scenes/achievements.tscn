@@ -93,6 +93,21 @@ script = ExtResource("1_jqgop")
 visible = false
 layout_mode = 0
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1146.0
+offset_bottom = 112.0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ttb8s")
+theme_override_font_sizes/font_size = 64
+text = "Achievements"
+
 [node name="scroll" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_right = 1152.0
@@ -105,20 +120,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(2800, 648)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wf1mw")
-
-[node name="MarginContainer" type="MarginContainer" parent="scroll/hbox/Panel"]
-layout_mode = 0
-offset_right = 1146.0
-offset_bottom = 112.0
-
-[node name="Label" type="Label" parent="scroll/hbox/Panel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_ttb8s")
-theme_override_font_sizes/font_size = 64
-text = "Achievements"
 
 [node name="A1" type="Button" parent="scroll/hbox/Panel"]
 layout_mode = 0

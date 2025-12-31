@@ -65,6 +65,9 @@ var key_to_tree = 0
 var hyperdrive = false
 var gtacomax = false
 var dsaucemax = false
+var coverflowmax = false
+var gtacors = false
+var dsaucers = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -165,7 +168,10 @@ func update_passive_gains() -> void:
 func update_entropy_gains():
 	var entropy_mult = TACO_entropy_multiplier
 	if cosmic_overflow_activated:
-		entropy_mult *= 25
+		if coverflowmax:
+			entropy_mult *= 75
+		else:
+			entropy_mult *= 25
 	if hyperdrive:
 		entropy_mult *= 1.5
 	entropy_gains = base_entropy_gains * entropy_mult
@@ -252,11 +258,15 @@ func _process(delta):
 	if overclock_bought == true:
 		$scroller/VBoxContainer/right/TACO_overclock.disabled = true
 	if golden_taco_bought and golden_taco_activated == false:
-		var rand = randi() % 3000
+		var rand
+		if gtacors:
+			rand = randi() % 2400
+		else:
+			rand = randi() % 3000
 		match rand:
-			!2999:
+			!1:
 				pass
-			2999:
+			1:
 				if gtacomax:
 					gtacolabel.text = "Golden Taco Activated. Tacos per Click Increased By 15x"
 				show_notification(gtacolabel)
@@ -268,11 +278,16 @@ func _process(delta):
 					unlock_achievement("a3_unlocked")
 				gtaco_timer.start(10.0)
 	if disco_sauce_bought and disco_sauce_activated == false:
-		var rand = randi() % 1000
+		var rand
+		if dsaucers:
+			rand = randi() % 2400
+		else:
+			rand = randi() % 3000
+		print(rand)
 		match rand:
-			!999:
+			!1:
 				pass
-			999:
+			1:
 				if dsaucemax:
 					dsaucelabel.text = "Disco Sauce Activated. Clicks per Second Increased By 150x"
 				show_notification(dsaucelabel)
@@ -291,6 +306,8 @@ func _process(delta):
 			!5999:
 				pass
 			5999:
+				if coverflowmax:
+					coverflowlabel.text = "Cosmic Overflow Activated. Entropy per Second Increased By 75x"
 				show_notification(coverflowlabel)
 				cosmic_overflow_activated = true
 				update_entropy_gains()
@@ -303,12 +320,12 @@ func _process(delta):
 					var tween = create_tween()
 					tween.tween_property(sprite, "position:y", sprite.position.y - 150, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	if overclock_bought and overclock_activated == false:
-		var rand = randi() % 3000
+		var rand = randi() % 1000
 		
 		match rand:
-			!2999:
+			!999:
 				pass
-			2999:
+			999:
 				show_notification(overclocklabel)
 				overclock_activated = true
 				update_taco_sliders()
@@ -428,7 +445,13 @@ func save_data():
 		"Global.gtacomax_bought": Global.gtacomax_bought,
 		"gtacomax": gtacomax,
 		"Global.dsaucemax_bought": Global.dsaucemax_bought,
-		"dsaucemax": dsaucemax
+		"dsaucemax": dsaucemax,
+		"Global.coverflowmax_bought": Global.coverflowmax_bought,
+		"coverflowmax": coverflowmax,
+		"Global.gtacors_bought": Global.gtacors_bought,
+		"gtacors": gtacors,
+		"Global.dsaucers_bought": Global.dsaucers_bought,
+		"dsaucers": dsaucers,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -530,6 +553,12 @@ func load_data():
 			gtacomax = data.get("gtacomax",false)
 			Global.dsaucemax_bought = data.get("Global.dsaucemax_bought",false)
 			dsaucemax = data.get("dsaucemax",false)
+			Global.coverflowmax_bought = data.get("Global.coverflowmax_bought",false)
+			coverflowmax = data.get("coverflowmax",false)
+			Global.gtacors_bought = data.get("Global.gtacors_bought",false)
+			gtacors = data.get("gtacors",false)
+			Global.dsaucers_bought = data.get("Global.dsaucers_bought",false)
+			dsaucers = data.get("dsaucers",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()

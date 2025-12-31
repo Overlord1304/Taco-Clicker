@@ -38,4 +38,7 @@ var a18_claimed = false
 var hyperdrive_bought = false
 var gtacomax_bought = false
 var dsaucemax_bought = false
+var coverflowmax_bought = false
+var gtacors_bought = false
+var dsaucers_bought = false
 var pending_taco_reward = 0
