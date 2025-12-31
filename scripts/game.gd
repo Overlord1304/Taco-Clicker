@@ -68,6 +68,8 @@ var dsaucemax = false
 var coverflowmax = false
 var gtacors = false
 var dsaucers = false
+var coverflowrs = false
+var apccd = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -283,7 +285,6 @@ func _process(delta):
 			rand = randi() % 2400
 		else:
 			rand = randi() % 3000
-		print(rand)
 		match rand:
 			!1:
 				pass
@@ -301,11 +302,16 @@ func _process(delta):
 					unlock_achievement("a4_unlocked")
 				dsauce_timer.start(10.0)
 	if cosmic_overflow_bought and cosmic_overflow_activated == false:
-		var rand = randi() % 6000
+		var rand
+		if coverflowrs:
+			rand = randi() % 4800
+		else:
+			rand = randi() % 6000
+		print(rand)
 		match rand:
-			!5999:
+			!1:
 				pass
-			5999:
+			1:
 				if coverflowmax:
 					coverflowlabel.text = "Cosmic Overflow Activated. Entropy per Second Increased By 75x"
 				show_notification(coverflowlabel)
@@ -452,6 +458,10 @@ func save_data():
 		"gtacors": gtacors,
 		"Global.dsaucers_bought": Global.dsaucers_bought,
 		"dsaucers": dsaucers,
+		"Global.coverflowrs_bought": Global.coverflowrs_bought,
+		"coverflowrs": coverflowrs,
+		"Global.apccd_bought": Global.apccd_bought,
+		"apccd": apccd,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -559,6 +569,10 @@ func load_data():
 			gtacors = data.get("gtacors",false)
 			Global.dsaucers_bought = data.get("Global.dsaucers_bought",false)
 			dsaucers = data.get("dsaucers",false)
+			Global.coverflowrs_bought = data.get("Global.coverflowrs_bought",false)
+			coverflowrs = data.get("coverflowrs",false)
+			Global.apccd_bought = data.get("Global.apccd_bought",false)
+			apccd = data.get("apccd",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -566,6 +580,8 @@ func load_data():
 		save_data()
 
 func _on_button_button_down() -> void:
+	if apccd:
+		upg1cost = upg1cost*4/5
 	if tacos >= upg1cost:
 		base_amount_per_click += 1
 		recalc()
@@ -652,6 +668,8 @@ func _on_gtacotimer_timeout() -> void:
 	$left/MarginContainer/tacobutton.texture_normal = taco_texture
 
 func _on_amtperclickupg_2_button_down() -> void:
+	if apccd:
+		upg4cost = upg4cost*4/5
 	if tacos >= upg4cost:
 		base_amount_per_click += 10
 		recalc()
@@ -809,6 +827,8 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_amtperclickupg_3_button_down() -> void:
+	if apccd:
+		upg10cost = upg10cost*4/5
 	if tacos >= upg10cost:
 		base_amount_per_click += 100
 		recalc()

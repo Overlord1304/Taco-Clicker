@@ -6,6 +6,8 @@ extends Control
 @onready var coverflow_button = $Panel/COverflowUpg
 @onready var gtacors_button = $Panel/GTacoUpg2
 @onready var dsaucers_button = $Panel/DSauceUpg2
+@onready var coverflowrs_button = $Panel/COverflowUpg2
+@onready var apccd_button = $Panel/APCSubsidy
 var upgrades = {
 	"hyperdrive": {
 		"cost": 1_000_000_000,
@@ -54,6 +56,22 @@ var upgrades = {
 		"game_flag": "dsaucers",
 		"buy_button_path": "Panel/DSauceUpg2/Panel/buydsauceupg2",
 		"panel_path":"Panel/DSauceUpg2/Panel",
+	},
+	"coverflowrs":{
+		"cost": 1_000_000_000,
+		"currency": "tacos",
+		"bought_flag": "coverflowrs_bought",
+		"game_flag": "coverflowrs",
+		"buy_button_path": "Panel/COverflowUpg2/Panel/buycoverflowupg2",
+		"panel_path": "Panel/COverflowUpg2/Panel"
+	},
+	"apccd":{
+		"cost": 500_000_000,
+		"currency":"tacos",
+		"bought_flag": "apccd_bought",
+		"game_flag": "apccd",
+		"buy_button_path": "Panel/APCSubsidy/Panel/buyapcsubsidy",
+		"panel_path": "Panel/APCSubsidy/Panel",
 	}
 }
 
@@ -72,6 +90,8 @@ func update_buttons():
 	coverflow_button.disabled = !Global.hyperdrive_bought
 	gtacors_button.disabled = !Global.gtacomax_bought
 	dsaucers_button.disabled = !Global.dsaucemax_bought
+	coverflowrs_button.disabled = !Global.coverflowmax_bought
+	apccd_button.disabled = !Global.gtacomax_bought
 	for key in upgrades:
 		var upg = upgrades[key]
 		if Global.get(upg.bought_flag):
@@ -151,3 +171,16 @@ func _on_d_sauce_upg_2_button_up() -> void:
 
 func _on_buydsauceupg_2_button_up() -> void:
 	buy_upgrade("dsaucers")
+func _on_c_overflow_upg_2_button_up() -> void:
+	toggle_panel(upgrades.coverflowrs.panel)
+
+func _on_buycoverflowupg_2_button_down() -> void:
+	buy_upgrade("coverflowrs")
+
+
+func _on_apc_subsidy_button_up() -> void:
+	toggle_panel(upgrades.apccd.panel)
+
+
+func _on_buyapcsubsidy_button_up() -> void:
+	buy_upgrade("apccd")
