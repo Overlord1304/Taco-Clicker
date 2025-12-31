@@ -1133,6 +1133,7 @@ wait_time = 10.0
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]
 [connection signal="button_up" from="left/achievementsbutton" to="." method="_on_achievementsbutton_button_up"]
+[connection signal="button_up" from="left/skilltreebutton" to="." method="_on_skilltreebutton_button_up"]
 [connection signal="timeout" from="passivegainstimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="gtacotimer" to="." method="_on_gtacotimer_timeout"]
 [connection signal="timeout" from="dsaucetimer" to="." method="_on_dsaucetimer_timeout"]

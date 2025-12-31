@@ -1,11 +1,11 @@
 extends Control
 
 const saves =  "user://userdata.save"
-var entropy = 0
+var entropy = 999999999
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 999999900
+var tacos = 9999999999
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -62,6 +62,9 @@ var a15_timer = 0
 var a16_timer = 0
 var a17_timer = 0
 var key_to_tree = 0
+var hyperdrive = false
+var gtacomax = false
+var dsaucemax = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -69,7 +72,6 @@ var key_to_tree = 0
 @onready var base_apc_max_value = $T_A_C_O/amountsperclickslider.max_value
 @onready var base_cps_max_value = $T_A_C_O/passivegainsperclickslider.max_value
 @onready var base_entropy_max_value = $T_A_C_O/entropymultiplierperclickslider.max_value
-@onready var costlabel = $left/MarginContainer/VBoxContainer/notenoughmoneylabel
 @onready var gtacolabel = $left/MarginContainer/VBoxContainer/gtacoactivated
 @onready var dsaucelabel = $left/MarginContainer/VBoxContainer/dsauceactivated
 @onready var coverflowlabel = $left/MarginContainer/VBoxContainer/coverflowactivated
@@ -82,6 +84,7 @@ signal entropy_changed
 signal key_to_tree_changed
 
 func _ready():
+	
 	base_notification_y = gtacolabel.position.y
 	load_data()
 	
@@ -140,18 +143,31 @@ func format_number(n) -> String:
 func update_amount_per_click() -> void:
 	var click_mult = TACO_click_multiplier
 	if golden_taco_activated:
-		click_mult *= 5
+		if gtacomax:
+			click_mult *= 15
+		else:
+			click_mult *= 5
+	if hyperdrive:
+		click_mult *= 1.5
 	amount_per_click = base_amount_per_click * click_mult
 func update_passive_gains() -> void:
 	var gains_mult = TACO_gains_multiplier
 	if disco_sauce_activated:
-		gains_mult *= 50
+
+		if dsaucemax:
+			gains_mult *= 150
+		else:
+			gains_mult *= 50
+	if hyperdrive:
+		gains_mult *= 1.5
 	passive_gains = base_passive_gains * gains_mult
 	$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains) + " PER SECOND"
 func update_entropy_gains():
 	var entropy_mult = TACO_entropy_multiplier
 	if cosmic_overflow_activated:
 		entropy_mult *= 25
+	if hyperdrive:
+		entropy_mult *= 1.5
 	entropy_gains = base_entropy_gains * entropy_mult
 	$left/entropy/entropypersecondcount.text = format_number(entropy_gains) + " PER SECOND"
 func update_taco_sliders():
@@ -163,7 +179,7 @@ func update_taco_sliders():
 		$T_A_C_O/entropymultiplierperclickslider.max_value = base_entropy_max_value
 		$T_A_C_O/passivegainsperclickslider.max_value = base_apc_max_value
 		$T_A_C_O/amountsperclickslider.max_value = base_apc_max_value
-func show_cost_warning():
+func show_cost_warning(costlabel):
 	if costlabel.has_meta("tween"):
 		var old_tween = costlabel.get_meta("tween")
 		if old_tween.is_valid():
@@ -241,6 +257,8 @@ func _process(delta):
 			!2999:
 				pass
 			2999:
+				if gtacomax:
+					gtacolabel.text = "Golden Taco Activated. Tacos per Click Increased By 15x"
 				show_notification(gtacolabel)
 				$left/MarginContainer/tacobutton.texture_normal = gtaco_texture
 				golden_taco_activated = true
@@ -250,11 +268,13 @@ func _process(delta):
 					unlock_achievement("a3_unlocked")
 				gtaco_timer.start(10.0)
 	if disco_sauce_bought and disco_sauce_activated == false:
-		var rand = randi() % 3000
+		var rand = randi() % 1000
 		match rand:
-			!2999:
+			!999:
 				pass
-			2999:
+			999:
+				if dsaucemax:
+					dsaucelabel.text = "Disco Sauce Activated. Clicks per Second Increased By 150x"
 				show_notification(dsaucelabel)
 				disco_sauce_activated = true
 				update_passive_gains()
@@ -402,7 +422,13 @@ func save_data():
 		"Global.a17_unlocked": Global.a17_unlocked,
 		"Global.a17_claimed": Global.a17_claimed,
 		"Global.a18_unlocked": Global.a18_unlocked,
-		"Global.a18_claimed": Global.a18_claimed
+		"Global.a18_claimed": Global.a18_claimed,
+		"Global.hyperdrive_bought": Global.hyperdrive_bought,
+		"hyperdrive": hyperdrive,
+		"Global.gtacomax_bought": Global.gtacomax_bought,
+		"gtacomax": gtacomax,
+		"Global.dsaucemax_bought": Global.dsaucemax_bought,
+		"dsaucemax": dsaucemax
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -498,6 +524,12 @@ func load_data():
 			Global.a17_claimed = data.get("Global.a17_claimed",false)
 			Global.a18_unlocked = data.get("Global.a18_unlocked",false)
 			Global.a18_claimed = data.get("Global.a18_claimed",false)
+			Global.hyperdrive_bought = data.get("Global.hyperdrive_bought",false)
+			hyperdrive = data.get("hyperdrive",false)
+			Global.gtacomax_bought = data.get("Gloal.gtacomax_bought",false)
+			gtacomax = data.get("gtacomax",false)
+			Global.dsaucemax_bought = data.get("Gloal.dsaucemax_bought",false)
+			dsaucemax = data.get("dsaucemax",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -517,7 +549,7 @@ func _on_button_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_autoclickupg_1_button_down() -> void:
 	if tacos >= upg2cost:
 		base_passive_gains += 1
@@ -532,7 +564,7 @@ func _on_autoclickupg_1_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_timer_timeout() -> void:
 	
 	entropy += entropy_gains
@@ -584,7 +616,7 @@ func _on_golden_taco_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_gtacotimer_timeout() -> void:
 	golden_taco_activated = false
 	update_amount_per_click()
@@ -603,7 +635,7 @@ func _on_amtperclickupg_2_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_autoclickupg_2_button_down() -> void:
 	if tacos >= upg5cost:
 		base_passive_gains += 10
@@ -618,7 +650,7 @@ func _on_autoclickupg_2_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_disco_sauce_button_down() -> void:
 	if tacos >= upg6cost and disco_sauce_bought == false:
 		disco_sauce_bought = true
@@ -627,7 +659,7 @@ func _on_disco_sauce_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_dsaucetimer_timeout() -> void:
 	disco_sauce_activated = false
 	update_passive_gains()
@@ -649,7 +681,7 @@ func _on_t_a_c_o_button_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func get_affordable_value(current_value: float, cost_func: Callable, resource_amount: float) -> float:
 	var test = current_value
 	if test <= 1.0:
@@ -729,7 +761,7 @@ func _on_entropyupg_1_button_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_entropyupg_2_button_2_button_down() -> void:
 	if tacos >= upg9cost:
@@ -745,7 +777,7 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_amtperclickupg_3_button_down() -> void:
 	if tacos >= upg10cost:
@@ -760,7 +792,7 @@ func _on_amtperclickupg_3_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_autoclickupg_3_button_down() -> void:
 	if tacos >= upg11cost:
@@ -776,7 +808,7 @@ func _on_autoclickupg_3_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_cosmic_overflow_button_down() -> void:
 	if tacos >= upg12cost and cosmic_overflow_bought == false:
@@ -786,7 +818,7 @@ func _on_cosmic_overflow_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_coverflowtimer_timeout() -> void:
 	cosmic_overflow_activated = false
@@ -812,7 +844,7 @@ func _on_taco_overclock_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_overclocktimer_timeout() -> void:
 	overclock_activated = false
@@ -835,7 +867,7 @@ func _on_entropyupg_3_button_3_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 	
 func _on_tacoupg_1_button_button_down() -> void:
 	if tacos >= upg15cost:
@@ -852,7 +884,7 @@ func _on_tacoupg_1_button_button_down() -> void:
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:
-		show_cost_warning()
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 	
 
 
@@ -874,3 +906,9 @@ func recalc():
 	update_amount_per_click()
 	update_passive_gains()
 	update_entropy_gains()
+
+
+func _on_skilltreebutton_button_up() -> void:
+	var transition = preload("res://scenes/swipe.tscn").instantiate()
+	get_tree().root.add_child(transition)
+	transition.swipe_in("res://scenes/skill_tree.tscn", 1)

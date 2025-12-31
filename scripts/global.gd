@@ -35,4 +35,7 @@ var a17_unlocked = false
 var a17_claimed = false
 var a18_unlocked = false
 var a18_claimed = false
+var hyperdrive_bought = false
+var gtacomax_bought = false
+var dsaucemax_bought = false
 var pending_taco_reward = 0
