@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cla1wm8elf7a2"]
+[gd_scene load_steps=24 format=3 uid="uid://cla1wm8elf7a2"]
 
 [ext_resource type="Script" uid="uid://3nfjkx2oxnjx" path="res://scripts/skill_tree.gd" id="1_a302t"]
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_ty3n3"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="4_6awrb"]
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="6_6awrb"]
 [ext_resource type="Texture2D" uid="uid://dx1pni0wvf3lj" path="res://sprites/Pixel Cursor (480x160).png" id="7_h52vt"]
+[ext_resource type="Texture2D" uid="uid://di34dyv2qcuus" path="res://sprites/entropy.png" id="8_003p6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ko7ae"]
 bg_color = Color(0.047058824, 0.22745098, 0.6627451, 1)
@@ -111,7 +112,7 @@ rotation = 0.85695666
 scale = Vector2(1.2266474, 1.2377844)
 texture = ExtResource("1_ty3n3")
 
-[node name="Panel" type="Panel" parent="Panel/OverDrive"]
+[node name="Panel" type="Panel" parent="Panel/OverDrive" groups=["upg_desc"]]
 visible = false
 layout_mode = 0
 offset_left = 83.0
@@ -242,7 +243,8 @@ rotation = 0.85695666
 scale = Vector2(1.2266474, 1.2377844)
 texture = ExtResource("6_6awrb")
 
-[node name="Panel" type="Panel" parent="Panel/GTacoUpg"]
+[node name="Panel" type="Panel" parent="Panel/GTacoUpg" groups=["upg_desc"]]
+visible = false
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -350,7 +352,7 @@ position = Vector2(48.000015, 31)
 scale = Vector2(1.2266474, 1.2377844)
 sprite_frames = SubResource("SpriteFrames_p21vy")
 
-[node name="Panel" type="Panel" parent="Panel/DSauceUpg"]
+[node name="Panel" type="Panel" parent="Panel/DSauceUpg" groups=["upg_desc"]]
 visible = false
 layout_mode = 0
 offset_left = 83.0
@@ -436,6 +438,116 @@ scale = Vector2(1, 0.745)
 points = PackedVector2Array(-1, -3, -1, -183)
 default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 
+[node name="COverflowUpg" type="Button" parent="Panel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -252.0
+offset_top = -315.0
+offset_right = -168.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_bfm8x")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rh3y1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_51bdh")
+disabled = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Panel/COverflowUpg"]
+position = Vector2(48.000015, 31)
+scale = Vector2(1.2266474, 1.2377844)
+sprite_frames = SubResource("SpriteFrames_p21vy")
+
+[node name="Panel" type="Panel" parent="Panel/COverflowUpg" groups=["upg_desc"]]
+visible = false
+layout_mode = 0
+offset_left = 83.0
+offset_top = -330.0
+offset_right = 351.0
+offset_bottom = 37.0
+
+[node name="Label" type="Label" parent="Panel/COverflowUpg/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.5
+offset_right = 123.5
+offset_bottom = 59.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_51bdh")
+theme_override_font_sizes/font_size = 40
+text = "Disco Sauce 
+Max"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/COverflowUpg/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = -83.5
+offset_right = 133.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_6awrb")
+theme_override_font_sizes/font_size = 22
+text = "DISCO SAUCE NOW
+BOOSTS TACOS PER 
+SECOND BY 150X."
+horizontal_alignment = 1
+
+[node name="buycoverflowmax" type="Button" parent="Panel/COverflowUpg/Panel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 287.0
+offset_right = 214.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("3_51bdh")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h52vt")
+text = "BUY"
+
+[node name="Label3" type="Label" parent="Panel/COverflowUpg/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = 63.5
+offset_right = 133.5
+offset_bottom = 192.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_6awrb")
+theme_override_font_sizes/font_size = 22
+text = "COST: 20M ENTROPY"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/COverflowUpg/Panel"]
+position = Vector2(133.00003, 210.99998)
+scale = Vector2(1.2266474, 1.2377844)
+texture = ExtResource("8_003p6")
+
+[node name="Line2D" type="Line2D" parent="Panel/COverflowUpg"]
+position = Vector2(44, 2.7850037)
+scale = Vector2(1, 0.745)
+points = PackedVector2Array(-1, -3, -1, -183)
+default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
+
 [node name="notenoughmoneylabel" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -454,6 +566,7 @@ theme_override_fonts/font = ExtResource("4_6awrb")
 text = "You Don't Have Enough Tacos"
 horizontal_alignment = 1
 
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="button_up" from="Panel/OverDrive" to="." method="_on_over_drive_button_up"]
 [connection signal="button_up" from="Panel/OverDrive/Panel/buyhyperdrive" to="." method="_on_buyhyperdrive_button_up"]
 [connection signal="button_up" from="Panel/Back" to="." method="_on_back_button_up"]
