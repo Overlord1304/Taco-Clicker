@@ -216,7 +216,7 @@ points = PackedVector2Array(-1, -3, 162.34662, -164.94763)
 default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 
 [node name="Back" type="Button" parent="Panel"]
-z_index = 3
+z_index = 35
 layout_mode = 0
 offset_left = 86.0
 offset_top = 78.0
@@ -943,9 +943,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 2.0
+offset_left = -104.0
 offset_top = -465.0
-offset_right = 86.0
+offset_right = -20.0
 offset_bottom = -387.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -1076,9 +1076,14 @@ text = "You Don't Have Enough Tacos"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 1146.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -330.0
+offset_right = 330.0
 offset_bottom = 112.0
+grow_horizontal = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2

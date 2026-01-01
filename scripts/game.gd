@@ -12,21 +12,24 @@ var base_passive_gains = 0
 var passive_gains = 0
 var base_entropy_gains = 1
 var entropy_gains = 1
-var upg1cost:int = 35
-var upg2cost:int = 100
-var upg3cost:int = 750
-var upg4cost:int = 1500
-var upg5cost:int = 3000
-var upg6cost:int = 10000
-var upg7cost:int = 100000
-var upg8cost:int = 25000
-var upg9cost:int = 500000
-var upg10cost:int = 500000
-var upg11cost:int = 1000000
-var upg12cost:int = 2000000
-var upg13cost:int = 10000000
-var upg14cost:int = 5000000
-var upg15cost:int = 5000000
+var upg1cost = 35.0
+const upg1cost_base = 35.0
+var upg2cost = 100.0
+var upg3cost = 750.0
+var upg4cost = 1500.0
+const upg4cost_base = 1500.0
+var upg5cost = 3000.0
+var upg6cost = 10000.0
+var upg7cost = 100000.0
+var upg8cost = 25000.0
+var upg9cost = 500000.0
+var upg10cost = 500000.0
+var upg10cost_base = 500000.0
+var upg11cost = 1000000.0
+var upg12cost = 2000000.0
+var upg13cost = 10000000.0
+var upg14cost = 5000000.0
+var upg15cost = 5000000.0
 var golden_taco_bought = false
 var golden_taco_activated = false
 var disco_sauce_bought = false
@@ -131,8 +134,9 @@ func _ready():
 	if Global.a18_claimed:
 		$left/skilltreebutton.show()
 func format_number(n) -> String:
+	# Convert n to int for display purposes if it's close to an integer
 	if n < 1000:
-		return str(n if n != int(n) else int(n))
+		return str(int(round(n)))
 	
 	var suffixes = ["", "K", "M", "B", "T", "Q"]
 	var tier = int(floor(log(n) / log(1000)))
@@ -140,9 +144,11 @@ func format_number(n) -> String:
 		tier = suffixes.size() - 1
 	
 	var scaled = n / pow(1000, tier)
-	var rounded = round(scaled * 10) / 10.0
+	# Round to nearest whole number for display
+	var rounded = round(scaled)
 	
-	var text = str(rounded if rounded != int(rounded) else int(rounded))
+	# Use integer formatting
+	var text = str(int(rounded))
 	
 	return text + suffixes[tier]
 func update_amount_per_click() -> void:
@@ -307,7 +313,7 @@ func _process(delta):
 			rand = randi() % 4800
 		else:
 			rand = randi() % 6000
-		print(rand)
+
 		match rand:
 			!1:
 				pass
@@ -573,6 +579,7 @@ func load_data():
 			coverflowrs = data.get("coverflowrs",false)
 			Global.apccd_bought = data.get("Global.apccd_bought",false)
 			apccd = data.get("apccd",false)
+			apccd_upg()
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -580,12 +587,11 @@ func load_data():
 		save_data()
 
 func _on_button_button_down() -> void:
-	if apccd:
-		upg1cost = upg1cost*4/5
 	if tacos >= upg1cost:
 		base_amount_per_click += 1
 		recalc()
 		tacos -= upg1cost
+		
 		upg1cost *= 1.35
 		a1_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
@@ -601,6 +607,7 @@ func _on_autoclickupg_1_button_down() -> void:
 		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg2cost
+
 		upg2cost *= 1.35
 		a2_bought_count += 1
 		$scroller/VBoxContainer/right/autoclickupg1/autoclickupgsprite1.text = format_number(upg2cost)+" Tacos"
@@ -668,12 +675,11 @@ func _on_gtacotimer_timeout() -> void:
 	$left/MarginContainer/tacobutton.texture_normal = taco_texture
 
 func _on_amtperclickupg_2_button_down() -> void:
-	if apccd:
-		upg4cost = upg4cost*4/5
 	if tacos >= upg4cost:
 		base_amount_per_click += 10
 		recalc()
 		tacos -= upg4cost
+
 		upg4cost *= 1.35
 		a5_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
@@ -689,6 +695,7 @@ func _on_autoclickupg_2_button_down() -> void:
 		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg5cost
+
 		upg5cost *= 1.35
 		a6_bought_count += 1
 		$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = format_number(upg5cost)+" Tacos"
@@ -800,6 +807,7 @@ func _on_entropyupg_1_button_button_down() -> void:
 		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg8cost
+
 		upg8cost *= 1.35
 		a7_bought_count += 1
 		$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = format_number(upg8cost)+" Tacos"
@@ -816,6 +824,7 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg9cost
+
 		upg9cost *= 1.35
 		a8_bought_count += 1
 		$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = format_number(upg9cost)+" Tacos"
@@ -827,12 +836,12 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 
 func _on_amtperclickupg_3_button_down() -> void:
-	if apccd:
-		upg10cost = upg10cost*4/5
+
 	if tacos >= upg10cost:
 		base_amount_per_click += 100
 		recalc()
 		tacos -= upg10cost
+
 		upg10cost *= 1.35
 		a9_bought_count += 1
 		$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
@@ -849,6 +858,7 @@ func _on_autoclickupg_3_button_down() -> void:
 		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
 		tacos -= upg11cost
+
 		upg11cost *= 1.35
 		a10_bought_count += 1
 		$scroller/VBoxContainer/right/autoclickupg3/autoclickupgsprite3.text = format_number(upg11cost)+" Tacos"
@@ -907,6 +917,7 @@ func _on_entropyupg_3_button_3_button_down() -> void:
 		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
 		tacos -= upg14cost
+
 		upg14cost *= 1.35
 		a13_bought_count += 1
 		
@@ -925,6 +936,7 @@ func _on_tacoupg_1_button_button_down() -> void:
 		base_entropy_max_value += 1
 		update_taco_sliders()
 		tacos -= upg15cost
+	
 		upg15cost *= 1.35
 		a14_bought_count += 1
 		$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
@@ -961,3 +973,12 @@ func _on_skilltreebutton_button_up() -> void:
 	var transition = preload("res://scenes/swipe.tscn").instantiate()
 	get_tree().root.add_child(transition)
 	transition.swipe_in("res://scenes/skill_tree.tscn", 1)
+func apccd_upg():
+	var discount = 0.8 if apccd else 1.0
+	upg1cost = upg1cost_base * discount
+	upg4cost = upg4cost_base * discount
+	upg10cost = upg10cost_base * discount
+	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
+	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
+	$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
+	save_data()

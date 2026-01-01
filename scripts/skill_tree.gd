@@ -72,6 +72,7 @@ var upgrades = {
 		"game_flag": "apccd",
 		"buy_button_path": "Panel/APCSubsidy/Panel/buyapcsubsidy",
 		"panel_path": "Panel/APCSubsidy/Panel",
+		"func": "apccd_upg"
 	}
 }
 
@@ -111,7 +112,8 @@ func buy_upgrade(name):
 
 		upg.button.text = "BOUGHT"
 		upg.button.disabled = true
-
+		if upg.has("func"):
+			game.call(upg.func)
 		game.recalc()
 		update_buttons()
 	else:
