@@ -81,6 +81,7 @@ var coverflowrs = false
 var apccd = false
 var cpscd = false
 var epscd = false
+var overclockmax = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -193,14 +194,16 @@ func update_entropy_gains():
 	entropy_gains = base_entropy_gains * entropy_mult
 	$left/entropy/entropypersecondcount.text = format_number(entropy_gains) + " PER SECOND"
 func update_taco_sliders():
+	var slider_mult = 1
 	if overclock_activated:
-		$T_A_C_O/amountsperclickslider.max_value = base_apc_max_value*10
-		$T_A_C_O/passivegainsperclickslider.max_value = base_apc_max_value*10
-		$T_A_C_O/entropymultiplierperclickslider.max_value = base_entropy_max_value*10
-	else:
-		$T_A_C_O/entropymultiplierperclickslider.max_value = base_entropy_max_value
-		$T_A_C_O/passivegainsperclickslider.max_value = base_apc_max_value
-		$T_A_C_O/amountsperclickslider.max_value = base_apc_max_value
+		if overclockmax:
+			slider_mult *= 30
+		else:
+			slider_mult *= 10 
+	$T_A_C_O/amountsperclickslider.max_value = base_apc_max_value*slider_mult
+	$T_A_C_O/passivegainsperclickslider.max_value = base_apc_max_value*slider_mult
+	$T_A_C_O/entropymultiplierperclickslider.max_value = base_entropy_max_value*slider_mult
+
 func show_cost_warning(costlabel):
 	if costlabel.has_meta("tween"):
 		var old_tween = costlabel.get_meta("tween")
@@ -343,9 +346,11 @@ func _process(delta):
 		var rand = randi() % 1000
 		
 		match rand:
-			!999:
+			!1:
 				pass
-			999:
+			1:
+				if overclockmax:
+					overclocklabel.text = "Overclock Activated. T.A.C.O Multipliers Increased By 30x"
 				show_notification(overclocklabel)
 				overclock_activated = true
 				update_taco_sliders()
@@ -480,6 +485,8 @@ func save_data():
 		"cpscd": cpscd,
 		"Global.epscd_bought": Global.epscd_bought,
 		"epscd": epscd,
+		"Global.overclockmax_bought": Global.overclockmax_bought,
+		"overclockmax": overclockmax,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -595,6 +602,8 @@ func load_data():
 			cpscd = data.get("cpscd",false)
 			Global.epscd_bought = data.get("Global.epscd_bought",false)
 			epscd = data.get("epscd",false)
+			Global.overclockmax_bought = data.get("Global.overclockmax_bought",false)
+			overclockmax = data.get("overclockmax",false)
 			discount()
 			update_amount_per_click()
 			update_passive_gains()

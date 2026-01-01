@@ -45,4 +45,5 @@ var coverflowrs_bought = false
 var apccd_bought = false
 var cpscd_bought = false
 var epscd_bought = false
+var overclockmax_bought = false
 var pending_taco_reward = 0

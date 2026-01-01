@@ -1,79 +1,80 @@
 extends Control
 
 @onready var game = get_tree().get_first_node_in_group("game")
-@onready var gtaco_button = $Panel/GTacoUpg
-@onready var dsauce_button = $Panel/DSauceUpg
-@onready var coverflow_button = $Panel/COverflowUpg
-@onready var gtacors_button = $Panel/GTacoUpg2
-@onready var dsaucers_button = $Panel/DSauceUpg2
-@onready var coverflowrs_button = $Panel/COverflowUpg2
-@onready var apccd_button = $Panel/APCSubsidy
-@onready var cpscd_button = $Panel/CPSSubsidy
-@onready var epscd_button = $Panel/EPSSubsidy
+@onready var gtaco_button = $s/h/Panel/GTacoUpg
+@onready var dsauce_button = $s/h/Panel/DSauceUpg
+@onready var coverflow_button = $s/h/Panel/COverflowUpg
+@onready var gtacors_button = $s/h/Panel/GTacoUpg2
+@onready var dsaucers_button = $s/h/Panel/DSauceUpg2
+@onready var coverflowrs_button = $s/h/Panel/COverflowUpg2
+@onready var apccd_button = $s/h/Panel/APCSubsidy
+@onready var cpscd_button = $s/h/Panel/CPSSubsidy
+@onready var epscd_button = $s/h/Panel/EPSSubsidy
+@onready var overclock_button = $s/h/Panel/OverclockUpg
 var upgrades = {
 	"hyperdrive": {
 		"cost": 1_000_000_000,
 		"currency": "tacos",
 		"bought_flag": "hyperdrive_bought",
 		"game_flag": "hyperdrive",
-		"buy_button_path": "Panel/HyperDrive/Panel/buyhyperdrive",
-		"panel_path": "Panel/HyperDrive/Panel"
+		"buy_button_path": "s/h/Panel/HyperDrive/Panel/buyhyperdrive",
+		"panel_path": "s/h/Panel/HyperDrive/Panel"
 	},
 	"gtacomax": {
 		"cost": 10_000_000,
 		"currency": "entropy",
 		"bought_flag": "gtacomax_bought",
 		"game_flag": "gtacomax",
-		"buy_button_path": "Panel/GTacoUpg/Panel/buygtacomax",
-		"panel_path": "Panel/GTacoUpg/Panel"
+		"buy_button_path": "s/h/Panel/GTacoUpg/Panel/buygtacomax",
+		"panel_path": "s/h/Panel/GTacoUpg/Panel"
 	},
 	"dsaucemax": {
 		"cost": 20_000_000,
 		"currency": "entropy",
 		"bought_flag": "dsaucemax_bought",
 		"game_flag": "dsaucemax",
-		"buy_button_path": "Panel/DSauceUpg/Panel/buydsaucemax",
-		"panel_path": "Panel/DSauceUpg/Panel"
+		"buy_button_path": "s/h/Panel/DSauceUpg/Panel/buydsaucemax",
+		"panel_path": "s/h/Panel/DSauceUpg/Panel"
 	},
 	"coverflowmax": {
 		"cost": 30_000_000,
 		"currency": "entropy",
 		"bought_flag": "coverflowmax_bought",
 		"game_flag": "coverflowmax",
-		"buy_button_path": "Panel/COverflowUpg/Panel/buycoverflowmax",
-		"panel_path": "Panel/COverflowUpg/Panel",
+		"buy_button_path": "s/h/Panel/COverflowUpg/Panel/buycoverflowmax",
+		"panel_path": "s/h/Panel/COverflowUpg/Panel",
 	},
 	"gtacors":{
 		"cost": 500_000_000,
 		"currency": "tacos",
 		"bought_flag": "gtacors_bought",
 		"game_flag": "gtacors",
-		"buy_button_path": "Panel/GTacoUpg2/Panel/buygtacoupg2",
-		"panel_path":"Panel/GTacoUpg2/Panel",
+		"buy_button_path": "s/h/Panel/GTacoUpg2/Panel/buygtacoupg2",
+		"panel_path":"s/h/Panel/GTacoUpg2/Panel",
 	},
 	"dsaucers":{
 		"cost": 750_000_000,
 		"currency": "tacos",
 		"bought_flag": "dsaucers_bought",
 		"game_flag": "dsaucers",
-		"buy_button_path": "Panel/DSauceUpg2/Panel/buydsauceupg2",
-		"panel_path":"Panel/DSauceUpg2/Panel",
+		"buy_button_path": "s/h/Panel/DSauceUpg2/Panel/buydsauceupg2",
+		"panel_path":"s/h/Panel/DSauceUpg2/Panel",
 	},
 	"coverflowrs":{
 		"cost": 1_000_000_000,
 		"currency": "tacos",
 		"bought_flag": "coverflowrs_bought",
 		"game_flag": "coverflowrs",
-		"buy_button_path": "Panel/COverflowUpg2/Panel/buycoverflowupg2",
-		"panel_path": "Panel/COverflowUpg2/Panel"
+		"buy_button_path": "s/h/Panel/COverflowUpg2/Panel/buycoverflowupg2",
+		"panel_path": "s/h/Panel/COverflowUpg2/Panel"
 	},
 	"apccd":{
 		"cost": 500_000_000,
 		"currency":"tacos",
 		"bought_flag": "apccd_bought",
 		"game_flag": "apccd",
-		"buy_button_path": "Panel/APCSubsidy/Panel/buyapcsubsidy",
-		"panel_path": "Panel/APCSubsidy/Panel",
+		"buy_button_path": "s/h/Panel/APCSubsidy/Panel/buyapcsubsidy",
+		"panel_path": "s/h/Panel/APCSubsidy/Panel",
 		"func": "discount"
 	},
 	"cpscd":{
@@ -81,8 +82,8 @@ var upgrades = {
 		"currency":"tacos",
 		"bought_flag": "cpscd_bought",
 		"game_flag": "cpscd",
-		"buy_button_path": "Panel/CPSSubsidy/Panel/buycpssubsidy",
-		"panel_path": "Panel/CPSSubsidy/Panel",
+		"buy_button_path": "s/h/Panel/CPSSubsidy/Panel/buycpssubsidy",
+		"panel_path": "s/h/Panel/CPSSubsidy/Panel",
 		"func": "discount"
 	},
 	"epscd": {
@@ -90,10 +91,18 @@ var upgrades = {
 		"currency":"tacos",
 		"bought_flag": "epscd_bought",
 		"game_flag": "epscd",
-		"buy_button_path": "Panel/EPSSubsidy/Panel/buyepssubsidy",
-		"panel_path": "Panel/EPSSubsidy/Panel",
+		"buy_button_path": "s/h/Panel/EPSSubsidy/Panel/buyepssubsidy",
+		"panel_path": "s/h/Panel/EPSSubsidy/Panel",
 		"func": "discount"
-	}
+	},
+	"overclockmax": {
+		"cost": 50_000_000,
+		"currency": "entropy",
+		"bought_flag": "overclockmax_bought",
+		"game_flag": "overclockmax",
+		"buy_button_path": "s/h/Panel/OverclockUpg/Panel/buyoverclockupg",
+		"panel_path": "s/h/Panel/OverclockUpg/Panel",
+	},
 }
 
 func _ready():
@@ -115,6 +124,7 @@ func update_buttons():
 	apccd_button.disabled = !Global.gtacomax_bought
 	cpscd_button.disabled = !Global.dsaucemax_bought
 	epscd_button.disabled = !Global.coverflowmax_bought
+	overclock_button.disabled = !Global.coverflowmax_bought
 	for key in upgrades:
 		var upg = upgrades[key]
 		if Global.get(upg.bought_flag):
@@ -219,3 +229,9 @@ func _on_eps_subsidy_button_up() -> void:
 	toggle_panel(upgrades.epscd.panel)
 func _on_buyepssubsidy_button_up() -> void:
 	buy_upgrade("epscd")
+
+func _on_overclock_upg_button_up() -> void:
+	toggle_panel(upgrades.overclockmax.panel)
+
+func _on_buyoverclockupg_button_up() -> void:
+	buy_upgrade("overclockmax")
