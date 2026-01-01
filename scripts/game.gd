@@ -15,20 +15,26 @@ var entropy_gains = 1
 var upg1cost = 35.0
 const upg1cost_base = 35.0
 var upg2cost = 100.0
+const upg2cost_base = 100.0
 var upg3cost = 750.0
 var upg4cost = 1500.0
 const upg4cost_base = 1500.0
 var upg5cost = 3000.0
+const upg5cost_base = 3000.0
 var upg6cost = 10000.0
 var upg7cost = 100000.0
 var upg8cost = 25000.0
+const upg8cost_base = 25000.0
 var upg9cost = 500000.0
+const upg9cost_base = 500000.0
 var upg10cost = 500000.0
-var upg10cost_base = 500000.0
+const upg10cost_base = 500000.0
 var upg11cost = 1000000.0
+const upg11cost_base = 1000000.0
 var upg12cost = 2000000.0
 var upg13cost = 10000000.0
 var upg14cost = 5000000.0
+const upg14cost_base = 5000000.0
 var upg15cost = 5000000.0
 var golden_taco_bought = false
 var golden_taco_activated = false
@@ -73,6 +79,8 @@ var gtacors = false
 var dsaucers = false
 var coverflowrs = false
 var apccd = false
+var cpscd = false
+var epscd = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -134,7 +142,7 @@ func _ready():
 	if Global.a18_claimed:
 		$left/skilltreebutton.show()
 func format_number(n) -> String:
-	# Convert n to int for display purposes if it's close to an integer
+	
 	if n < 1000:
 		return str(int(round(n)))
 	
@@ -144,10 +152,10 @@ func format_number(n) -> String:
 		tier = suffixes.size() - 1
 	
 	var scaled = n / pow(1000, tier)
-	# Round to nearest whole number for display
+	
 	var rounded = round(scaled)
 	
-	# Use integer formatting
+	
 	var text = str(int(rounded))
 	
 	return text + suffixes[tier]
@@ -468,6 +476,10 @@ func save_data():
 		"coverflowrs": coverflowrs,
 		"Global.apccd_bought": Global.apccd_bought,
 		"apccd": apccd,
+		"Global.cpscd_bought": Global.cpscd_bought,
+		"cpscd": cpscd,
+		"Global.epscd_bought": Global.epscd_bought,
+		"epscd": epscd,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -579,7 +591,11 @@ func load_data():
 			coverflowrs = data.get("coverflowrs",false)
 			Global.apccd_bought = data.get("Global.apccd_bought",false)
 			apccd = data.get("apccd",false)
-			apccd_upg()
+			Global.cpscd_bought = data.get("Global.cpscd_bought",false)
+			cpscd = data.get("cpscd",false)
+			Global.epscd_bought = data.get("Global.epscd_bought",false)
+			epscd = data.get("epscd",false)
+			discount()
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -973,12 +989,26 @@ func _on_skilltreebutton_button_up() -> void:
 	var transition = preload("res://scenes/swipe.tscn").instantiate()
 	get_tree().root.add_child(transition)
 	transition.swipe_in("res://scenes/skill_tree.tscn", 1)
-func apccd_upg():
-	var discount = 0.8 if apccd else 1.0
-	upg1cost = upg1cost_base * discount
-	upg4cost = upg4cost_base * discount
-	upg10cost = upg10cost_base * discount
+func discount():
+	var apc_discount = 0.8 if apccd else 1.0
+	var cps_discount = 0.8 if cpscd else 1.0
+	var eps_discount = 0.8 if epscd else 1.0
+	upg1cost = upg1cost_base * apc_discount
+	upg4cost = upg4cost_base * apc_discount
+	upg10cost = upg10cost_base * apc_discount
+	upg2cost = upg2cost_base * cps_discount
+	upg5cost = upg5cost_base * cps_discount
+	upg11cost = upg11cost_base * cps_discount
+	upg8cost = upg8cost_base * eps_discount
+	upg9cost = upg9cost_base * eps_discount
+	upg14cost = upg14cost_base * eps_discount
 	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
+	$scroller/VBoxContainer/right/autoclickupg1/autoclickupgsprite1.text = format_number(upg2cost)+" Tacos"
+	$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = format_number(upg5cost)+" Tacos"
+	$scroller/VBoxContainer/right/autoclickupg3/autoclickupgsprite3.text = format_number(upg11cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = format_number(upg8cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = format_number(upg9cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
 	save_data()
