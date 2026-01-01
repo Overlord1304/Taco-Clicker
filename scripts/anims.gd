@@ -28,8 +28,11 @@ func _on_tacobutton_button_up() -> void:
 func _on_main_taco_clicked(amount,crit_hit) -> void:
 
 	var indicator = indicator_display.duplicate()
+	
 	if crit_hit:
 		indicator.add_theme_color_override("font_color", Color(1, 0, 0))
+	else:
+		indicator.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	indicator.text = "+" + format_number(amount)
 	indicator.position = get_global_mouse_position()
 	indicator.visible = true

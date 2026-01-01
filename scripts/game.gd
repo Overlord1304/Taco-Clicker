@@ -36,6 +36,7 @@ var upg13cost = 10000000.0
 var upg14cost = 5000000.0
 const upg14cost_base = 5000000.0
 var upg15cost = 5000000.0
+const upg15cost_base = 5000000.0
 var golden_taco_bought = false
 var golden_taco_activated = false
 var disco_sauce_bought = false
@@ -82,6 +83,8 @@ var apccd = false
 var cpscd = false
 var epscd = false
 var overclockmax = false
+var overclockrs = false
+var tacoscd = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -283,8 +286,6 @@ func _process(delta):
 		else:
 			rand = randi() % 3000
 		match rand:
-			!1:
-				pass
 			1:
 				if gtacomax:
 					gtacolabel.text = "Golden Taco Activated. Tacos per Click Increased By 15x"
@@ -303,8 +304,6 @@ func _process(delta):
 		else:
 			rand = randi() % 3000
 		match rand:
-			!1:
-				pass
 			1:
 				if dsaucemax:
 					dsaucelabel.text = "Disco Sauce Activated. Clicks per Second Increased By 150x"
@@ -326,8 +325,6 @@ func _process(delta):
 			rand = randi() % 6000
 
 		match rand:
-			!1:
-				pass
 			1:
 				if coverflowmax:
 					coverflowlabel.text = "Cosmic Overflow Activated. Entropy per Second Increased By 75x"
@@ -344,10 +341,13 @@ func _process(delta):
 					tween.tween_property(sprite, "position:y", sprite.position.y - 150, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	if overclock_bought and overclock_activated == false:
 		var rand = randi() % 1000
-		
+		if overclockrs:
+			rand = randi() % 800
+			print(rand)
+		else:
+			rand = randi() % 1000
+			
 		match rand:
-			!1:
-				pass
 			1:
 				if overclockmax:
 					overclocklabel.text = "Overclock Activated. T.A.C.O Multipliers Increased By 30x"
@@ -487,6 +487,10 @@ func save_data():
 		"epscd": epscd,
 		"Global.overclockmax_bought": Global.overclockmax_bought,
 		"overclockmax": overclockmax,
+		"Global.overclockrs_bought": Global.overclockrs_bought,
+		"overclockrs": overclockrs,
+		"Global.tacoscd_bought": Global.tacoscd_bought,
+		"tacoscd": tacoscd,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -604,6 +608,10 @@ func load_data():
 			epscd = data.get("epscd",false)
 			Global.overclockmax_bought = data.get("Global.overclockmax_bought",false)
 			overclockmax = data.get("overclockmax",false)
+			Global.overclockrs_bought = data.get("Global.overclockrs_bought",false)
+			overclockrs = data.get("overclockrs",false)
+			Global.tacoscd_bought = data.get("Global.tacoscd_bought",false)
+			tacoscd = data.get("tacoscd",false)
 			discount()
 			update_amount_per_click()
 			update_passive_gains()
@@ -1002,6 +1010,7 @@ func discount():
 	var apc_discount = 0.8 if apccd else 1.0
 	var cps_discount = 0.8 if cpscd else 1.0
 	var eps_discount = 0.8 if epscd else 1.0
+	var TACOS_discount = 0.8 if tacoscd else 1.0
 	upg1cost = upg1cost_base * apc_discount
 	upg4cost = upg4cost_base * apc_discount
 	upg10cost = upg10cost_base * apc_discount
@@ -1011,6 +1020,7 @@ func discount():
 	upg8cost = upg8cost_base * eps_discount
 	upg9cost = upg9cost_base * eps_discount
 	upg14cost = upg14cost_base * eps_discount
+	upg15cost = upg15cost_base * TACOS_discount
 	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
@@ -1020,4 +1030,5 @@ func discount():
 	$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = format_number(upg8cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = format_number(upg9cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
+	$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
 	save_data()

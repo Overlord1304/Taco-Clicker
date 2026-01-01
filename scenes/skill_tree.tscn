@@ -22,28 +22,6 @@ bg_color = Color(0.101960786, 0.101960786, 0.44705883, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h52vt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a302t"]
-bg_color = Color(0, 0, 0, 0.44705883)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyjg3"]
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51bdh"]
-bg_color = Color(0.6, 0.6, 0.6, 0.44705883)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6awrb"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urm3n"]
 bg_color = Color(0.03137255, 0.03137255, 0.21568628, 1)
 
@@ -71,11 +49,36 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a302t"]
+bg_color = Color(0, 0, 0, 0.44705883)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyjg3"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51bdh"]
+bg_color = Color(0.6, 0.6, 0.6, 0.44705883)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6awrb"]
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -8.0
+offset_right = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a302t")
@@ -99,6 +102,7 @@ text = "You Don't Have Enough Tacos"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -119,24 +123,27 @@ text = "T.A.C.O Command Line"
 horizontal_alignment = 1
 
 [node name="s" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(1154, 649)
-layout_mode = 0
-offset_right = 1157.0
-offset_bottom = 651.0
-
-[node name="h" type="HScrollBar" parent="s"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="s/h"]
-custom_minimum_size = Vector2(1154, 649)
+custom_minimum_size = Vector2(1152, 648)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1292.0
-offset_bottom = 643.0
+offset_left = -228.0
+offset_top = -42.0
+offset_right = -30.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+draw_focus_border = true
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="h" type="VBoxContainer" parent="s"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="s/h"]
+custom_minimum_size = Vector2(2000, 1000)
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ko7ae")
 
 [node name="HyperDrive" type="Button" parent="s/h/Panel"]
@@ -265,22 +272,6 @@ scale = Vector2(1.0368663, 0.8898057)
 points = PackedVector2Array(-1, -3, 162.34662, -164.94763)
 default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 
-[node name="Back" type="Button" parent="s/h/Panel"]
-z_index = 35
-layout_mode = 0
-offset_left = 86.0
-offset_top = 78.0
-offset_right = 155.0
-offset_bottom = 139.0
-rotation = -3.1415927
-theme_override_styles/normal = SubResource("StyleBoxFlat_a302t")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_tyjg3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_51bdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6awrb")
-icon = ExtResource("2_tnam6")
-icon_alignment = 1
-expand_icon = true
-
 [node name="GTacoUpg" type="Button" parent="s/h/Panel"]
 layout_mode = 1
 anchors_preset = 7
@@ -307,7 +298,7 @@ texture = ExtResource("6_6awrb")
 
 [node name="Panel" type="Panel" parent="s/h/Panel/GTacoUpg" groups=["upg_desc"]]
 visible = false
-z_index = 1
+z_index = 4
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -425,6 +416,7 @@ sprite_frames = SubResource("SpriteFrames_p21vy")
 
 [node name="Panel" type="Panel" parent="s/h/Panel/DSauceUpg" groups=["upg_desc"]]
 visible = false
+z_index = 3
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -644,6 +636,7 @@ points = PackedVector2Array(-1, -3, 174, -2.395996)
 default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 
 [node name="GTacoUpg2" type="Button" parent="s/h/Panel"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -669,6 +662,7 @@ texture = ExtResource("6_6awrb")
 
 [node name="Panel" type="Panel" parent="s/h/Panel/GTacoUpg2" groups=["upg_desc"]]
 visible = false
+z_index = 8
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -780,6 +774,7 @@ sprite_frames = SubResource("SpriteFrames_p21vy")
 
 [node name="Panel" type="Panel" parent="s/h/Panel/DSauceUpg2" groups=["upg_desc"]]
 visible = false
+z_index = 5
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -889,6 +884,7 @@ texture = ExtResource("8_003p6")
 
 [node name="Panel" type="Panel" parent="s/h/Panel/COverflowUpg2" groups=["upg_desc"]]
 visible = false
+z_index = 5
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -975,6 +971,7 @@ points = PackedVector2Array(-1, -3, -287, -195.68454)
 default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 
 [node name="APCSubsidy" type="Button" parent="s/h/Panel"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1000,7 +997,7 @@ texture = ExtResource("1_ty3n3")
 
 [node name="Panel" type="Panel" parent="s/h/Panel/APCSubsidy" groups=["upg_desc"]]
 visible = false
-z_index = 4
+z_index = 9
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -1207,6 +1204,7 @@ points = PackedVector2Array(-1, -3, 284.99997, -176.89261)
 default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 
 [node name="EPSSubsidy" type="Button" parent="s/h/Panel"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1231,6 +1229,7 @@ texture = ExtResource("8_003p6")
 
 [node name="Panel" type="Panel" parent="s/h/Panel/EPSSubsidy" groups=["upg_desc"]]
 visible = false
+z_index = 7
 layout_mode = 0
 offset_left = 83.0
 offset_top = -330.0
@@ -1436,10 +1435,234 @@ scale = Vector2(0.6358971, 0.96582973)
 points = PackedVector2Array(-1, -3, 176.1372, -1.714386)
 default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 
+[node name="OverclockUpg2" type="Button" parent="s/h/Panel"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 408.0
+offset_top = -445.0
+offset_right = 492.0
+offset_bottom = -367.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_bfm8x")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rh3y1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_51bdh")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="s/h/Panel/OverclockUpg2"]
+position = Vector2(43.000015, 39)
+scale = Vector2(2, 2.018)
+texture = ExtResource("8_003p6")
+
+[node name="Panel" type="Panel" parent="s/h/Panel/OverclockUpg2" groups=["upg_desc"]]
+visible = false
+z_index = 14
+layout_mode = 0
+offset_left = 83.0
+offset_top = -330.0
+offset_right = 351.0
+offset_bottom = 37.0
+
+[node name="Label" type="Label" parent="s/h/Panel/OverclockUpg2/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.5
+offset_right = 123.5
+offset_bottom = 59.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_51bdh")
+theme_override_font_sizes/font_size = 36
+text = "TACO Overclock
+Reload Speed"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="s/h/Panel/OverclockUpg2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = -69.5
+offset_right = 133.5
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_6awrb")
+theme_override_font_sizes/font_size = 22
+text = "TACO OVERCLOCK ODDS
+INCREASED BY 20%"
+horizontal_alignment = 1
+
+[node name="buyoverclockupg2" type="Button" parent="s/h/Panel/OverclockUpg2/Panel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 287.0
+offset_right = 214.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("3_51bdh")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h52vt")
+text = "BUY"
+
+[node name="Label3" type="Label" parent="s/h/Panel/OverclockUpg2/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.5
+offset_top = 245.0
+offset_right = 133.5
+offset_bottom = 374.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_6awrb")
+theme_override_font_sizes/font_size = 22
+text = "COST: 1.25B TACOS"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="s/h/Panel/OverclockUpg2/Panel"]
+position = Vector2(133, 210)
+scale = Vector2(2, 2.018)
+texture = ExtResource("8_003p6")
+
+[node name="TACOSubsidy" type="Button" parent="s/h/Panel"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 498.0
+offset_top = -315.0
+offset_right = 582.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_bfm8x")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rh3y1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_51bdh")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="s/h/Panel/TACOSubsidy"]
+position = Vector2(43.000015, 39)
+scale = Vector2(2, 2.018)
+texture = ExtResource("8_003p6")
+
+[node name="Panel" type="Panel" parent="s/h/Panel/TACOSubsidy" groups=["upg_desc"]]
+visible = false
+z_index = 14
+layout_mode = 0
+offset_left = 83.0
+offset_top = -330.0
+offset_right = 351.0
+offset_bottom = 37.0
+
+[node name="Label" type="Label" parent="s/h/Panel/TACOSubsidy/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.5
+offset_right = 123.5
+offset_bottom = 59.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_51bdh")
+theme_override_font_sizes/font_size = 27
+text = "TACO Slider Upgrade
+Cost Decrease"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="s/h/Panel/TACOSubsidy/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = -80.5
+offset_right = 133.5
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_6awrb")
+theme_override_font_sizes/font_size = 18
+text = "TACO OVERCLOCK
+UPGRADES IN THE SHOP'S
+COST ARE DECREASED BY 20%"
+horizontal_alignment = 1
+
+[node name="buytacosubsidy" type="Button" parent="s/h/Panel/TACOSubsidy/Panel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 287.0
+offset_right = 214.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("3_51bdh")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h52vt")
+text = "BUY"
+
+[node name="Label3" type="Label" parent="s/h/Panel/TACOSubsidy/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = 63.5
+offset_right = 133.5
+offset_bottom = 192.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_6awrb")
+theme_override_font_sizes/font_size = 22
+text = "COST: 1.50B ENTROPY"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="s/h/Panel/TACOSubsidy/Panel"]
+position = Vector2(133, 215.99998)
+scale = Vector2(2, 2.018)
+texture = ExtResource("8_003p6")
+
+[node name="Back" type="Button" parent="."]
+z_index = 35
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.416
+anchor_bottom = 0.23900001
+offset_left = 143.0
+offset_top = 85.0
+offset_right = -256.91913
+offset_bottom = -8.871994
+rotation = -3.1415927
+theme_override_styles/normal = SubResource("StyleBoxFlat_a302t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tyjg3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_51bdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6awrb")
+icon = ExtResource("2_tnam6")
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="gui_input" from="s/h/Panel" to="." method="_on_panel_gui_input"]
 [connection signal="button_up" from="s/h/Panel/HyperDrive" to="." method="_on_over_drive_button_up"]
 [connection signal="button_up" from="s/h/Panel/HyperDrive/Panel/buyhyperdrive" to="." method="_on_buyhyperdrive_button_up"]
-[connection signal="button_up" from="s/h/Panel/Back" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="s/h/Panel/GTacoUpg" to="." method="_on_g_taco_upg_button_up"]
 [connection signal="button_up" from="s/h/Panel/GTacoUpg/Panel/buygtacomax" to="." method="_on_buygtacomax_button_up"]
 [connection signal="button_up" from="s/h/Panel/DSauceUpg" to="." method="_on_d_sauce_upg_button_up"]
@@ -1460,3 +1683,8 @@ default_color = Color(0.12347304, 0.123473056, 0.12347301, 0.5529412)
 [connection signal="button_up" from="s/h/Panel/EPSSubsidy/Panel/buyepssubsidy" to="." method="_on_buyepssubsidy_button_up"]
 [connection signal="button_up" from="s/h/Panel/OverclockUpg" to="." method="_on_overclock_upg_button_up"]
 [connection signal="button_up" from="s/h/Panel/OverclockUpg/Panel/buyoverclockupg" to="." method="_on_buyoverclockupg_button_up"]
+[connection signal="button_up" from="s/h/Panel/OverclockUpg2" to="." method="_on_overclock_upg_2_button_up"]
+[connection signal="button_up" from="s/h/Panel/OverclockUpg2/Panel/buyoverclockupg2" to="." method="_on_buyoverclockupg_2_button_up"]
+[connection signal="button_up" from="s/h/Panel/TACOSubsidy" to="." method="_on_taco_subsidy_button_up"]
+[connection signal="button_up" from="s/h/Panel/TACOSubsidy/Panel/buytacosubsidy" to="." method="_on_buytacosubsidy_button_up"]
+[connection signal="button_up" from="Back" to="." method="_on_back_button_up"]

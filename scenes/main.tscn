@@ -251,12 +251,16 @@ script = ExtResource("1_sugp2")
 
 [node name="indicators" type="Control" parent="."]
 top_level = true
+z_index = 6
+z_as_relative = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="display" type="Label" parent="indicators"]
 visible = false
+z_index = 16
+z_as_relative = false
 layout_mode = 0
 offset_left = 44.0
 offset_right = 111.0

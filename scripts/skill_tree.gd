@@ -11,6 +11,8 @@ extends Control
 @onready var cpscd_button = $s/h/Panel/CPSSubsidy
 @onready var epscd_button = $s/h/Panel/EPSSubsidy
 @onready var overclock_button = $s/h/Panel/OverclockUpg
+@onready var overclockrs_button = $s/h/Panel/OverclockUpg2
+@onready var tacoscd_button = $s/h/Panel/TACOSubsidy
 var upgrades = {
 	"hyperdrive": {
 		"cost": 1_000_000_000,
@@ -103,10 +105,28 @@ var upgrades = {
 		"buy_button_path": "s/h/Panel/OverclockUpg/Panel/buyoverclockupg",
 		"panel_path": "s/h/Panel/OverclockUpg/Panel",
 	},
+	"overclockrs": {
+		"cost": 1_250_000_000,
+		"currency": "tacos",
+		"bought_flag": "overclockrs_bought",
+		"game_flag": "overclockrs",
+		"buy_button_path": "s/h/Panel/OverclockUpg2/Panel/buyoverclockupg2",
+		"panel_path":"s/h/Panel/OverclockUpg2/Panel"
+	},
+	"tacoscd": {
+		"cost": 1_500_000_000,
+		"currency": "tacos",
+		"bought_flag": "tacoscd_bought",
+		"game_flag": "tacoscd",
+		"buy_button_path":"s/h/Panel/TACOSubsidy/Panel/buyoverclockupg",
+		"panel_path": "s/h/Panel/TACOSubsidy/Panel"
+	}
 }
 
 func _ready():
-	
+	await get_tree().process_frame
+	$s.scroll_vertical = $s.get_v_scroll_bar().max_value
+	$s.scroll_horizontal = ($s.get_h_scroll_bar().max_value-$s.get_h_scroll_bar().page)/2
 	for key in upgrades:
 		var upg = upgrades[key]
 		upg.button = get_node(upg.buy_button_path)
@@ -125,6 +145,8 @@ func update_buttons():
 	cpscd_button.disabled = !Global.dsaucemax_bought
 	epscd_button.disabled = !Global.coverflowmax_bought
 	overclock_button.disabled = !Global.coverflowmax_bought
+	overclockrs_button.disabled = !Global.overclockmax_bought
+	tacoscd_button.disabled = !Global.overclockmax_bought
 	for key in upgrades:
 		var upg = upgrades[key]
 		if Global.get(upg.bought_flag):
@@ -235,3 +257,15 @@ func _on_overclock_upg_button_up() -> void:
 
 func _on_buyoverclockupg_button_up() -> void:
 	buy_upgrade("overclockmax")
+func _on_overclock_upg_2_button_up() -> void:
+	toggle_panel(upgrades.overclockrs.panel)
+
+
+func _on_buyoverclockupg_2_button_up() -> void:
+	buy_upgrade("overclockrs")
+func _on_taco_subsidy_button_up() -> void:
+	toggle_panel(upgrades.tacoscd.panel)
+
+
+func _on_buytacosubsidy_button_up() -> void:
+	buy_upgrade("tacoscd")
