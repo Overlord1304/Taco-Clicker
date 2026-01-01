@@ -13,6 +13,7 @@ extends Control
 @onready var overclock_button = $s/h/Panel/OverclockUpg
 @onready var overclockrs_button = $s/h/Panel/OverclockUpg2
 @onready var tacoscd_button = $s/h/Panel/TACOSubsidy
+@onready var ultradrive_button = $s/h/Panel/Ultradrive
 var upgrades = {
 	"hyperdrive": {
 		"cost": 1_000_000_000,
@@ -118,8 +119,16 @@ var upgrades = {
 		"currency": "tacos",
 		"bought_flag": "tacoscd_bought",
 		"game_flag": "tacoscd",
-		"buy_button_path":"s/h/Panel/TACOSubsidy/Panel/buyoverclockupg",
+		"buy_button_path":"s/h/Panel/TACOSubsidy/Panel/buytacosubsidy",
 		"panel_path": "s/h/Panel/TACOSubsidy/Panel"
+	},
+	"ultradrive": {
+		"cost": 10_000_000_000,
+		"currency": "tacos",
+		"bought_flag": "ultradrive_bought",
+		"game_flag": "ultradrive",
+		"buy_button_path":"s/h/Panel/Ultradrive/Panel/buyultradrive",
+		"panel_path":"s/h/Panel/Ultradrive/Panel"
 	}
 }
 
@@ -147,6 +156,7 @@ func update_buttons():
 	overclock_button.disabled = !Global.coverflowmax_bought
 	overclockrs_button.disabled = !Global.overclockmax_bought
 	tacoscd_button.disabled = !Global.overclockmax_bought
+	ultradrive_button.disabled = true if !Global.gtacors_bought and !Global.apccd_bought and !Global.dsaucers_bought and !Global.cpscd_bought and !Global.coverflowrs_bought and !Global.epscd_bought else false
 	for key in upgrades:
 		var upg = upgrades[key]
 		if Global.get(upg.bought_flag):
@@ -269,3 +279,8 @@ func _on_taco_subsidy_button_up() -> void:
 
 func _on_buytacosubsidy_button_up() -> void:
 	buy_upgrade("tacoscd")
+func _on_ultradrive_button_up() -> void:
+	toggle_panel(upgrades.ultradrive.panel)
+
+func _on_buyultradrive_button_up() -> void:
+	buy_upgrade("ultradrive")

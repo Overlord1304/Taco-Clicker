@@ -1,11 +1,11 @@
 extends Control
 
 const saves =  "user://userdata.save"
-var entropy = 999999999
+var entropy = 0
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 9999999999
+var tacos = 0
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -85,6 +85,7 @@ var epscd = false
 var overclockmax = false
 var overclockrs = false
 var tacoscd = false
+var ultradrive = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -146,23 +147,24 @@ func _ready():
 	if Global.a18_claimed:
 		$left/skilltreebutton.show()
 func format_number(n) -> String:
-	
 	if n < 1000:
 		return str(int(round(n)))
-	
+
 	var suffixes = ["", "K", "M", "B", "T", "Q"]
 	var tier = int(floor(log(n) / log(1000)))
-	if tier >= suffixes.size():
-		tier = suffixes.size() - 1
-	
+	tier = min(tier, suffixes.size() - 1)
+
 	var scaled = n / pow(1000, tier)
-	
-	var rounded = round(scaled)
-	
-	
-	var text = str(int(rounded))
-	
+
+	var text := ""
+	if scaled < 10:
+		text = str(round(scaled * 10) / 10.0)
+	else:
+
+		text = str(int(round(scaled)))
+
 	return text + suffixes[tier]
+
 func update_amount_per_click() -> void:
 	var click_mult = TACO_click_multiplier
 	if golden_taco_activated:
@@ -172,6 +174,8 @@ func update_amount_per_click() -> void:
 			click_mult *= 5
 	if hyperdrive:
 		click_mult *= 1.5
+	if ultradrive:
+		click_mult *= 2.0
 	amount_per_click = base_amount_per_click * click_mult
 func update_passive_gains() -> void:
 	var gains_mult = TACO_gains_multiplier
@@ -183,6 +187,9 @@ func update_passive_gains() -> void:
 			gains_mult *= 50
 	if hyperdrive:
 		gains_mult *= 1.5
+	if ultradrive:
+		gains_mult *= 2.0
+	
 	passive_gains = base_passive_gains * gains_mult
 	$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains) + " PER SECOND"
 func update_entropy_gains():
@@ -194,6 +201,8 @@ func update_entropy_gains():
 			entropy_mult *= 25
 	if hyperdrive:
 		entropy_mult *= 1.5
+	if ultradrive:
+		entropy_mult *= 2.0
 	entropy_gains = base_entropy_gains * entropy_mult
 	$left/entropy/entropypersecondcount.text = format_number(entropy_gains) + " PER SECOND"
 func update_taco_sliders():
@@ -343,10 +352,10 @@ func _process(delta):
 		var rand = randi() % 1000
 		if overclockrs:
 			rand = randi() % 800
-			print(rand)
+			
 		else:
 			rand = randi() % 1000
-			
+
 		match rand:
 			1:
 				if overclockmax:
@@ -491,6 +500,8 @@ func save_data():
 		"overclockrs": overclockrs,
 		"Global.tacoscd_bought": Global.tacoscd_bought,
 		"tacoscd": tacoscd,
+		"Global.ultradrive_bought": Global.ultradrive_bought,
+		"ultradrive": ultradrive,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -612,6 +623,8 @@ func load_data():
 			overclockrs = data.get("overclockrs",false)
 			Global.tacoscd_bought = data.get("Global.tacoscd_bought",false)
 			tacoscd = data.get("tacoscd",false)
+			Global.ultradrive_bought = data.get("Global.ultradrive_bought",false)
+			ultradrive = data.get("ultradrive",false)
 			discount()
 			update_amount_per_click()
 			update_passive_gains()
