@@ -280,6 +280,7 @@ wait_time = 0.001
 layout_mode = 0
 offset_right = 781.0
 offset_bottom = 653.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_sugp2")
 
 [node name="sunburst" type="TextureRect" parent="left"]
@@ -436,7 +437,7 @@ offset_bottom = 72.0
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
-text = "Skill Tree"
+text = "Command Line"
 
 [node name="passivegainstimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -473,7 +474,7 @@ size_flags_vertical = 3
 
 [node name="right" type="Panel" parent="scroller/VBoxContainer"]
 z_index = 1
-custom_minimum_size = Vector2(360, 1500)
+custom_minimum_size = Vector2(360, 2000)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
@@ -999,6 +1000,41 @@ position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
+[node name="tacoupg2button" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1470.0
+offset_right = 357.0
+offset_bottom = 1537.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="tacoupg2label" type="Label" parent="scroller/VBoxContainer/right/tacoupg2button"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg2button"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 4.0
+offset_right = 359.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE T.A.C.O MULTIPLIER +10"
+
+[node name="tacoupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg2button"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
+
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
 offset_left = -5.0
@@ -1136,7 +1172,7 @@ wait_time = 10.0
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="." method="_on_tacobutton_button_down"]
 [connection signal="button_down" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_down"]
 [connection signal="button_up" from="left/MarginContainer/tacobutton" to="left/MarginContainer" method="_on_tacobutton_button_up"]
-[connection signal="button_up" from="left/achievementsbutton" to="." method="_on_achievementsbutton_button_up"]
+[connection signal="pressed" from="left/achievementsbutton" to="." method="_on_achievementsbutton_pressed"]
 [connection signal="button_up" from="left/skilltreebutton" to="." method="_on_skilltreebutton_button_up"]
 [connection signal="timeout" from="passivegainstimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="gtacotimer" to="." method="_on_gtacotimer_timeout"]
@@ -1156,6 +1192,7 @@ wait_time = 10.0
 [connection signal="button_down" from="scroller/VBoxContainer/right/TACO_overclock" to="." method="_on_taco_overclock_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg3button3" to="." method="_on_entropyupg_3_button_3_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg1button" to="." method="_on_tacoupg_1_button_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg2button" to="." method="_on_tacoupg_2_button_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]

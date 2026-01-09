@@ -19,6 +19,7 @@ extends Control
 	$scroll/hbox/Panel/A16,
 	$scroll/hbox/Panel/A17,
 	$scroll/hbox/Panel/A18,
+	$scroll/hbox/Panel/A19
 ]
 
 const rewards := [
@@ -39,21 +40,22 @@ const rewards := [
 	{"type": "tacos", "amount": 5000000},
 	{"type": "tacos", "amount": 30000000},
 	{"type": "tacos", "amount": 100000000},
-	{"type": "key_to_tree","amount": 1}
+	{"type": "key_to_tree","amount": 1},
+	{"type": "tacos", "amount": 1000000000},
 ]
 
 func _ready():
 	for i in achievement_buttons.size():
 		update_button_state(i)
 
-func update_button_state(index: int):
+func update_button_state(index):
 	var claimed = Global.get("a%d_claimed" % (index + 1))
 	var unlocked = Global.get("a%d_unlocked" % (index + 1))
 	var achievement_button = achievement_buttons[index]
 	achievement_button.disabled = claimed or not unlocked
 	var coverlay = achievement_button.get_node_or_null("ClaimOverlay")
 	coverlay.visible = claimed
-func claim_reward(index: int):
+func claim_reward(index):
 	var claim_no = "a%d_claimed" % (index + 1)
 	if Global.get(claim_no):
 		return
@@ -117,3 +119,6 @@ func _on_a_17_button_up(): claim_reward(16)
 
 
 func _on_a_18_button_up(): claim_reward(17)
+
+
+func _on_a_19_button_up(): claim_reward(18)

@@ -5,7 +5,7 @@ var entropy = 0
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 0
+var tacos = 999999999999
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -37,6 +37,8 @@ var upg14cost = 5000000.0
 const upg14cost_base = 5000000.0
 var upg15cost = 5000000.0
 const upg15cost_base = 5000000.0
+var upg16cost = 50000000.0
+const upg16cost_base = 50000000.0
 var golden_taco_bought = false
 var golden_taco_activated = false
 var disco_sauce_bought = false
@@ -72,6 +74,7 @@ var a15_timer = 0
 var a16_timer = 0
 var a17_timer = 0
 var key_to_tree = 0
+var a19_bought_count = 0
 var hyperdrive = false
 var gtacomax = false
 var dsaucemax = false
@@ -137,6 +140,7 @@ func _ready():
 	$scroller/VBoxContainer/right/TACO_overclock/TACO_overclock_label.text = format_number(upg13cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
+	$scroller/VBoxContainer/right/tacoupg2button/tacoupg2label.text = format_number(upg16cost)+" Tacos"
 	update_taco_sliders()
 	$T_A_C_O/amountsperclickslider.value = TACO_click_multiplier
 	$T_A_C_O/passivegainsperclickslider.value = TACO_gains_multiplier
@@ -164,7 +168,8 @@ func format_number(n) -> String:
 		text = str(int(round(scaled)))
 
 	return text + suffixes[tier]
-
+func format_slider_number(n) -> String:
+	return str(round(n * 10) / 10.0)
 func update_amount_per_click() -> void:
 	var click_mult = TACO_click_multiplier
 	if golden_taco_activated:
@@ -382,7 +387,7 @@ func _process(delta):
 		a16_timer = 0
 	if not Global.a17_unlocked and a17_helper():
 		a17_timer += delta
-		if a16_timer >= 20:
+		if a17_timer >= 20:
 			unlock_achievement("a17_unlocked")
 	else:
 		a17_timer = 0
@@ -414,6 +419,7 @@ func save_data():
 		"overclock_bought": overclock_bought,
 		"upg14cost" : upg14cost,
 		"upg15cost" : upg15cost,
+		"upg16cost" : upg16cost,
 		"TACO_bought" : TACO_bought,
 		"entropy": entropy,
 		"base_entropy_gains" : base_entropy_gains,
@@ -425,82 +431,85 @@ func save_data():
 		"base_cps_max_value" : base_cps_max_value,
 		"base_entropy_max_value": base_entropy_max_value,
 		"a1_bought_count" : a1_bought_count,
-		"Global.a1_unlocked": Global.a1_unlocked,
-		"Global.a1_claimed": Global.a1_claimed,
+		"a1_unlocked": Global.a1_unlocked,
+		"a1_claimed": Global.a1_claimed,
 		"a2_bought_count": a2_bought_count,
-		"Global.a2_unlocked": Global.a2_unlocked,
-		"Global.a2_claimed": Global.a2_claimed,
+		"a2_unlocked": Global.a2_unlocked,
+		"a2_claimed": Global.a2_claimed,
 		"gtaco_activated_count": gtaco_activated_count,
-		"Global.a3_unlocked": Global.a3_unlocked,
-		"Global.a3_claimed": Global.a3_claimed,
+		"a3_unlocked": Global.a3_unlocked,
+		"a3_claimed": Global.a3_claimed,
 		"dsauce_activated_count": dsauce_activated_count,
-		"Global.a4_unlocked": Global.a4_unlocked,
-		"Global.a4_claimed": Global.a4_claimed,
+		"a4_unlocked": Global.a4_unlocked,
+		"a4_claimed": Global.a4_claimed,
 		"a5_bought_count": a5_bought_count,
-		"Global.a5_unlocked": Global.a5_unlocked,
-		"Global.a5_claimed": Global.a5_claimed,
+		"a5_unlocked": Global.a5_unlocked,
+		"a5_claimed": Global.a5_claimed,
 		"a6_bought_count": a6_bought_count,
-		"Global.a6_unlocked": Global.a6_unlocked,
-		"Global.a6_claimed": Global.a6_claimed,
+		"a6_unlocked": Global.a6_unlocked,
+		"a6_claimed": Global.a6_claimed,
 		"a7_bought_count": a7_bought_count,
-		"Global.a7_unlocked": Global.a7_unlocked,
-		"Global.a7_claimed": Global.a7_claimed,
+		"a7_unlocked": Global.a7_unlocked,
+		"a7_claimed": Global.a7_claimed,
 		"a8_bought_count": a8_bought_count,
-		"Global.a8_unlocked": Global.a8_unlocked,
-		"Global.a8_claimed": Global.a8_claimed,
+		"a8_unlocked": Global.a8_unlocked,
+		"a8_claimed": Global.a8_claimed,
 		"a9_bought_count": a9_bought_count,
-		"Global.a9_unlocked": Global.a9_unlocked,
-		"Global.a9_claimed": Global.a9_claimed,
+		"a9_unlocked": Global.a9_unlocked,
+		"a9_claimed": Global.a9_claimed,
 		"a10_bought_count": a10_bought_count,
-		"Global.a10_unlocked": Global.a10_unlocked,
-		"Global.a10_claimed": Global.a10_claimed,
+		"a10_unlocked": Global.a10_unlocked,
+		"a10_claimed": Global.a10_claimed,
 		"coverflow_activated_count": coverflow_activated_count,
-		"Global.a11_unlocked": Global.a11_unlocked,
-		"Global.a11_claimed": Global.a11_claimed,
+		"a11_unlocked": Global.a11_unlocked,
+		"a11_claimed": Global.a11_claimed,
 		"overclock_activated_count": overclock_activated_count,
-		"Global.a12_unlocked": Global.a12_unlocked,
-		"Global.a12_claimed": Global.a12_claimed,
+		"a12_unlocked": Global.a12_unlocked,
+		"a12_claimed": Global.a12_claimed,
 		"a13_bought_count": a13_bought_count,
-		"Global.a13_unlocked": Global.a13_unlocked,
-		"Global.a13_claimed": Global.a13_claimed,
+		"a13_unlocked": Global.a13_unlocked,
+		"a13_claimed": Global.a13_claimed,
 		"a14_bought_count": a14_bought_count,
-		"Global.a14_unlocked": Global.a14_unlocked,
-		"Global.a14_claimed": Global.a14_claimed,
-		"Global.a15_unlocked": Global.a15_unlocked,
-		"Global.a15_claimed": Global.a15_claimed,
-		"Global.a16_unlocked": Global.a16_unlocked,
-		"Global.a16_claimed": Global.a16_claimed,
-		"Global.a17_unlocked": Global.a17_unlocked,
-		"Global.a17_claimed": Global.a17_claimed,
-		"Global.a18_unlocked": Global.a18_unlocked,
-		"Global.a18_claimed": Global.a18_claimed,
-		"Global.hyperdrive_bought": Global.hyperdrive_bought,
+		"a14_unlocked": Global.a14_unlocked,
+		"a14_claimed": Global.a14_claimed,
+		"a15_unlocked": Global.a15_unlocked,
+		"a15_claimed": Global.a15_claimed,
+		"a16_unlocked": Global.a16_unlocked,
+		"a16_claimed": Global.a16_claimed,
+		"a17_unlocked": Global.a17_unlocked,
+		"a17_claimed": Global.a17_claimed,
+		"a18_unlocked": Global.a18_unlocked,
+		"a18_claimed": Global.a18_claimed,
+		"a19_bought_count": a19_bought_count,
+		"a19_unlocked": Global.a19_unlocked,
+		"a19_claimed": Global.a19_claimed,
+		"hyperdrive_bought": Global.hyperdrive_bought,
 		"hyperdrive": hyperdrive,
-		"Global.gtacomax_bought": Global.gtacomax_bought,
+		"gtacomax_bought": Global.gtacomax_bought,
 		"gtacomax": gtacomax,
-		"Global.dsaucemax_bought": Global.dsaucemax_bought,
+		"dsaucemax_bought": Global.dsaucemax_bought,
 		"dsaucemax": dsaucemax,
-		"Global.coverflowmax_bought": Global.coverflowmax_bought,
+		"coverflowmax_bought": Global.coverflowmax_bought,
 		"coverflowmax": coverflowmax,
-		"Global.gtacors_bought": Global.gtacors_bought,
+		"gtacors_bought": Global.gtacors_bought,
 		"gtacors": gtacors,
-		"Global.dsaucers_bought": Global.dsaucers_bought,
+		"dsaucers_bought": Global.dsaucers_bought,
 		"dsaucers": dsaucers,
-		"Global.coverflowrs_bought": Global.coverflowrs_bought,
+		"coverflowrs_bought": Global.coverflowrs_bought,
 		"coverflowrs": coverflowrs,
-		"Global.apccd_bought": Global.apccd_bought,
+		"apccd_bought": Global.apccd_bought,
 		"apccd": apccd,
-		"Global.cpscd_bought": Global.cpscd_bought,
+		"cpscd_bought": Global.cpscd_bought,
 		"cpscd": cpscd,
-		"Global.epscd_bought": Global.epscd_bought,
+		"epscd_bought": Global.epscd_bought,
 		"epscd": epscd,
-		"Global.overclockmax_bought": Global.overclockmax_bought,
+		"overclockmax_bought": Global.overclockmax_bought,
 		"overclockmax": overclockmax,
-		"Global.overclockrs_bought": Global.overclockrs_bought,
+		"overclockrs_bought": Global.overclockrs_bought,
 		"overclockrs": overclockrs,
-		"Global.tacoscd_bought": Global.tacoscd_bought,
+		"tacoscd_bought": Global.tacoscd_bought,
 		"tacoscd": tacoscd,
-		"Global.ultradrive_bought": Global.ultradrive_bought,
+		"ultradrive_bought": Global.ultradrive_bought,
 		"ultradrive": ultradrive,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
@@ -532,6 +541,7 @@ func load_data():
 			upg13cost = data.get("upg13cost",10000000)
 			upg14cost = data.get("upg14cost",5000000)
 			upg15cost = data.get("upg15cost",5000000)
+			upg16cost = data.get("upg16cost",50000000)
 			golden_taco_bought = data.get("golden_taco_bought",false)
 			disco_sauce_bought = data.get("disco_sauce_bought",false)
 			cosmic_overflow_bought = data.get("cosmic_overflow_bought",false)
@@ -548,82 +558,85 @@ func load_data():
 			base_cps_max_value = data.get("base_cps_max_value",10)
 			base_entropy_max_value = data.get("base_entropy_max_value",10)
 			a1_bought_count = data.get("a1_bought_count",0)
-			Global.a1_unlocked = data.get("Global.a1_unlocked",false)
-			Global.a1_claimed = data.get("Global.a1_claimed",false)
+			Global.a1_unlocked = data.get("a1_unlocked",false)
+			Global.a1_claimed = data.get("a1_claimed",false)
 			a2_bought_count = data.get("a2_bought_count",0)
-			Global.a2_unlocked = data.get("Global.a2_unlocked",false)
-			Global.a2_claimed = data.get("Global.a2_claimed",false)
+			Global.a2_unlocked = data.get("a2_unlocked",false)
+			Global.a2_claimed = data.get("a2_claimed",false)
 			gtaco_activated_count = data.get("gtaco_activated_count",0)
-			Global.a3_unlocked = data.get("Global.a3_unlocked",false)
-			Global.a3_claimed = data.get("Global.a3_claimed",false)
+			Global.a3_unlocked = data.get("a3_unlocked",false)
+			Global.a3_claimed = data.get("a3_claimed",false)
 			dsauce_activated_count = data.get("dsauce_activated_count",0)
-			Global.a4_unlocked = data.get("Global.a4_unlocked",false)
-			Global.a4_claimed = data.get("Global.a4_claimed",false)
+			Global.a4_unlocked = data.get("a4_unlocked",false)
+			Global.a4_claimed = data.get("a4_claimed",false)
 			a5_bought_count = data.get("a5_bought_count",0)
-			Global.a5_unlocked = data.get("Global.a5_unlocked",false)
-			Global.a5_claimed = data.get("Global.a5_claimed",false)
+			Global.a5_unlocked = data.get("a5_unlocked",false)
+			Global.a5_claimed = data.get("a5_claimed",false)
 			a6_bought_count = data.get("a6_bought_count",0)
-			Global.a6_unlocked = data.get("Global.a6_unlocked",false)
-			Global.a6_claimed = data.get("Global.a6_claimed",false)
+			Global.a6_unlocked = data.get("a6_unlocked",false)
+			Global.a6_claimed = data.get("a6_claimed",false)
 			a7_bought_count = data.get("a7_bought_count",0)
-			Global.a7_unlocked = data.get("Global.a7_unlocked",false)
-			Global.a7_claimed = data.get("Global.a7_claimed",false)
+			Global.a7_unlocked = data.get("a7_unlocked",false)
+			Global.a7_claimed = data.get("a7_claimed",false)
 			a8_bought_count = data.get("a8_bought_count",0)
-			Global.a8_unlocked = data.get("Global.a8_unlocked",false)
-			Global.a8_claimed = data.get("Global.a8_claimed",false)
+			Global.a8_unlocked = data.get("a8_unlocked",false)
+			Global.a8_claimed = data.get("a8_claimed",false)
 			a9_bought_count = data.get("a9_bought_count",0)
-			Global.a9_unlocked = data.get("Global.a9_unlocked",false)
-			Global.a9_claimed = data.get("Global.a9_claimed",false)
-			a10_bought_count = data.get("Global.a10_claimed",false)
-			Global.a10_unlocked = data.get("Global.a10_unlocked",false)
-			Global.a10_claimed = data.get("Global.a10_claimed",false)
-			coverflow_activated_count = data.get("coverflow_activated_count",false)
-			Global.a11_unlocked = data.get("Global.a11_unlocked",false)
-			Global.a11_claimed = data.get("Global.a11_claimed",false)
-			overclock_activated_count = data.get("overclock_activated_count",false)
-			Global.a12_unlocked = data.get("Global.a12_unlocked",false)
-			Global.a12_claimed = data.get("Global.a12_claimed",false)
-			a13_bought_count = data.get("a13_bought_count",false)
-			Global.a13_unlocked = data.get("Global.a13_unlocked",false)
-			Global.a13_claimed = data.get("Global.a13_claimed",false)
-			a14_bought_count = data.get("a14_bought_count",false)
-			Global.a14_unlocked = data.get("Global.a14_unlocked",false)
-			Global.a14_claimed = data.get("Global.a14_claimed",false)
-			Global.a15_unlocked = data.get("Global.a15_unlocked",false)
-			Global.a15_claimed = data.get("Global.a15_claimed",false)
-			Global.a16_unlocked = data.get("Global.a16_unlocked",false)
-			Global.a16_claimed = data.get("Global.a16_claimed",false)
-			Global.a17_unlocked = data.get("Global.a17_unlocked",false)
-			Global.a17_claimed = data.get("Global.a17_claimed",false)
-			Global.a18_unlocked = data.get("Global.a18_unlocked",false)
-			Global.a18_claimed = data.get("Global.a18_claimed",false)
-			Global.hyperdrive_bought = data.get("Global.hyperdrive_bought",false)
+			Global.a9_unlocked = data.get("a9_unlocked",false)
+			Global.a9_claimed = data.get("a9_claimed",false)
+			a10_bought_count = data.get("a10_claimed",0)
+			Global.a10_unlocked = data.get("a10_unlocked",false)
+			Global.a10_claimed = data.get("a10_claimed",false)
+			coverflow_activated_count = data.get("coverflow_activated_count",0)
+			Global.a11_unlocked = data.get("a11_unlocked",false)
+			Global.a11_claimed = data.get("a11_claimed",false)
+			overclock_activated_count = data.get("overclock_activated_count",0)
+			Global.a12_unlocked = data.get("a12_unlocked",false)
+			Global.a12_claimed = data.get("a12_claimed",false)
+			a13_bought_count = data.get("a13_bought_count",0)
+			Global.a13_unlocked = data.get("a13_unlocked",false)
+			Global.a13_claimed = data.get("a13_claimed",false)
+			a14_bought_count = data.get("a14_bought_count",0)
+			Global.a14_unlocked = data.get("a14_unlocked",false)
+			Global.a14_claimed = data.get("a14_claimed",false)
+			Global.a15_unlocked = data.get("a15_unlocked",false)
+			Global.a15_claimed = data.get("a15_claimed",false)
+			Global.a16_unlocked = data.get("a16_unlocked",false)
+			Global.a16_claimed = data.get("a16_claimed",false)
+			Global.a17_unlocked = data.get("a17_unlocked",false)
+			Global.a17_claimed = data.get("a17_claimed",false)
+			Global.a18_unlocked = data.get("a18_unlocked",false)
+			Global.a18_claimed = data.get("a18_claimed",false)
+			a19_bought_count = data.get("a19_bought_count",0)
+			Global.a19_unlocked = data.get("a19_unlocked",false)
+			Global.a19_claimed = data.get("a19_claimed",false)
+			Global.hyperdrive_bought = data.get("hyperdrive_bought",false)
 			hyperdrive = data.get("hyperdrive",false)
-			Global.gtacomax_bought = data.get("Global.gtacomax_bought",false)
+			Global.gtacomax_bought = data.get("gtacomax_bought",false)
 			gtacomax = data.get("gtacomax",false)
-			Global.dsaucemax_bought = data.get("Global.dsaucemax_bought",false)
+			Global.dsaucemax_bought = data.get("dsaucemax_bought",false)
 			dsaucemax = data.get("dsaucemax",false)
-			Global.coverflowmax_bought = data.get("Global.coverflowmax_bought",false)
+			Global.coverflowmax_bought = data.get("coverflowmax_bought",false)
 			coverflowmax = data.get("coverflowmax",false)
-			Global.gtacors_bought = data.get("Global.gtacors_bought",false)
+			Global.gtacors_bought = data.get("gtacors_bought",false)
 			gtacors = data.get("gtacors",false)
-			Global.dsaucers_bought = data.get("Global.dsaucers_bought",false)
+			Global.dsaucers_bought = data.get("dsaucers_bought",false)
 			dsaucers = data.get("dsaucers",false)
-			Global.coverflowrs_bought = data.get("Global.coverflowrs_bought",false)
+			Global.coverflowrs_bought = data.get("coverflowrs_bought",false)
 			coverflowrs = data.get("coverflowrs",false)
-			Global.apccd_bought = data.get("Global.apccd_bought",false)
+			Global.apccd_bought = data.get("apccd_bought",false)
 			apccd = data.get("apccd",false)
-			Global.cpscd_bought = data.get("Global.cpscd_bought",false)
+			Global.cpscd_bought = data.get("cpscd_bought",false)
 			cpscd = data.get("cpscd",false)
-			Global.epscd_bought = data.get("Global.epscd_bought",false)
+			Global.epscd_bought = data.get("epscd_bought",false)
 			epscd = data.get("epscd",false)
-			Global.overclockmax_bought = data.get("Global.overclockmax_bought",false)
+			Global.overclockmax_bought = data.get("overclockmax_bought",false)
 			overclockmax = data.get("overclockmax",false)
-			Global.overclockrs_bought = data.get("Global.overclockrs_bought",false)
+			Global.overclockrs_bought = data.get("overclockrs_bought",false)
 			overclockrs = data.get("overclockrs",false)
-			Global.tacoscd_bought = data.get("Global.tacoscd_bought",false)
+			Global.tacoscd_bought = data.get("tacoscd_bought",false)
 			tacoscd = data.get("tacoscd",false)
-			Global.ultradrive_bought = data.get("Global.ultradrive_bought",false)
+			Global.ultradrive_bought = data.get("ultradrive_bought",false)
 			ultradrive = data.get("ultradrive",false)
 			discount()
 			update_amount_per_click()
@@ -811,7 +824,7 @@ func _on_h_slider_value_changed(value: float) -> void:
 		$T_A_C_O/amountsperclickslider.value = affordable
 		value = affordable
 	TACO_click_multiplier = value
-	$T_A_C_O/click_multiplier_label.text = format_number(value) + "x"
+	$T_A_C_O/click_multiplier_label.text = format_slider_number(value) + "x"
 	update_amount_per_click()
 
 func _on_passivegainsperclickslider_value_changed(value: float) -> void:
@@ -826,7 +839,7 @@ func _on_passivegainsperclickslider_value_changed(value: float) -> void:
 		value = affordable
 
 	TACO_gains_multiplier = value
-	$T_A_C_O/passivegains_multiplier_label.text = format_number(value) + "x"
+	$T_A_C_O/passivegains_multiplier_label.text = format_slider_number(value) + "x"
 
 	update_passive_gains()
 	
@@ -844,7 +857,7 @@ func _on_entropymultiplierperclickslider_value_changed(value: float) -> void:
 	TACO_entropy_multiplier = value
 	update_entropy_gains()
 	$left/entropy/entropypersecondcount.text = format_number(entropy_gains) + " PER SECOND"
-	$T_A_C_O/entropy_multiplier_label.text = format_number(value) + "x"
+	$T_A_C_O/entropy_multiplier_label.text = format_slider_number(value) + "x"
 
 
 func _on_entropyupg_1_button_button_down() -> void:
@@ -995,9 +1008,9 @@ func _on_tacoupg_1_button_button_down() -> void:
 	
 
 
-func _on_achievementsbutton_button_up() -> void:
-	#var ach = preload("res://scenes/achievements.tscn")
-	#ach.connect("a1_reward", Callable(self, "_on_achievement_reward"))
+func _on_achievementsbutton_pressed() -> void:
+
+	
 	var transition = preload("res://scenes/swipe.tscn").instantiate()
 	get_tree().root.add_child(transition)
 	transition.swipe_in("res://scenes/achievements.tscn", 1)
@@ -1034,6 +1047,7 @@ func discount():
 	upg9cost = upg9cost_base * eps_discount
 	upg14cost = upg14cost_base * eps_discount
 	upg15cost = upg15cost_base * TACOS_discount
+	upg16cost = upg16cost_base * TACOS_discount
 	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
@@ -1044,4 +1058,24 @@ func discount():
 	$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = format_number(upg9cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
+	$scroller/VBoxContainer/right/tacoupg2button/tacoupg2label.text = format_number(upg16cost)+" Tacos"
 	save_data()
+
+
+func _on_tacoupg_2_button_button_down() -> void:
+	if tacos >= upg16cost:
+		base_cps_max_value += 10
+		base_apc_max_value += 10
+		base_entropy_max_value += 10
+		update_taco_sliders()
+		tacos -= upg16cost
+	
+		upg16cost *= 1.35
+		a19_bought_count += 1
+		$scroller/VBoxContainer/right/tacoupg2button/tacoupg2label.text = format_number(upg16cost)+" Tacos"
+		if a19_bought_count >= 10:
+			unlock_achievement("a19_unlocked")
+		emit_signal("tacos_changed",tacos)
+		save_data()
+	else:
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
