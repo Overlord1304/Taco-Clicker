@@ -1035,6 +1035,71 @@ position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
+[node name="amtperclickupg4" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1560.0
+offset_right = 357.0
+offset_bottom = 1627.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="amountperclickupgrade4" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg4"]
+position = Vector2(30, 16)
+rotation = 0.8377581
+texture = ExtResource("1_o5qli")
+
+[node name="amountperclickupgrade4label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg4"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 33.00009
+offset_right = 283.0
+offset_bottom = 108.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg4"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 7.0
+offset_right = 276.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+text = "UPGRADE AMOUNT PER CLICK +1000"
+
+[node name="autoclickupg4" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1650.0
+offset_right = 357.0
+offset_bottom = 1717.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="autoclickupg4" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg4"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="autoclickupgsprite4" type="Label" parent="scroller/VBoxContainer/right/autoclickupg4"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg4"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 368.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE GAINED PER SECOND +1000"
+
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
 offset_left = -5.0
@@ -1193,6 +1258,8 @@ wait_time = 10.0
 [connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg3button3" to="." method="_on_entropyupg_3_button_3_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg1button" to="." method="_on_tacoupg_1_button_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg2button" to="." method="_on_tacoupg_2_button_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/amtperclickupg4" to="." method="_on_amtperclickupg_4_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg4" to="." method="_on_autoclickupg_4_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]

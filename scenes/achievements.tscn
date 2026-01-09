@@ -1322,6 +1322,132 @@ text = "Claimed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="A20" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 2775.0
+offset_top = 276.0
+offset_right = 3206.0
+offset_bottom = 428.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Buy 10 (+1000 Tacos Per
+ Click Upgrades)
+ Reward: 500M Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A20"]
+position = Vector2(389.00003, 55)
+rotation = 0.85695666
+scale = Vector2(2.234375, 2.359375)
+texture = ExtResource("3_uhxyi")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A20"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A20/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A20/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A21" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 2775.0
+offset_top = 456.0
+offset_right = 3206.0
+offset_bottom = 608.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Buy 10 (+1000 Tacos Per
+ Second Upgrades)
+ Reward: 1.5B Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="scroll/hbox/Panel/A21"]
+position = Vector2(389.00003, 55)
+rotation = -0.143117
+scale = Vector2(2.234375, 2.359375)
+sprite_frames = SubResource("SpriteFrames_svwer")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A21"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A21/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A21/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a1_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a_1_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/Back" to="." method="_on_back_button_up"]
@@ -1343,3 +1469,5 @@ vertical_alignment = 1
 [connection signal="button_up" from="scroll/hbox/Panel/A17" to="." method="_on_a_17_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A18" to="." method="_on_a_18_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A19" to="." method="_on_a_19_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A20" to="." method="_on_a_20_button_up"]
+[connection signal="button_up" from="scroll/hbox/Panel/A21" to="." method="_on_a_21_button_up"]
