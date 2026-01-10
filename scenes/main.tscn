@@ -1100,6 +1100,111 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +1000"
 
+[node name="tacoupg3button" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1740.0
+offset_right = 357.0
+offset_bottom = 1807.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="tacoupg3label" type="Label" parent="scroller/VBoxContainer/right/tacoupg3button"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg3button"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 4.0
+offset_right = 359.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE T.A.C.O MULTIPLIER +100"
+
+[node name="tacoupg3sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg3button"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
+
+[node name="entropyupg4button4" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1830.0
+offset_right = 357.0
+offset_bottom = 1897.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="entropyupg4label" type="Label" parent="scroller/VBoxContainer/right/entropyupg4button4"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg4button4"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 4.0
+offset_right = 358.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE ENTROPY PER SECOND +1000"
+
+[node name="entropyupg4sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg4button4"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
+
+[node name="tacoupg4button" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1920.0
+offset_right = 357.0
+offset_bottom = 1987.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="tacoupg4label" type="Label" parent="scroller/VBoxContainer/right/tacoupg4button"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg4button"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 4.0
+offset_right = 359.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE T.A.C.O MULTIPLIER +1000"
+
+[node name="tacoupg4sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg4button"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
+
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
 offset_left = -5.0
@@ -1260,6 +1365,9 @@ wait_time = 10.0
 [connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg2button" to="." method="_on_tacoupg_2_button_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/amtperclickupg4" to="." method="_on_amtperclickupg_4_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/autoclickupg4" to="." method="_on_autoclickupg_4_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg3button" to="." method="_on_tacoupg_3_button_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg4button4" to="." method="_on_entropyupg_4_button_4_button_down"]
+[connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg4button" to="." method="_on_tacoupg_4_button_button_down"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]

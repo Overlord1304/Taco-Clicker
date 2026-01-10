@@ -30,6 +30,9 @@ var upg15cost = 5000000.0
 var upg16cost = 50000000.0
 var upg17cost = 25000000.0
 var upg18cost = 75000000.0
+var upg19cost = 100000000.0
+var upg20cost = 250000000.0
+var upg21cost = 2000000000.0
 var golden_taco_bought = false
 var golden_taco_activated = false
 var disco_sauce_bought = false
@@ -68,6 +71,9 @@ var key_to_tree = 0
 var a19_bought_count = 0
 var a20_bought_count = 0
 var a21_bought_count = 0
+var a22_bought_count = 0
+var a23_bought_count = 0
+var a24_bought_count = 0
 var hyperdrive = false
 var gtacomax = false
 var dsaucemax = false
@@ -136,6 +142,9 @@ func _ready():
 	$scroller/VBoxContainer/right/tacoupg2button/tacoupg2label.text = format_number(upg16cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg4/amountperclickupgrade4label.text = format_number(upg17cost)+" Tacos"
 	$scroller/VBoxContainer/right/autoclickupg4/autoclickupgsprite4.text = format_number(upg18cost)+" Tacos"
+	$scroller/VBoxContainer/right/tacoupg3button/tacoupg3label.text = format_number(upg19cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg4button4/entropyupg4label.text = format_number(upg20cost)+" Tacos"
+	$scroller/VBoxContainer/right/tacoupg4button/tacoupg4label.text = format_number(upg21cost)+" Tacos"
 	update_taco_sliders()
 	$T_A_C_O/amountsperclickslider.value = TACO_click_multiplier
 	$T_A_C_O/passivegainsperclickslider.value = TACO_gains_multiplier
@@ -416,6 +425,10 @@ func save_data():
 		"upg15cost" : upg15cost,
 		"upg16cost" : upg16cost,
 		"upg17cost" : upg17cost,
+		"upg18cost" : upg18cost,
+		"upg19cost": upg19cost,
+		"upg20cost": upg20cost,
+		"upg21cost": upg21cost,
 		"TACO_bought" : TACO_bought,
 		"entropy": entropy,
 		"base_entropy_gains" : base_entropy_gains,
@@ -485,6 +498,15 @@ func save_data():
 		"a21_bought_count": a21_bought_count,
 		"a21_unlocked": Global.a21_unlocked,
 		"a21_claimed": Global.a21_claimed,
+		"a22_bought_count": a22_bought_count,
+		"a22_unlocked": Global.a22_unlocked,
+		"a22_claimed": Global.a22_claimed,
+		"a23_bought_count": a23_bought_count,
+		"a23_unlocked": Global.a23_unlocked,
+		"a23_claimed": Global.a23_claimed,
+		"a24_bought_count": a24_bought_count,
+		"a24_unlocked": Global.a24_unlocked,
+		"a24_claimed": Global.a24_claimed,
 		"hyperdrive_bought": Global.hyperdrive_bought,
 		"hyperdrive": hyperdrive,
 		"gtacomax_bought": Global.gtacomax_bought,
@@ -545,6 +567,10 @@ func load_data():
 			upg15cost = data.get("upg15cost",5000000)
 			upg16cost = data.get("upg16cost",50000000)
 			upg17cost = data.get("upg17cost",25000000)
+			upg18cost = data.get("upg18cost",75000000)
+			upg19cost = data.get("upg19cost",100000000)
+			upg20cost = data.get("upg20cost",250000000)
+			upg21cost = data.get("upg21cost",2000000000)
 			golden_taco_bought = data.get("golden_taco_bought",false)
 			disco_sauce_bought = data.get("disco_sauce_bought",false)
 			cosmic_overflow_bought = data.get("cosmic_overflow_bought",false)
@@ -619,6 +645,15 @@ func load_data():
 			a21_bought_count = data.get("a21_bought_count",0)
 			Global.a21_unlocked = data.get("a21_unlocked",false)
 			Global.a21_claimed = data.get("a21_claimed",false)
+			a22_bought_count = data.get("a22_bought_count",0)
+			Global.a22_unlocked = data.get("a22_unlocked",false)
+			Global.a22_claimed = data.get("a22_claimed",false)
+			a23_bought_count = data.get("a23_bought_count",0)
+			Global.a23_unlocked = data.get("a23_unlocked",false)
+			Global.a23_claimed = data.get("a23_claimed",false)
+			a24_bought_count = data.get("a24_bought_count",0)
+			Global.a24_unlocked = data.get("a24_unlocked",false)
+			Global.a24_claimed = data.get("a24_claimed",false)
 			Global.hyperdrive_bought = data.get("hyperdrive_bought",false)
 			hyperdrive = data.get("hyperdrive",false)
 			Global.gtacomax_bought = data.get("gtacomax_bought",false)
@@ -1058,6 +1093,8 @@ func discount():
 	upg16cost *= TACOS_discount
 	upg17cost *= apc_discount
 	upg18cost *= cps_discount
+	upg19cost *= TACOS_discount
+	upg20cost *= eps_discount
 	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
@@ -1071,6 +1108,8 @@ func discount():
 	$scroller/VBoxContainer/right/tacoupg2button/tacoupg2label.text = format_number(upg16cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg4/amountperclickupgrade4label.text = format_number(upg17cost)+" Tacos"
 	$scroller/VBoxContainer/right/autoclickupg4/autoclickupgsprite4.text = format_number(upg18cost)+" Tacos"
+	$scroller/VBoxContainer/right/tacoupg3button/tacoupg3label.text = format_number(upg19cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg4button4/entropyupg4label.text = format_number(upg20cost)+" Tacos"
 	save_data()
 
 
@@ -1122,6 +1161,63 @@ func _on_autoclickupg_4_button_down() -> void:
 		$scroller/VBoxContainer/right/autoclickupg4/autoclickupgsprite4.text = format_number(upg18cost)+" Tacos"
 		if a21_bought_count >= 10:
 			unlock_achievement("a21_unlocked")
+		emit_signal("tacos_changed",tacos)
+		save_data()
+	else:
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
+
+
+func _on_tacoupg_3_button_button_down() -> void:
+	if tacos >= upg19cost:
+		base_cps_max_value += 100
+		base_apc_max_value += 100
+		base_entropy_max_value += 100
+		update_taco_sliders()
+		tacos -= upg19cost
+	
+		upg19cost *= 1.35
+		a22_bought_count += 1
+		$scroller/VBoxContainer/right/tacoupg3button/tacoupg3label.text = format_number(upg19cost)+" Tacos"
+		if a22_bought_count >= 10:
+			unlock_achievement("a22_unlocked")
+		emit_signal("tacos_changed",tacos)
+		save_data()
+	else:
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
+
+
+func _on_entropyupg_4_button_4_button_down() -> void:
+	if tacos >= upg20cost:
+		base_entropy_gains += 1000
+		recalc()
+		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
+		tacos -= upg20cost
+
+		upg20cost *= 1.35
+		a23_bought_count += 1
+		
+		$scroller/VBoxContainer/right/entropyupg4button4/entropyupg4label.text = format_number(upg20cost)+" Tacos"
+		if a23_bought_count >= 10:
+			unlock_achievement("a23_unlocked")
+		emit_signal("tacos_changed",tacos)
+		save_data()
+	else:
+		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
+
+
+func _on_tacoupg_4_button_button_down() -> void:
+	if tacos >= upg21cost:
+		base_cps_max_value += 1000
+		base_apc_max_value += 1000
+		base_entropy_max_value += 1000
+		update_taco_sliders()
+		tacos -= upg21cost
+	
+		upg21cost *= 1.35
+		a24_bought_count += 1
+		$scroller/VBoxContainer/right/tacoupg4button/tacoupg4label.text = format_number(upg21cost)+" Tacos"
+		if a24_bought_count >= 10:
+			unlock_achievement("a24_unlocked")
 		emit_signal("tacos_changed",tacos)
 		save_data()
 	else:

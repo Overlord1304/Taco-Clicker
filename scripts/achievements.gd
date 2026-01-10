@@ -22,6 +22,9 @@ extends Control
 	$scroll/hbox/Panel/A19,
 	$scroll/hbox/Panel/A20,
 	$scroll/hbox/Panel/A21,
+	$scroll/hbox/Panel/A22,
+	$scroll/hbox/Panel/A23,
+	$scroll/hbox/Panel/A24,
 ]
 
 const rewards := [
@@ -45,7 +48,10 @@ const rewards := [
 	{"type": "key_to_tree","amount": 1},
 	{"type": "tacos", "amount": 1000000000},
 	{"type": "tacos", "amount": 500000000},
-	{"type": "tacos", "amount": 1500000000}
+	{"type": "tacos", "amount": 1500000000},
+	{"type": "tacos", "amount": 2000000000},
+	{"type": "tacos", "amount": 5000000000},
+	{"type": "tacos", "amount": 40000000000}
 ]
 
 func _ready():
@@ -130,3 +136,9 @@ func _on_a_20_button_up(): claim_reward(19)
 
 
 func _on_a_21_button_up(): claim_reward(20)
+
+func _on_a_22_button_up(): claim_reward(21)
+func _on_a_23_button_up(): claim_reward(22)
+
+
+func _on_a_24_button_up(): claim_reward(23)
