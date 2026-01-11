@@ -66,6 +66,7 @@ func update_button_state(index):
 	var coverlay = achievement_button.get_node_or_null("ClaimOverlay")
 	coverlay.visible = claimed
 func claim_reward(index):
+	$collected.play()
 	var claim_no = "a%d_claimed" % (index + 1)
 	if Global.get(claim_no):
 		return

@@ -16,6 +16,7 @@ func format_number(n) -> String:
 	var text = str(rounded if rounded != int(rounded) else int(rounded))
 	return text + suffixes[tier]
 func _on_tacobutton_button_down() -> void:
+	$"../../click".play()
 	var tween = get_tree().create_tween()
 	tween.tween_property(taco, "scale", Vector2(.9,.9), .1)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene load_steps=42 format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -12,6 +12,9 @@
 [ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="10_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://5bdfvrul7x52" path="res://sprites/storm-sheet.png" id="11_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://di34dyv2qcuus" path="res://sprites/entropy.png" id="13_a8y0u"]
+[ext_resource type="AudioStream" uid="uid://dh2dk4h1m7y0v" path="res://music/bgtc.ogg" id="13_trceg"]
+[ext_resource type="AudioStream" uid="uid://tebiqcfsoynx" path="res://music/click_sound.wav" id="14_a8y0u"]
+[ext_resource type="AudioStream" uid="uid://ovvkiss54d53" path="res://music/collected.wav" id="15_jkv2x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0, 0.6, 0.9647059, 1)
@@ -1333,6 +1336,16 @@ sprite_frames = SubResource("SpriteFrames_dp3eg")
 
 [node name="overclocktimer" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_trceg")
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_a8y0u")
+volume_db = 24.0
+
+[node name="collected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_jkv2x")
 
 [connection signal="entropy_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_entropy_changed"]
 [connection signal="key_to_tree_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_key_to_tree_changed"]

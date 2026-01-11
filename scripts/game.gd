@@ -107,7 +107,7 @@ signal entropy_changed
 signal key_to_tree_changed
 
 func _ready():
-	
+	$bgm.play()
 	base_notification_y = gtacolabel.position.y
 	load_data()
 	
@@ -690,6 +690,7 @@ func load_data():
 
 func _on_button_button_down() -> void:
 	if tacos >= upg1cost:
+		$collected.play()
 		base_amount_per_click += 1
 		recalc()
 		tacos -= upg1cost
@@ -705,6 +706,7 @@ func _on_button_button_down() -> void:
 		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_autoclickupg_1_button_down() -> void:
 	if tacos >= upg2cost:
+		$collected.play()
 		base_passive_gains += 1
 		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
@@ -763,6 +765,7 @@ func _on_timer_timeout() -> void:
 
 func _on_golden_taco_button_down() -> void:
 	if tacos >= upg3cost and golden_taco_bought == false:
+		$collected.play()
 		golden_taco_bought = true
 		tacos -= upg3cost
 
@@ -778,6 +781,7 @@ func _on_gtacotimer_timeout() -> void:
 
 func _on_amtperclickupg_2_button_down() -> void:
 	if tacos >= upg4cost:
+		$collected.play()
 		base_amount_per_click += 10
 		recalc()
 		tacos -= upg4cost
@@ -793,6 +797,7 @@ func _on_amtperclickupg_2_button_down() -> void:
 		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_autoclickupg_2_button_down() -> void:
 	if tacos >= upg5cost:
+		$collected.play()
 		base_passive_gains += 10
 		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
@@ -809,6 +814,7 @@ func _on_autoclickupg_2_button_down() -> void:
 		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
 func _on_disco_sauce_button_down() -> void:
 	if tacos >= upg6cost and disco_sauce_bought == false:
+		$collected.play()
 		disco_sauce_bought = true
 		tacos -= upg6cost
 		$scroller/VBoxContainer/right/disco_sauce/disco_sauce_label.text = format_number(upg6cost)+" Tacos"
@@ -825,6 +831,7 @@ func _on_dsaucetimer_timeout() -> void:
 
 func _on_t_a_c_o_button_button_down() -> void:
 	if tacos >= upg7cost and TACO_bought == false:
+		$collected.play()
 		TACO_bought = true
 		$T_A_C_O.visible = true
 		$left/entropy.visible = true
@@ -905,6 +912,7 @@ func _on_entropymultiplierperclickslider_value_changed(value: float) -> void:
 
 func _on_entropyupg_1_button_button_down() -> void:
 	if tacos >= upg8cost:
+		$collected.play()
 		base_entropy_gains += 1
 		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
@@ -922,6 +930,7 @@ func _on_entropyupg_1_button_button_down() -> void:
 
 func _on_entropyupg_2_button_2_button_down() -> void:
 	if tacos >= upg9cost:
+		$collected.play()
 		base_entropy_gains += 10
 		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
@@ -940,6 +949,7 @@ func _on_entropyupg_2_button_2_button_down() -> void:
 func _on_amtperclickupg_3_button_down() -> void:
 
 	if tacos >= upg10cost:
+		$collected.play()
 		base_amount_per_click += 100
 		recalc()
 		tacos -= upg10cost
@@ -956,6 +966,7 @@ func _on_amtperclickupg_3_button_down() -> void:
 
 func _on_autoclickupg_3_button_down() -> void:
 	if tacos >= upg11cost:
+		$collected.play()
 		base_passive_gains += 100
 		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
@@ -973,6 +984,7 @@ func _on_autoclickupg_3_button_down() -> void:
 
 func _on_cosmic_overflow_button_down() -> void:
 	if tacos >= upg12cost and cosmic_overflow_bought == false:
+		$collected.play()
 		cosmic_overflow_bought = true
 		tacos -= upg12cost
 		$scroller/VBoxContainer/right/cosmic_overflow/cosmic_overflow_label.text = format_number(upg12cost)+" Tacos"
@@ -999,6 +1011,7 @@ func _on_coverflowtimer_timeout() -> void:
 		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)	
 func _on_taco_overclock_button_down() -> void:
 	if tacos >= upg13cost and overclock_bought == false:
+		$collected.play()
 		overclock_bought = true
 		tacos -= upg13cost
 		$scroller/VBoxContainer/right/TACO_overclock/TACO_overclock_label.text = format_number(upg13cost)+" Tacos"
@@ -1015,6 +1028,7 @@ func _on_overclocktimer_timeout() -> void:
 
 func _on_entropyupg_3_button_3_button_down() -> void:
 	if tacos >= upg14cost:
+		$collected.play()
 		base_entropy_gains += 100
 		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
@@ -1033,6 +1047,7 @@ func _on_entropyupg_3_button_3_button_down() -> void:
 	
 func _on_tacoupg_1_button_button_down() -> void:
 	if tacos >= upg15cost:
+		$collected.play()
 		base_cps_max_value += 1
 		base_apc_max_value += 1
 		base_entropy_max_value += 1
@@ -1095,6 +1110,7 @@ func discount():
 	upg18cost *= cps_discount
 	upg19cost *= TACOS_discount
 	upg20cost *= eps_discount
+	upg21cost *= TACOS_discount
 	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
@@ -1110,11 +1126,13 @@ func discount():
 	$scroller/VBoxContainer/right/autoclickupg4/autoclickupgsprite4.text = format_number(upg18cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg3button/tacoupg3label.text = format_number(upg19cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg4button4/entropyupg4label.text = format_number(upg20cost)+" Tacos"
+	$scroller/VBoxContainer/right/tacoupg4button/tacoupg4label.text = format_number(upg21cost)+" Tacos"
 	save_data()
 
 
 func _on_tacoupg_2_button_button_down() -> void:
 	if tacos >= upg16cost:
+		$collected.play()
 		base_cps_max_value += 10
 		base_apc_max_value += 10
 		base_entropy_max_value += 10
@@ -1134,6 +1152,7 @@ func _on_tacoupg_2_button_button_down() -> void:
 
 func _on_amtperclickupg_4_button_down() -> void:
 	if tacos >= upg17cost:
+		$collected.play()
 		base_amount_per_click += 1000
 		recalc()
 		tacos -= upg17cost
@@ -1151,6 +1170,7 @@ func _on_amtperclickupg_4_button_down() -> void:
 
 func _on_autoclickupg_4_button_down() -> void:
 	if tacos >= upg18cost:
+		$collected.play()
 		base_passive_gains += 1000
 		recalc()
 		$left/MarginContainer/VBoxContainer/persecondcount.text = format_number(passive_gains)+" PER SECOND"
@@ -1169,6 +1189,7 @@ func _on_autoclickupg_4_button_down() -> void:
 
 func _on_tacoupg_3_button_button_down() -> void:
 	if tacos >= upg19cost:
+		$collected.play()
 		base_cps_max_value += 100
 		base_apc_max_value += 100
 		base_entropy_max_value += 100
@@ -1188,6 +1209,7 @@ func _on_tacoupg_3_button_button_down() -> void:
 
 func _on_entropyupg_4_button_4_button_down() -> void:
 	if tacos >= upg20cost:
+		$collected.play()
 		base_entropy_gains += 1000
 		recalc()
 		$left/entropy/entropypersecondcount.text = format_number(entropy_gains)+" PER SECOND"
@@ -1207,6 +1229,7 @@ func _on_entropyupg_4_button_4_button_down() -> void:
 
 func _on_tacoupg_4_button_button_down() -> void:
 	if tacos >= upg21cost:
+		$collected.play()
 		base_cps_max_value += 1000
 		base_apc_max_value += 1000
 		base_entropy_max_value += 1000

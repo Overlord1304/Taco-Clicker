@@ -4,11 +4,11 @@
 [ext_resource type="FontFile" uid="uid://crg07qg7f4136" path="res://fonts/Fredoka-Bold.ttf" id="2_ttb8s"]
 [ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="3_ttb8s"]
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="3_uhxyi"]
-[ext_resource type="PackedScene" uid="uid://byvydm0y21j0r" path="res://scenes/main.tscn" id="5_uhxyi"]
 [ext_resource type="Texture2D" uid="uid://c83jx6vodcu1q" path="res://sprites/Sprite-0005.png" id="5_wf1mw"]
 [ext_resource type="Texture2D" uid="uid://dx1pni0wvf3lj" path="res://sprites/Pixel Cursor (480x160).png" id="6_gq3ih"]
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="7_jnbt2"]
 [ext_resource type="Texture2D" uid="uid://di34dyv2qcuus" path="res://sprites/entropy.png" id="9_svwer"]
+[ext_resource type="AudioStream" uid="uid://ovvkiss54d53" path="res://music/collected.wav" id="9_u6gvo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf1mw"]
 bg_color = Color(0.047058824, 0.22745098, 0.6627451, 1)
@@ -88,10 +88,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jqgop")
-
-[node name="main" parent="." instance=ExtResource("5_uhxyi")]
-visible = false
-layout_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -1527,7 +1523,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
 disabled = true
 text = " Buy 10 (+1000 Entropy 
  Per Second Upgrades)
- Reward: 5B Entropy"
+ Reward: 5B Tacos"
 alignment = 0
 icon_alignment = 2
 vertical_icon_alignment = 0
@@ -1633,6 +1629,9 @@ theme_override_font_sizes/font_size = 48
 text = "Claimed"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="collected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_u6gvo")
 
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a1_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A1" to="." method="_on_a_1_button_up"]
