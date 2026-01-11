@@ -5,7 +5,7 @@ var entropy = 0
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 999999999999
+var tacos = 0
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -22,17 +22,17 @@ var upg7cost = 100000.0
 var upg8cost = 25000.0
 var upg9cost = 500000.0
 var upg10cost = 500000.0
-var upg11cost = 1000000.0
-var upg12cost = 2000000.0
-var upg13cost = 10000000.0
-var upg14cost = 5000000.0
-var upg15cost = 5000000.0
-var upg16cost = 50000000.0
-var upg17cost = 25000000.0
-var upg18cost = 75000000.0
-var upg19cost = 100000000.0
-var upg20cost = 250000000.0
-var upg21cost = 2000000000.0
+var upg11cost = 1_000_000.0
+var upg12cost = 2_000_000.0
+var upg13cost = 10_000_000.0
+var upg14cost = 5_000_000.0
+var upg15cost = 5_000_000.0
+var upg16cost = 50_000_000.0
+var upg17cost = 25_000_000.0
+var upg18cost = 75_000_000.0
+var upg19cost = 100_000_000.0
+var upg20cost = 250_000_000.0
+var upg21cost = 2_000_000_000.0
 var golden_taco_bought = false
 var golden_taco_activated = false
 var disco_sauce_bought = false
@@ -88,6 +88,8 @@ var overclockmax = false
 var overclockrs = false
 var tacoscd = false
 var ultradrive = false
+var cc = false
+var cc2 = false
 @onready var gtaco_timer = $gtacotimer
 @onready var dsauce_timer = $dsaucetimer
 @onready var coverflow_timer = $coverflowtimer
@@ -275,7 +277,14 @@ func _update_notification_positions():
 				.set_ease(Tween.EASE_OUT)
 
 func _on_tacobutton_button_down() -> void:
-	var rand = randi() % 25
+	var rand
+	if cc:
+		if cc2:
+			rand = randi() % 16
+		else:
+			rand = randi() % 20
+	else:
+		rand = randi() % 25
 	match rand:
 		0:
 			tacos += amount_per_click*5
@@ -535,6 +544,10 @@ func save_data():
 		"tacoscd": tacoscd,
 		"ultradrive_bought": Global.ultradrive_bought,
 		"ultradrive": ultradrive,
+		"cc_bought": Global.cc_bought,
+		"cc": cc,
+		"cc2_bought": Global.cc2_bought,
+		"cc2": cc2,
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -682,6 +695,10 @@ func load_data():
 			tacoscd = data.get("tacoscd",false)
 			Global.ultradrive_bought = data.get("ultradrive_bought",false)
 			ultradrive = data.get("ultradrive",false)
+			Global.cc_bought = data.get("cc_bought",false)
+			cc = data.get("cc",false)
+			Global.cc2_bought = data.get("cc2_bought",false)
+			cc2 = data.get("cc2",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -1090,46 +1107,51 @@ func _on_skilltreebutton_button_up() -> void:
 	var transition = preload("res://scenes/swipe.tscn").instantiate()
 	get_tree().root.add_child(transition)
 	transition.swipe_in("res://scenes/skill_tree.tscn", 1)
-func discount():
-	var apc_discount = 0.8 if apccd else 1.0
-	var cps_discount = 0.8 if cpscd else 1.0
-	var eps_discount = 0.8 if epscd else 1.0
-	var TACOS_discount = 0.8 if tacoscd else 1.0
-	upg1cost *= apc_discount
-	upg4cost *= apc_discount
-	upg10cost *= apc_discount
-	upg2cost *= cps_discount
-	upg5cost *= cps_discount
-	upg11cost*= cps_discount
-	upg8cost *= eps_discount
-	upg9cost *= eps_discount
-	upg14cost *= eps_discount
-	upg15cost *= TACOS_discount
-	upg16cost *= TACOS_discount
-	upg17cost *= apc_discount
-	upg18cost *= cps_discount
-	upg19cost *= TACOS_discount
-	upg20cost *= eps_discount
-	upg21cost *= TACOS_discount
+func apc_discount():
+	var APC_discount = 0.8 if apccd else 1.0
+	upg1cost *= APC_discount
+	upg4cost *= APC_discount
+	upg10cost *= APC_discount
+	upg17cost *= APC_discount
+
 	$scroller/VBoxContainer/right/amtperclickupg1/amountperclickupgrade1label.text = format_number(upg1cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg2/amountperclickupgrade2label.text = format_number(upg4cost)+" Tacos"
 	$scroller/VBoxContainer/right/amtperclickupg3/amountperclickupgrade3label.text = format_number(upg10cost)+" Tacos"
+	$scroller/VBoxContainer/right/amtperclickupg4/amountperclickupgrade4label.text = format_number(upg17cost)+" Tacos"
+	save_data()
+func cps_discount():
+	var CPS_discount = 0.8 if cpscd else 1.0
+	upg2cost *= CPS_discount
+	upg5cost *= CPS_discount
+	upg11cost*= CPS_discount
+	upg18cost *= CPS_discount
 	$scroller/VBoxContainer/right/autoclickupg1/autoclickupgsprite1.text = format_number(upg2cost)+" Tacos"
 	$scroller/VBoxContainer/right/autoclickupg2/autoclickupgsprite2.text = format_number(upg5cost)+" Tacos"
 	$scroller/VBoxContainer/right/autoclickupg3/autoclickupgsprite3.text = format_number(upg11cost)+" Tacos"
+	$scroller/VBoxContainer/right/autoclickupg4/autoclickupgsprite4.text = format_number(upg18cost)+" Tacos"
+	save_data()
+func eps_discount():
+	var EPS_discount = 0.8 if epscd else 1.0
+	upg8cost *= EPS_discount
+	upg9cost *= EPS_discount
+	upg14cost *= EPS_discount
+	upg20cost *= EPS_discount
 	$scroller/VBoxContainer/right/entropyupg1button/entropyupg1label.text = format_number(upg8cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg2button2/entropyupg2label.text = format_number(upg9cost)+" Tacos"
 	$scroller/VBoxContainer/right/entropyupg3button3/entropyupg3label.text = format_number(upg14cost)+" Tacos"
+	$scroller/VBoxContainer/right/entropyupg4button4/entropyupg4label.text = format_number(upg20cost)+" Tacos"
+	save_data()
+func tacos_discount():
+	var TACOS_discount = 0.8 if tacoscd else 1.0
+	upg15cost *= TACOS_discount
+	upg16cost *= TACOS_discount
+	upg19cost *= TACOS_discount
+	upg21cost *= TACOS_discount
 	$scroller/VBoxContainer/right/tacoupg1button/tacoupg1label.text = format_number(upg15cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg2button/tacoupg2label.text = format_number(upg16cost)+" Tacos"
-	$scroller/VBoxContainer/right/amtperclickupg4/amountperclickupgrade4label.text = format_number(upg17cost)+" Tacos"
-	$scroller/VBoxContainer/right/autoclickupg4/autoclickupgsprite4.text = format_number(upg18cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg3button/tacoupg3label.text = format_number(upg19cost)+" Tacos"
-	$scroller/VBoxContainer/right/entropyupg4button4/entropyupg4label.text = format_number(upg20cost)+" Tacos"
 	$scroller/VBoxContainer/right/tacoupg4button/tacoupg4label.text = format_number(upg21cost)+" Tacos"
 	save_data()
-
-
 func _on_tacoupg_2_button_button_down() -> void:
 	if tacos >= upg16cost:
 		$collected.play()

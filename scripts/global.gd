@@ -61,4 +61,6 @@ var overclockmax_bought = false
 var overclockrs_bought = false
 var tacoscd_bought = false
 var ultradrive_bought = false
+var cc_bought = false
+var cc2_bought = false
 var pending_taco_reward = 0

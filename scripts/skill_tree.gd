@@ -14,6 +14,8 @@ extends Control
 @onready var overclockrs_button = $s/h/Panel/OverclockUpg2
 @onready var tacoscd_button = $s/h/Panel/TACOSubsidy
 @onready var ultradrive_button = $s/h/Panel/Ultradrive
+@onready var cc_button = $s/h/Panel/CC
+@onready var cc2_button = $s/h/Panel/cc2
 var upgrades = {
 	"hyperdrive": {
 		"cost": 1_000_000_000,
@@ -78,7 +80,7 @@ var upgrades = {
 		"game_flag": "apccd",
 		"buy_button_path": "s/h/Panel/APCSubsidy/Panel/buyapcsubsidy",
 		"panel_path": "s/h/Panel/APCSubsidy/Panel",
-		"func": "discount"
+		"func": "apc_discount"
 	},
 	"cpscd":{
 		"cost": 750_000_000,
@@ -87,7 +89,7 @@ var upgrades = {
 		"game_flag": "cpscd",
 		"buy_button_path": "s/h/Panel/CPSSubsidy/Panel/buycpssubsidy",
 		"panel_path": "s/h/Panel/CPSSubsidy/Panel",
-		"func": "discount"
+		"func": "cps_discount"
 	},
 	"epscd": {
 		"cost": 1_000_000_000,
@@ -96,7 +98,7 @@ var upgrades = {
 		"game_flag": "epscd",
 		"buy_button_path": "s/h/Panel/EPSSubsidy/Panel/buyepssubsidy",
 		"panel_path": "s/h/Panel/EPSSubsidy/Panel",
-		"func": "discount"
+		"func": "eps_discount"
 	},
 	"overclockmax": {
 		"cost": 50_000_000,
@@ -120,7 +122,8 @@ var upgrades = {
 		"bought_flag": "tacoscd_bought",
 		"game_flag": "tacoscd",
 		"buy_button_path":"s/h/Panel/TACOSubsidy/Panel/buytacosubsidy",
-		"panel_path": "s/h/Panel/TACOSubsidy/Panel"
+		"panel_path": "s/h/Panel/TACOSubsidy/Panel",
+		"func": "tacos_discount"
 	},
 	"ultradrive": {
 		"cost": 10_000_000_000,
@@ -129,6 +132,22 @@ var upgrades = {
 		"game_flag": "ultradrive",
 		"buy_button_path":"s/h/Panel/Ultradrive/Panel/buyultradrive",
 		"panel_path":"s/h/Panel/Ultradrive/Panel"
+	},
+	"cc": {
+		"cost": 7_500_000_000,
+		"currency": "tacos",
+		"bought_flag": "cc_bought",
+		"game_flag": "cc",
+		"buy_button_path":"s/h/Panel/CC/Panel/buycc",
+		"panel_path":"s/h/Panel/CC/Panel"
+	},
+	"cc2": {
+		"cost": 12_000_000_000,
+		"currency": "tacos",
+		"bought_flag": "cc2_bought",
+		"game_flag": "cc2",
+		"buy_button_path":"s/h/Panel/cc2/Panel/buycc2",
+		"panel_path":"s/h/Panel/cc2/Panel"
 	}
 }
 
@@ -156,7 +175,9 @@ func update_buttons():
 	overclock_button.disabled = !Global.coverflowmax_bought
 	overclockrs_button.disabled = !Global.overclockmax_bought
 	tacoscd_button.disabled = !Global.overclockmax_bought
-	ultradrive_button.disabled = true if !Global.gtacors_bought and !Global.apccd_bought and !Global.dsaucers_bought and !Global.cpscd_bought and !Global.coverflowrs_bought and !Global.epscd_bought else false
+	ultradrive_button.disabled = not (Global.gtacors_bought and Global.apccd_bought and Global.cpscd_bought and Global.coverflowrs_bought and Global.epscd_bought)
+	cc_button.disabled = !Global.ultradrive_bought
+	cc2_button.disabled = !Global.cc_bought
 	for key in upgrades:
 		var upg = upgrades[key]
 		if Global.get(upg.bought_flag):
@@ -270,7 +291,6 @@ func _on_buyoverclockupg_button_up() -> void:
 func _on_overclock_upg_2_button_up() -> void:
 	toggle_panel(upgrades.overclockrs.panel)
 
-
 func _on_buyoverclockupg_2_button_up() -> void:
 	buy_upgrade("overclockrs")
 func _on_taco_subsidy_button_up() -> void:
@@ -284,3 +304,17 @@ func _on_ultradrive_button_up() -> void:
 
 func _on_buyultradrive_button_up() -> void:
 	buy_upgrade("ultradrive")
+
+
+func _on_cc_button_up() -> void:
+	toggle_panel(upgrades.cc.panel)
+func _on_buycc_button_up() -> void:
+	buy_upgrade("cc")
+
+
+func _on_cc_2_button_down() -> void:
+	toggle_panel(upgrades.cc2.panel)
+
+
+func _on_buycc_2_button_up() -> void:
+	buy_upgrade("cc2")
