@@ -5,7 +5,7 @@ var entropy = 0
 var entropy_consumption_click = 0
 var entropy_consumption_passive = 0
 var entropy_consumption_slider = 0
-var tacos = 0
+var tacos = 9999999999
 var base_amount_per_click = 1
 var amount_per_click = 1
 var base_passive_gains = 0
@@ -48,8 +48,6 @@ var TACO_entropy_multiplier = 1.0
 var active_notifications: Array = []
 var notification_offset = 30
 var base_notification_y = 0
-var gtaco_texture = preload("res://sprites/gtaco.png")
-var taco_texture = preload("res://sprites/taco.png")
 var a1_bought_count = 0
 var a2_bought_count = 0
 var gtaco_activated_count = 0
@@ -112,7 +110,7 @@ func _ready():
 	$bgm.play()
 	base_notification_y = gtacolabel.position.y
 	load_data()
-	
+	update_taco_skin()
 	for sprite in get_tree().get_nodes_in_group("coverflow"):
 		sprite.play()
 		coverflow_original_position[sprite] = sprite.position
@@ -317,7 +315,12 @@ func _process(delta):
 				if gtacomax:
 					gtacolabel.text = "Golden Taco Activated. Tacos per Click Increased By 15x"
 				show_notification(gtacolabel)
-				$left/MarginContainer/tacobutton.texture_normal = gtaco_texture
+				if Global.dtaco_equipped:
+					$left/MarginContainer/tacobutton/taco.play("d_gtaco")
+				elif Global.sbtaco_equipped:
+					$left/Margin/Container/tacobutton/tacos.play("sb_gtaco")
+				elif Global.ntaco_equipped:
+					$left/Margin/Container/tacobutton/tacos.play("normal_gtaco")
 				golden_taco_activated = true
 				update_amount_per_click()
 				gtaco_activated_count += 1
@@ -330,6 +333,7 @@ func _process(delta):
 			rand = randi() % 2400
 		else:
 			rand = randi() % 3000
+
 		match rand:
 			1:
 				if dsaucemax:
@@ -548,6 +552,11 @@ func save_data():
 		"cc": cc,
 		"cc2_bought": Global.cc2_bought,
 		"cc2": cc2,
+		"ntaco_equipped": Global.ntaco_equipped,
+		"dtaco_bought": Global.dtaco_bought,
+		"dtaco_equipped": Global.dtaco_equipped,
+		"sbtaco_bought": Global.sbtaco_bought,
+		"sbtaco_equipped": Global.sbtaco_equipped
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -699,6 +708,11 @@ func load_data():
 			cc = data.get("cc",false)
 			Global.cc2_bought = data.get("cc2_bought",false)
 			cc2 = data.get("cc2",false)
+			Global.ntaco_equipped = data.get("ntaco_equipped",true)
+			Global.dtaco_bought = data.get("dtaco_bought",false)
+			Global.dtaco_equipped = data.get("dtaco_equipped",false)
+			Global.sbtaco_bought = data.get("sbtaco_bought",false)
+			Global.sbtaco_equipped = data.get("sbtaco_equipped",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -794,9 +808,14 @@ func _on_golden_taco_button_down() -> void:
 func _on_gtacotimer_timeout() -> void:
 	golden_taco_activated = false
 	update_amount_per_click()
-	$left/MarginContainer/tacobutton.texture_normal = taco_texture
+	if Global.dtaco_equipped:
+		$left/MarginContainer/tacobutton/taco.play("d_taco")
+	elif Global.sbtaco_equipped:
+		$left/Margin/Container/tacobutton/tacos.play("sb_taco")
+	elif Global.ntaco_equipped:
+		$left/Margin/Container/tacobutton/tacos.play("normal_taco")
 
-func _on_amtperclickupg_2_button_down() -> void:
+func _on_amtperclickupg_2_button_down():
 	if tacos >= upg4cost:
 		$collected.play()
 		base_amount_per_click += 10
@@ -1267,3 +1286,16 @@ func _on_tacoupg_4_button_button_down() -> void:
 		save_data()
 	else:
 		show_cost_warning($left/MarginContainer/VBoxContainer/notenoughmoneylabel)
+
+
+func _on_cosmeticsbutton_button_down() -> void:
+	var transition = preload("res://scenes/swipe.tscn").instantiate()
+	get_tree().root.add_child(transition)
+	transition.swipe_in("res://scenes/cosmetics.tscn", 1)
+func update_taco_skin():
+	if Global.dtaco_equipped:
+		$left/MarginContainer/tacobutton/taco.play("d_taco")
+	elif Global.sbtaco_equipped:
+		$left/MarginContainer/tacobutton/taco.play("sb_taco")
+	elif Global.ntaco_equipped:
+		$left/MarginContainer/tacobutton/taco.play("normal_taco")

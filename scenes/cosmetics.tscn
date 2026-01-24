@@ -1,0 +1,412 @@
+[gd_scene load_steps=38 format=3 uid="uid://nyrfmbxc7r22"]
+
+[ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="1_73qxo"]
+[ext_resource type="Script" uid="uid://cjwrdkq1n43il" path="res://scripts/cosmetics.gd" id="1_g72wv"]
+[ext_resource type="Texture2D" uid="uid://du1qdg684biio" path="res://sprites/dtaco.png" id="2_rhjr3"]
+[ext_resource type="Texture2D" uid="uid://01unjw7vfmfo" path="res://sprites/dtaco golden.png" id="3_g72wv"]
+[ext_resource type="Texture2D" uid="uid://c83jx6vodcu1q" path="res://sprites/Sprite-0005.png" id="5_7q0yd"]
+[ext_resource type="Texture2D" uid="uid://clmpk4o2t0ypj" path="res://sprites/stormbound-taco.png" id="6_jyvna"]
+[ext_resource type="Texture2D" uid="uid://delpm676n28qy" path="res://sprites/stormbound-taco-gold.png" id="7_ohflc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snucm"]
+bg_color = Color(0.047058824, 0.22745098, 0.6627451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q0yd"]
+atlas = ExtResource("2_rhjr3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyvna"]
+atlas = ExtResource("2_rhjr3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohflc"]
+atlas = ExtResource("2_rhjr3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ag23"]
+atlas = ExtResource("2_rhjr3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgeww"]
+atlas = ExtResource("2_rhjr3")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2m3p"]
+atlas = ExtResource("2_rhjr3")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pej0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q0yd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyvna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohflc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ag23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgeww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2m3p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5a46"]
+atlas = ExtResource("3_g72wv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53l6l"]
+atlas = ExtResource("3_g72wv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpqe1"]
+atlas = ExtResource("3_g72wv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i728l"]
+atlas = ExtResource("3_g72wv")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t6d8"]
+atlas = ExtResource("3_g72wv")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51va1"]
+atlas = ExtResource("3_g72wv")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uruhn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5a46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53l6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpqe1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i728l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t6d8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51va1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g72wv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pej0c"]
+atlas = ExtResource("6_jyvna")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uruhn"]
+atlas = ExtResource("6_jyvna")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1y4d"]
+atlas = ExtResource("6_jyvna")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un7g2"]
+atlas = ExtResource("6_jyvna")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_04jup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pej0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uruhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1y4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un7g2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tf48"]
+atlas = ExtResource("7_ohflc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u42c0"]
+atlas = ExtResource("7_ohflc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avkvq"]
+atlas = ExtResource("7_ohflc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6v4v"]
+atlas = ExtResource("7_ohflc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4n0m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tf48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u42c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avkvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6v4v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyvna"]
+bg_color = Color(0, 0, 0, 0.44705883)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohflc"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ag23"]
+bg_color = Color(0.6, 0.6, 0.6, 0.44705883)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgeww"]
+
+[node name="cosmetics" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g72wv")
+
+[node name="s" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="h" type="HBoxContainer" parent="s"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="s/h"]
+custom_minimum_size = Vector2(1250, 648)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_snucm")
+
+[node name="DiamondTaco" type="Panel" parent="s/h/Panel"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 47.0
+offset_right = 678.0
+offset_bottom = 608.0
+
+[node name="title" type="Label" parent="s/h/Panel/DiamondTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.5
+offset_top = 22.0
+offset_right = 270.5
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 55
+text = "Diamond Taco"
+horizontal_alignment = 1
+
+[node name="dtaco" type="AnimatedSprite2D" parent="s/h/Panel/DiamondTaco"]
+position = Vector2(135.00002, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_pej0c")
+
+[node name="dtacogolden" type="AnimatedSprite2D" parent="s/h/Panel/DiamondTaco"]
+position = Vector2(393.00003, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_uruhn")
+
+[node name="cost" type="Label" parent="s/h/Panel/DiamondTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -267.5
+offset_top = 335.0
+offset_right = 270.5
+offset_bottom = 409.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+text = "50M"
+horizontal_alignment = 1
+
+[node name="dtaco_buy" type="Button" parent="s/h/Panel/DiamondTaco"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -131.0
+offset_right = 159.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
+text = "BUY"
+
+[node name="StormboundTaco" type="Panel" parent="s/h/Panel"]
+layout_mode = 0
+offset_left = 742.0
+offset_top = 47.0
+offset_right = 1275.0
+offset_bottom = 608.0
+
+[node name="title" type="Label" parent="s/h/Panel/StormboundTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.5
+offset_top = 22.0
+offset_right = 270.5
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 55
+text = "Stormbound Tacos"
+horizontal_alignment = 1
+
+[node name="sbtaco" type="AnimatedSprite2D" parent="s/h/Panel/StormboundTaco"]
+position = Vector2(135.00002, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_04jup")
+
+[node name="sbtacogolden" type="AnimatedSprite2D" parent="s/h/Panel/StormboundTaco"]
+position = Vector2(393.00003, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_v4n0m")
+
+[node name="cost" type="Label" parent="s/h/Panel/StormboundTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -267.5
+offset_top = 335.0
+offset_right = 270.5
+offset_bottom = 409.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+text = "150M"
+horizontal_alignment = 1
+
+[node name="sbtaco_buy" type="Button" parent="s/h/Panel/StormboundTaco"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -131.0
+offset_right = 159.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
+text = "BUY"
+
+[node name="notenoughmoneylabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -226.0
+offset_top = 31.0
+offset_right = 252.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 36
+text = "You Don't Have Enough Tacos"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+z_index = 35
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.416
+anchor_bottom = 0.23900001
+offset_left = 104.0
+offset_top = 81.0
+offset_right = -295.91913
+offset_bottom = -12.871994
+rotation = -3.1415927
+theme_override_styles/normal = SubResource("StyleBoxFlat_jyvna")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ohflc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4ag23")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgeww")
+icon = ExtResource("5_7q0yd")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="s/h/Panel/DiamondTaco/dtaco_buy" to="." method="_on_dtaco_buy_pressed"]
+[connection signal="pressed" from="s/h/Panel/StormboundTaco/sbtaco_buy" to="." method="_on_sbtaco_buy_pressed"]
+[connection signal="button_down" from="Back" to="." method="_on_back_button_down"]
