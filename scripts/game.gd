@@ -304,6 +304,14 @@ func _process(delta):
 		$scroller/VBoxContainer/right/cosmic_overflow.disabled = true
 	if overclock_bought == true:
 		$scroller/VBoxContainer/right/TACO_overclock.disabled = true
+	if Global.vtaco_equipped:
+		var void_style = $left.get_theme_stylebox("panel").duplicate()
+		void_style.bg_color = Color("000000c7")
+		$left.add_theme_stylebox_override("panel",void_style)
+	else:
+		var void_style = $left.get_theme_stylebox("panel").duplicate()
+		void_style.bg_color = Color("0099f6")
+		$left.add_theme_stylebox_override("panel",void_style)
 	if golden_taco_bought and golden_taco_activated == false:
 		var rand
 		if gtacors:
@@ -318,9 +326,12 @@ func _process(delta):
 				if Global.dtaco_equipped:
 					$left/MarginContainer/tacobutton/taco.play("d_gtaco")
 				elif Global.sbtaco_equipped:
-					$left/Margin/Container/tacobutton/tacos.play("sb_gtaco")
+					$left/MarginContainer/tacobutton/taco.play("sb_gtaco")
 				elif Global.ntaco_equipped:
-					$left/Margin/Container/tacobutton/tacos.play("normal_gtaco")
+					$left/MarginContainer/tacobutton/taco.play("normal_gtaco")
+				elif Global.vtaco_equipped:
+					$left/MarginContainer/tacobutton/taco.play("v_gtaco")
+
 				golden_taco_activated = true
 				update_amount_per_click()
 				gtaco_activated_count += 1
@@ -556,7 +567,9 @@ func save_data():
 		"dtaco_bought": Global.dtaco_bought,
 		"dtaco_equipped": Global.dtaco_equipped,
 		"sbtaco_bought": Global.sbtaco_bought,
-		"sbtaco_equipped": Global.sbtaco_equipped
+		"sbtaco_equipped": Global.sbtaco_equipped,
+		"vtaco_bought": Global.vtaco_bought,
+		"vtaco_equipped": Global.vtaco_equipped
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -713,6 +726,8 @@ func load_data():
 			Global.dtaco_equipped = data.get("dtaco_equipped",false)
 			Global.sbtaco_bought = data.get("sbtaco_bought",false)
 			Global.sbtaco_equipped = data.get("sbtaco_equipped",false)
+			Global.vtaco_bought = data.get("vtaco_bought",false)
+			Global.vtaco_equipped = data.get("vtaco_equipped",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -811,10 +826,11 @@ func _on_gtacotimer_timeout() -> void:
 	if Global.dtaco_equipped:
 		$left/MarginContainer/tacobutton/taco.play("d_taco")
 	elif Global.sbtaco_equipped:
-		$left/Margin/Container/tacobutton/tacos.play("sb_taco")
+		$left/Margin/Container/tacobutton/taco.play("sb_taco")
 	elif Global.ntaco_equipped:
-		$left/Margin/Container/tacobutton/tacos.play("normal_taco")
-
+		$left/Margin/Container/tacobutton/taco.play("normal_taco")
+	elif Global.vtaco_equipped:
+		$left/MarginContainer/tacobutton/taco.play("v_taco")
 func _on_amtperclickupg_2_button_down():
 	if tacos >= upg4cost:
 		$collected.play()
@@ -1299,3 +1315,5 @@ func update_taco_skin():
 		$left/MarginContainer/tacobutton/taco.play("sb_taco")
 	elif Global.ntaco_equipped:
 		$left/MarginContainer/tacobutton/taco.play("normal_taco")
+	elif Global.vtaco_equipped:
+		$left/MarginContainer/tacobutton/taco.play("v_taco")

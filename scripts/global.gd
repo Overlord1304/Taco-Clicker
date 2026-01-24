@@ -68,4 +68,6 @@ var dtaco_bought = false
 var dtaco_equipped = false
 var sbtaco_bought = false
 var sbtaco_equipped =false
+var vtaco_bought = false
+var vtaco_equipped = false
 var pending_taco_reward = 0

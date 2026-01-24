@@ -1,15 +1,51 @@
-[gd_scene load_steps=38 format=3 uid="uid://nyrfmbxc7r22"]
+[gd_scene load_steps=72 format=3 uid="uid://nyrfmbxc7r22"]
 
 [ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="1_73qxo"]
 [ext_resource type="Script" uid="uid://cjwrdkq1n43il" path="res://scripts/cosmetics.gd" id="1_g72wv"]
 [ext_resource type="Texture2D" uid="uid://du1qdg684biio" path="res://sprites/dtaco.png" id="2_rhjr3"]
+[ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="3_4ag23"]
 [ext_resource type="Texture2D" uid="uid://01unjw7vfmfo" path="res://sprites/dtaco golden.png" id="3_g72wv"]
+[ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="4_hgeww"]
 [ext_resource type="Texture2D" uid="uid://c83jx6vodcu1q" path="res://sprites/Sprite-0005.png" id="5_7q0yd"]
 [ext_resource type="Texture2D" uid="uid://clmpk4o2t0ypj" path="res://sprites/stormbound-taco.png" id="6_jyvna"]
 [ext_resource type="Texture2D" uid="uid://delpm676n28qy" path="res://sprites/stormbound-taco-gold.png" id="7_ohflc"]
+[ext_resource type="Texture2D" uid="uid://c08w4pimfw5hq" path="res://sprites/voidtaco.png" id="9_r2m3p"]
+[ext_resource type="Texture2D" uid="uid://b36563lymsaxj" path="res://sprites/voidgtaco.png" id="10_pej0c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snucm"]
 bg_color = Color(0.047058824, 0.22745098, 0.6627451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04jup"]
+atlas = ExtResource("3_4ag23")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tf48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04jup")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4n0m"]
+atlas = ExtResource("4_hgeww")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfxs3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4n0m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g72wv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7q0yd"]
 atlas = ExtResource("2_rhjr3")
@@ -111,8 +147,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g72wv"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pej0c"]
 atlas = ExtResource("6_jyvna")
 region = Rect2(0, 0, 64, 64)
@@ -185,6 +219,190 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfxs3"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aybuj"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3peg3"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diysx"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otp6j"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvuir"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbqat"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr0bl"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ovtm"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqv8j"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xgtv"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvjb4"]
+atlas = ExtResource("9_r2m3p")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ttio"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfxs3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aybuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3peg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diysx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otp6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvuir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbqat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr0bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ovtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqv8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xgtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvjb4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbhbo"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yybqo"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trrio"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8d60"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njp1q"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0nxr"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v38vd"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1eiup"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0n1h"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujxkn"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ydr2"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vngwt"]
+atlas = ExtResource("10_pej0c")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_33x0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbhbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yybqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trrio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8d60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njp1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0nxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v38vd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1eiup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0n1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujxkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ydr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vngwt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyvna"]
 bg_color = Color(0, 0, 0, 0.44705883)
 corner_radius_top_left = 10
@@ -226,22 +444,28 @@ offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="h" type="HBoxContainer" parent="s"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="s/h"]
-custom_minimum_size = Vector2(1250, 648)
+[node name="Panel" type="Panel" parent="s"]
+custom_minimum_size = Vector2(2500, 648)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_snucm")
 
-[node name="DiamondTaco" type="Panel" parent="s/h/Panel"]
-layout_mode = 0
-offset_left = 145.0
-offset_top = 47.0
-offset_right = 678.0
-offset_bottom = 608.0
+[node name="h" type="HBoxContainer" parent="s/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 132.0
+offset_right = 510.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
 
-[node name="title" type="Label" parent="s/h/Panel/DiamondTaco"]
+[node name="NormalTaco" type="Panel" parent="s/Panel/h"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="title" type="Label" parent="s/Panel/h/NormalTaco"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -254,20 +478,20 @@ grow_horizontal = 2
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_73qxo")
 theme_override_font_sizes/font_size = 55
-text = "Diamond Taco"
+text = "Normal Taco"
 horizontal_alignment = 1
 
-[node name="dtaco" type="AnimatedSprite2D" parent="s/h/Panel/DiamondTaco"]
-position = Vector2(135.00002, 213.00002)
+[node name="ntaco" type="AnimatedSprite2D" parent="s/Panel/h/NormalTaco"]
+position = Vector2(151.00002, 213.00002)
 scale = Vector2(3.5, 3.5)
-sprite_frames = SubResource("SpriteFrames_pej0c")
+sprite_frames = SubResource("SpriteFrames_4tf48")
 
-[node name="dtacogolden" type="AnimatedSprite2D" parent="s/h/Panel/DiamondTaco"]
-position = Vector2(393.00003, 213.00002)
+[node name="ngtaco" type="AnimatedSprite2D" parent="s/Panel/h/NormalTaco"]
+position = Vector2(367, 213.00003)
 scale = Vector2(3.5, 3.5)
-sprite_frames = SubResource("SpriteFrames_uruhn")
+sprite_frames = SubResource("SpriteFrames_qfxs3")
 
-[node name="cost" type="Label" parent="s/h/Panel/DiamondTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/NormalTaco"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -283,7 +507,7 @@ theme_override_font_sizes/font_size = 60
 text = "50M"
 horizontal_alignment = 1
 
-[node name="dtaco_buy" type="Button" parent="s/h/Panel/DiamondTaco"]
+[node name="ntaco_equip" type="Button" parent="s/Panel/h/NormalTaco"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -302,14 +526,12 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="StormboundTaco" type="Panel" parent="s/h/Panel"]
-layout_mode = 0
-offset_left = 742.0
-offset_top = 47.0
-offset_right = 1275.0
-offset_bottom = 608.0
+[node name="DiamondTaco" type="Panel" parent="s/Panel/h"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="title" type="Label" parent="s/h/Panel/StormboundTaco"]
+[node name="title" type="Label" parent="s/Panel/h/DiamondTaco"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -322,20 +544,85 @@ grow_horizontal = 2
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_73qxo")
 theme_override_font_sizes/font_size = 55
-text = "Stormbound Tacos"
+text = "Diamond Taco"
 horizontal_alignment = 1
 
-[node name="sbtaco" type="AnimatedSprite2D" parent="s/h/Panel/StormboundTaco"]
+[node name="dtaco" type="AnimatedSprite2D" parent="s/Panel/h/DiamondTaco"]
+position = Vector2(135.00002, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_pej0c")
+
+[node name="dtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/DiamondTaco"]
+position = Vector2(393.00003, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_uruhn")
+
+[node name="cost" type="Label" parent="s/Panel/h/DiamondTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -267.5
+offset_top = 335.0
+offset_right = 270.5
+offset_bottom = 409.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+text = "50M"
+horizontal_alignment = 1
+
+[node name="dtaco_buy" type="Button" parent="s/Panel/h/DiamondTaco"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -131.0
+offset_right = 159.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
+text = "BUY"
+
+[node name="StormboundTaco" type="Panel" parent="s/Panel/h"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="title" type="Label" parent="s/Panel/h/StormboundTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.5
+offset_top = 22.0
+offset_right = 270.5
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 55
+text = "Stormbound Taco"
+horizontal_alignment = 1
+
+[node name="sbtaco" type="AnimatedSprite2D" parent="s/Panel/h/StormboundTaco"]
 position = Vector2(135.00002, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_04jup")
 
-[node name="sbtacogolden" type="AnimatedSprite2D" parent="s/h/Panel/StormboundTaco"]
+[node name="sbtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/StormboundTaco"]
 position = Vector2(393.00003, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_v4n0m")
 
-[node name="cost" type="Label" parent="s/h/Panel/StormboundTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/StormboundTaco"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -351,7 +638,72 @@ theme_override_font_sizes/font_size = 60
 text = "150M"
 horizontal_alignment = 1
 
-[node name="sbtaco_buy" type="Button" parent="s/h/Panel/StormboundTaco"]
+[node name="sbtaco_buy" type="Button" parent="s/Panel/h/StormboundTaco"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -131.0
+offset_right = 159.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
+text = "BUY"
+
+[node name="VoidTaco" type="Panel" parent="s/Panel/h"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="title" type="Label" parent="s/Panel/h/VoidTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.5
+offset_top = 22.0
+offset_right = 270.5
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 55
+text = "Void Taco"
+horizontal_alignment = 1
+
+[node name="vtaco" type="AnimatedSprite2D" parent="s/Panel/h/VoidTaco"]
+position = Vector2(124, 213.00003)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_0ttio")
+
+[node name="vtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/VoidTaco"]
+position = Vector2(379, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_33x0w")
+
+[node name="cost" type="Label" parent="s/Panel/h/VoidTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -267.5
+offset_top = 335.0
+offset_right = 270.5
+offset_bottom = 409.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+text = "500M"
+horizontal_alignment = 1
+
+[node name="vtaco_buy" type="Button" parent="s/Panel/h/VoidTaco"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -407,6 +759,8 @@ icon = ExtResource("5_7q0yd")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="s/h/Panel/DiamondTaco/dtaco_buy" to="." method="_on_dtaco_buy_pressed"]
-[connection signal="pressed" from="s/h/Panel/StormboundTaco/sbtaco_buy" to="." method="_on_sbtaco_buy_pressed"]
+[connection signal="pressed" from="s/Panel/h/NormalTaco/ntaco_equip" to="." method="_on_ntaco_equip_pressed"]
+[connection signal="pressed" from="s/Panel/h/DiamondTaco/dtaco_buy" to="." method="_on_dtaco_buy_pressed"]
+[connection signal="pressed" from="s/Panel/h/StormboundTaco/sbtaco_buy" to="." method="_on_sbtaco_buy_pressed"]
+[connection signal="pressed" from="s/Panel/h/VoidTaco/vtaco_buy" to="." method="_on_vtaco_buy_pressed"]
 [connection signal="button_down" from="Back" to="." method="_on_back_button_down"]
