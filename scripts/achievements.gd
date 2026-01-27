@@ -25,7 +25,9 @@ extends Control
 	$scroll/hbox/Panel/A22,
 	$scroll/hbox/Panel/A23,
 	$scroll/hbox/Panel/A24,
-	$scroll/hbox/Panel/A25
+	$scroll/hbox/Panel/A25,
+	$scroll/hbox/Panel/A26,
+	$scroll/hbox/Panel/A27
 ]
 
 const rewards := [
@@ -53,7 +55,9 @@ const rewards := [
 	{"type": "tacos", "amount": 2_000_000_000},
 	{"type": "tacos", "amount": 5_000_000_000},
 	{"type": "tacos", "amount": 40_000_000_000},
-	{"type": "tacos", "amount": 100_000_000_000}
+	{"type": "tacos", "amount": 100_000_000_000},
+	{"type": "tacos", "amount": 150_000_000_000},
+	{"type": "tacos", "amount": 1_000_000_000_000}
 ]
 
 func _ready():
@@ -97,8 +101,8 @@ func _on_back_button_up():
 
 func _on_a_1_button_up():claim_reward(0)
 
-func _on_a_2_button_up(): claim_reward(1)
-func _on_a_3_button_up(): claim_reward(2)
+func _on_a_2_button_up():claim_reward(1)
+func _on_a_3_button_up():claim_reward(2)
 
 func _on_a_4_button_up():claim_reward(3)
 
@@ -113,8 +117,8 @@ func _on_a_8_button_up(): claim_reward(7)
 func _on_a_9_button_up():claim_reward(8)
 
 
-func _on_a_10_button_up(): claim_reward(9)
-func _on_a_11_button_up(): claim_reward(10)
+func _on_a_10_button_up():claim_reward(9)
+func _on_a_11_button_up():claim_reward(10)
 
 
 func _on_a_12_button_up():claim_reward(11)
@@ -128,13 +132,13 @@ func _on_a_15_button_up(): claim_reward(14)
 func _on_a_16_button_up():claim_reward(15)
 
 
-func _on_a_17_button_up(): claim_reward(16)
+func _on_a_17_button_up():claim_reward(16)
 
 
 func _on_a_18_button_up():claim_reward(17)
 
 
-func _on_a_19_button_up(): claim_reward(18)
+func _on_a_19_button_up():claim_reward(18)
 func _on_a_20_button_up(): claim_reward(19)
 
 
@@ -148,3 +152,9 @@ func _on_a_24_button_up():claim_reward(23)
 
 
 func _on_a_25_pressed():claim_reward(24)
+
+
+func _on_a_26_pressed():claim_reward(25)
+
+
+func _on_a_27_pressed():claim_reward(26)

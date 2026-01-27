@@ -1295,6 +1295,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
 text = "Cosmetics"
 
 [node name="skilltreebutton" type="Button" parent="left"]
+visible = false
 layout_mode = 0
 offset_left = 657.0
 offset_top = 79.0
@@ -2097,6 +2098,76 @@ offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +1M"
 
+[node name="autoclickupg5" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 2100.0
+offset_right = 357.0
+offset_bottom = 2167.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="autoclickupg5" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg5"]
+position = Vector2(31, 20)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_choun")
+
+[node name="autoclickupgsprite5" type="Label" parent="scroller/VBoxContainer/right/autoclickupg5"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg5"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 368.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE GAINED PER SECOND +1M"
+
+[node name="entropyupg5button5" type="Button" parent="scroller/VBoxContainer/right"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 2190.0
+offset_right = 357.0
+offset_bottom = 2257.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="entropyupg5label" type="Label" parent="scroller/VBoxContainer/right/entropyupg5button5"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.00009
+offset_right = 343.0
+offset_bottom = 112.00009
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "
+
+"
+
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg5button5"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 4.0
+offset_right = 358.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_a8y0u")
+theme_override_font_sizes/font_size = 16
+text = "UPGRADE ENTROPY PER SECOND +1M"
+
+[node name="entropyupg5sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg5button5"]
+position = Vector2(19.249989, 30.08001)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_a8y0u")
+
 [node name="T_A_C_O" type="Panel" parent="."]
 layout_mode = 0
 offset_left = -5.0
@@ -2278,6 +2349,8 @@ libraries = {
 [connection signal="button_down" from="scroller/VBoxContainer/right/entropyupg4button4" to="." method="_on_entropyupg_4_button_4_button_down"]
 [connection signal="button_down" from="scroller/VBoxContainer/right/tacoupg4button" to="." method="_on_tacoupg_4_button_button_down"]
 [connection signal="pressed" from="scroller/VBoxContainer/right/amtperclickupg5" to="." method="_on_amtperclickupg_5_pressed"]
+[connection signal="pressed" from="scroller/VBoxContainer/right/autoclickupg5" to="." method="_on_autoclickupg_5_pressed"]
+[connection signal="pressed" from="scroller/VBoxContainer/right/entropyupg5button5" to="." method="_on_entropyupg_5_button_5_pressed"]
 [connection signal="value_changed" from="T_A_C_O/amountsperclickslider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/passivegainsperclickslider" to="." method="_on_passivegainsperclickslider_value_changed"]
 [connection signal="value_changed" from="T_A_C_O/entropymultiplierperclickslider" to="." method="_on_entropymultiplierperclickslider_value_changed"]
