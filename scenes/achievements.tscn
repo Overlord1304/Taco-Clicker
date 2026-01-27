@@ -1630,6 +1630,69 @@ text = "Claimed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="A25" type="Button" parent="scroll/hbox/Panel"]
+layout_mode = 0
+offset_left = 3693.0
+offset_top = 96.0
+offset_right = 4124.0
+offset_bottom = 248.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq3ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttb8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqgop")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uhxyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqgop")
+disabled = true
+text = " Buy 10 (+1M Tacos Per
+ Click Upgrades)
+ Reward: 100B Tacos"
+alignment = 0
+icon_alignment = 2
+vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="scroll/hbox/Panel/A25"]
+position = Vector2(389, 55)
+rotation = 0.85695666
+scale = Vector2(2.234375, 2.359375)
+texture = ExtResource("3_uhxyi")
+
+[node name="ClaimOverlay" type="Control" parent="scroll/hbox/Panel/A25"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="scroll/hbox/Panel/A25/ClaimOverlay"]
+modulate = Color(0.003921569, 0.003921569, 0.003921569, 0.49019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0517578e-05
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="scroll/hbox/Panel/A25/ClaimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.256998e-07, 0.7624254, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ttb8s")
+theme_override_font_sizes/font_size = 48
+text = "Claimed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="collected" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_u6gvo")
 
@@ -1659,3 +1722,4 @@ stream = ExtResource("9_u6gvo")
 [connection signal="button_up" from="scroll/hbox/Panel/A22" to="." method="_on_a_22_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A23" to="." method="_on_a_23_button_up"]
 [connection signal="button_up" from="scroll/hbox/Panel/A24" to="." method="_on_a_24_button_up"]
+[connection signal="pressed" from="scroll/hbox/Panel/A25" to="." method="_on_a_25_pressed"]

@@ -223,98 +223,66 @@ func _on_back_button_up():
 
 
 
-func _on_over_drive_button_up():
-	toggle_panel(upgrades.hyperdrive.panel)
+func _on_over_drive_button_up():toggle_panel(upgrades.hyperdrive.panel)
 	
-func _on_buyhyperdrive_button_up():
-	buy_upgrade("hyperdrive")
-func _on_g_taco_upg_button_up():
-	toggle_panel(upgrades.gtacomax.panel)
+func _on_buyhyperdrive_button_up():buy_upgrade("hyperdrive")
+func _on_g_taco_upg_button_up():toggle_panel(upgrades.gtacomax.panel)
 
-func _on_buygtacomax_button_up():
-	buy_upgrade("gtacomax")
-func _on_d_sauce_upg_button_up():
-	toggle_panel(upgrades.dsaucemax.panel)
+func _on_buygtacomax_button_up():buy_upgrade("gtacomax")
+func _on_d_sauce_upg_button_up():toggle_panel(upgrades.dsaucemax.panel)
 	
-func _on_buydsaucemax_button_up():
-	buy_upgrade("dsaucemax")
+func _on_buydsaucemax_button_up():buy_upgrade("dsaucemax")
 
-func _on_c_overflow_upg_button_up():
-	toggle_panel(upgrades.coverflowmax.panel)
+func _on_c_overflow_upg_button_up():toggle_panel(upgrades.coverflowmax.panel)
 	
 	
-func _on_buycoverflowmax_button_up():
-	buy_upgrade("coverflowmax")
+func _on_buycoverflowmax_button_up():buy_upgrade("coverflowmax")
 
 
-func _on_g_taco_upg_2_button_up() -> void:
-	toggle_panel(upgrades.gtacors.panel)
-func _on_buygtacoupg_2_button_up() -> void:
-	buy_upgrade("gtacors")
+func _on_g_taco_upg_2_button_up():toggle_panel(upgrades.gtacors.panel)
+func _on_buygtacoupg_2_button_up():buy_upgrade("gtacors")
 
 
-func _on_d_sauce_upg_2_button_up() -> void:
-	toggle_panel(upgrades.dsaucers.panel)
+func _on_d_sauce_upg_2_button_up():toggle_panel(upgrades.dsaucers.panel)
 
-func _on_buydsauceupg_2_button_up() -> void:
-	buy_upgrade("dsaucers")
-func _on_c_overflow_upg_2_button_up() -> void:
-	toggle_panel(upgrades.coverflowrs.panel)
+func _on_buydsauceupg_2_button_up():buy_upgrade("dsaucers")
+func _on_c_overflow_upg_2_button_up() :toggle_panel(upgrades.coverflowrs.panel)
 
-func _on_buycoverflowupg_2_button_down() -> void:
-	buy_upgrade("coverflowrs")
+func _on_buycoverflowupg_2_button_down():buy_upgrade("coverflowrs")
 
 
-func _on_apc_subsidy_button_up() -> void:
-	toggle_panel(upgrades.apccd.panel)
+func _on_apc_subsidy_button_up() :toggle_panel(upgrades.apccd.panel)
 
 
-func _on_buyapcsubsidy_button_up() -> void:
-	buy_upgrade("apccd")
-func _on_cps_subsidy_button_up() -> void:
-	toggle_panel(upgrades.cpscd.panel)
+func _on_buyapcsubsidy_button_up():buy_upgrade("apccd")
+func _on_cps_subsidy_button_up():toggle_panel(upgrades.cpscd.panel)
 
-func _on_buycpssubsidy_button_up() -> void:
-	buy_upgrade("cpscd")
+func _on_buycpssubsidy_button_up():buy_upgrade("cpscd")
 
 
-func _on_eps_subsidy_button_up() -> void:
-	toggle_panel(upgrades.epscd.panel)
-func _on_buyepssubsidy_button_up() -> void:
-	buy_upgrade("epscd")
+func _on_eps_subsidy_button_up():toggle_panel(upgrades.epscd.panel)
+func _on_buyepssubsidy_button_up():buy_upgrade("epscd")
 
-func _on_overclock_upg_button_up() -> void:
-	toggle_panel(upgrades.overclockmax.panel)
+func _on_overclock_upg_button_up() :toggle_panel(upgrades.overclockmax.panel)
 
-func _on_buyoverclockupg_button_up() -> void:
-	buy_upgrade("overclockmax")
-func _on_overclock_upg_2_button_up() -> void:
-	toggle_panel(upgrades.overclockrs.panel)
+func _on_buyoverclockupg_button_up():buy_upgrade("overclockmax")
+func _on_overclock_upg_2_button_up():toggle_panel(upgrades.overclockrs.panel)
 
-func _on_buyoverclockupg_2_button_up() -> void:
-	buy_upgrade("overclockrs")
-func _on_taco_subsidy_button_up() -> void:
-	toggle_panel(upgrades.tacoscd.panel)
+func _on_buyoverclockupg_2_button_up():buy_upgrade("overclockrs")
+func _on_taco_subsidy_button_up():toggle_panel(upgrades.tacoscd.panel)
 
 
-func _on_buytacosubsidy_button_up() -> void:
-	buy_upgrade("tacoscd")
-func _on_ultradrive_button_up() -> void:
-	toggle_panel(upgrades.ultradrive.panel)
+func _on_buytacosubsidy_button_up():buy_upgrade("tacoscd")
+func _on_ultradrive_button_up():toggle_panel(upgrades.ultradrive.panel)
 
-func _on_buyultradrive_button_up() -> void:
-	buy_upgrade("ultradrive")
+func _on_buyultradrive_button_up():buy_upgrade("ultradrive")
 
 
-func _on_cc_button_up() -> void:
-	toggle_panel(upgrades.cc.panel)
-func _on_buycc_button_up() -> void:
-	buy_upgrade("cc")
+func _on_cc_button_up():toggle_panel(upgrades.cc.panel)
+func _on_buycc_button_up():buy_upgrade("cc")
 
 
-func _on_cc_2_button_down() -> void:
-	toggle_panel(upgrades.cc2.panel)
+func _on_cc_2_button_down():toggle_panel(upgrades.cc2.panel)
 
 
-func _on_buycc_2_button_up() -> void:
-	buy_upgrade("cc2")
+func _on_buycc_2_button_up():buy_upgrade("cc2")

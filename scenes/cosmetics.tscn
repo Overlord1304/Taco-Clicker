@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://nyrfmbxc7r22"]
+[gd_scene load_steps=146 format=3 uid="uid://nyrfmbxc7r22"]
 
 [ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="1_73qxo"]
 [ext_resource type="Script" uid="uid://cjwrdkq1n43il" path="res://scripts/cosmetics.gd" id="1_g72wv"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://cb8sxg4vy5xbp" path="res://sprites/ataco.png" id="11_hpqe1"]
 [ext_resource type="Texture2D" uid="uid://ce8usa6cetxhr" path="res://sprites/etaco golden.png" id="11_o5a46"]
 [ext_resource type="Texture2D" uid="uid://3btem5d1imbe" path="res://sprites/ataco golden.png" id="12_i728l"]
+[ext_resource type="Texture2D" uid="uid://bcbfl2fj5fm32" path="res://sprites/ftaco.png" id="15_0t6d8"]
+[ext_resource type="Texture2D" uid="uid://dfb3edx5x4vmx" path="res://sprites/ftaco golden.png" id="16_51va1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snucm"]
 bg_color = Color(0.047058824, 0.22745098, 0.6627451, 1)
@@ -663,6 +665,232 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_akbw1"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu2j2"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njvs7"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uln1a"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u8hk"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rltuy"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8myhn"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glf2v"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8l4c"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ea68"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqbsn"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6xya"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfk0b"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw1xm"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(1664, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owsxu"]
+atlas = ExtResource("15_0t6d8")
+region = Rect2(1792, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3xqi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akbw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu2j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njvs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uln1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u8hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rltuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8myhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glf2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8l4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ea68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqbsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6xya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfk0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw1xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owsxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuaeo"]
+atlas = ExtResource("16_51va1")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk4ii"]
+atlas = ExtResource("16_51va1")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3512"]
+atlas = ExtResource("16_51va1")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcc18"]
+atlas = ExtResource("16_51va1")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy72s"]
+atlas = ExtResource("16_51va1")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv5v0"]
+atlas = ExtResource("16_51va1")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0hmb"]
+atlas = ExtResource("16_51va1")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nrv5"]
+atlas = ExtResource("16_51va1")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcqmq"]
+atlas = ExtResource("16_51va1")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nk45"]
+atlas = ExtResource("16_51va1")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b45im"]
+atlas = ExtResource("16_51va1")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i0rj"]
+atlas = ExtResource("16_51va1")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bhub"]
+atlas = ExtResource("16_51va1")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sevm5"]
+atlas = ExtResource("16_51va1")
+region = Rect2(1664, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey6fs"]
+atlas = ExtResource("16_51va1")
+region = Rect2(1792, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fm7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuaeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk4ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3512")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcc18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy72s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv5v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0hmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nrv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcqmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nk45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b45im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i0rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bhub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sevm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey6fs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyvna"]
 bg_color = Color(0, 0, 0, 0.44705883)
 corner_radius_top_left = 10
@@ -705,7 +933,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="s"]
-custom_minimum_size = Vector2(5000, 648)
+custom_minimum_size = Vector2(4000, 648)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_snucm")
 
@@ -1112,6 +1340,71 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
+[node name="FireTaco" type="Panel" parent="s/Panel/h"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="title" type="Label" parent="s/Panel/h/FireTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.5
+offset_top = 22.0
+offset_right = 270.5
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 55
+text = "Fire Taco"
+horizontal_alignment = 1
+
+[node name="ftaco" type="AnimatedSprite2D" parent="s/Panel/h/FireTaco"]
+position = Vector2(124, 213.00003)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_t3xqi")
+
+[node name="ftacogolden" type="AnimatedSprite2D" parent="s/Panel/h/FireTaco"]
+position = Vector2(379, 213.00002)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6fm7x")
+
+[node name="cost" type="Label" parent="s/Panel/h/FireTaco"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -267.5
+offset_top = 335.0
+offset_right = 270.5
+offset_bottom = 409.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+text = "1B"
+horizontal_alignment = 1
+
+[node name="ftaco_buy" type="Button" parent="s/Panel/h/FireTaco"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -131.0
+offset_right = 159.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
+text = "BUY"
+
 [node name="notenoughmoneylabel" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -1155,4 +1448,5 @@ expand_icon = true
 [connection signal="pressed" from="s/Panel/h/VoidTaco/vtaco_buy" to="." method="_on_vtaco_buy_pressed"]
 [connection signal="pressed" from="s/Panel/h/AmethystTaco/ataco_buy" to="." method="_on_ataco_buy_pressed"]
 [connection signal="pressed" from="s/Panel/h/EntropyTaco/etaco_buy" to="." method="_on_etaco_buy_pressed"]
+[connection signal="pressed" from="s/Panel/h/FireTaco/ftaco_buy" to="." method="_on_ftaco_buy_pressed"]
 [connection signal="button_down" from="Back" to="." method="_on_back_button_down"]
