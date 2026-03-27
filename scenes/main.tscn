@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=3 uid="uid://byvydm0y21j0r"]
+[gd_scene format=3 uid="uid://byvydm0y21j0r"]
 
 [ext_resource type="Texture2D" uid="uid://bnvglmwtrivok" path="res://sprites/taco.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://coboeppl453hk" path="res://scripts/game.gd" id="1_sugp2"]
@@ -27,6 +27,8 @@
 [ext_resource type="AudioStream" uid="uid://tebiqcfsoynx" path="res://music/click_sound.wav" id="14_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://c08w4pimfw5hq" path="res://sprites/voidtaco.png" id="14_jscy8"]
 [ext_resource type="AudioStream" uid="uid://ovvkiss54d53" path="res://music/collected.wav" id="15_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://c5rb1yngkrxdy" path="res://sprites/staco golden.png" id="17_yq6so"]
+[ext_resource type="Texture2D" uid="uid://dvk6cp1y36awt" path="res://sprites/staco.png" id="18_fv21b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq6so"]
 bg_color = Color(0, 0.6, 0.9647059, 1)
@@ -334,6 +336,14 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
 atlas = ExtResource("1_o5qli")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esrwe"]
+atlas = ExtResource("17_yq6so")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b36k"]
+atlas = ExtResource("18_fv21b")
+region = Rect2(0, 0, 144, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkpxi"]
 atlas = ExtResource("11_0ld40")
@@ -745,6 +755,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_esrwe")
+}],
+"loop": true,
+"name": &"s_gtaco",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b36k")
+}],
+"loop": true,
+"name": &"s_taco",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qkpxi")
 }, {
 "duration": 1.0,
@@ -1088,12 +1114,12 @@ _data = {
 &"disco_anim": SubResource("Animation_og1vs")
 }
 
-[node name="main" type="Control" groups=["game"]]
+[node name="main" type="Control" unique_id=487703096 groups=["game"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_sugp2")
 
-[node name="indicators" type="Control" parent="."]
+[node name="indicators" type="Control" parent="." unique_id=181600681]
 top_level = true
 z_index = 6
 z_as_relative = false
@@ -1101,7 +1127,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="display" type="Label" parent="indicators"]
+[node name="display" type="Label" parent="indicators" unique_id=404613680]
 visible = false
 z_index = 16
 z_as_relative = false
@@ -1117,17 +1143,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_tefeu")
 
-[node name="Timer" type="Timer" parent="indicators/display"]
+[node name="Timer" type="Timer" parent="indicators/display" unique_id=1903234196]
 wait_time = 0.001
 
-[node name="left" type="Panel" parent="."]
+[node name="left" type="Panel" parent="." unique_id=890685593]
 layout_mode = 0
 offset_right = 781.0
 offset_bottom = 653.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_yq6so")
 
-[node name="sunburst" type="TextureRect" parent="left"]
+[node name="sunburst" type="TextureRect" parent="left" unique_id=194360344]
 modulate = Color(1, 1, 1, 0.78431374)
 layout_mode = 0
 offset_top = 41.0
@@ -1138,19 +1164,19 @@ pivot_offset = Vector2(389, 329)
 texture = ExtResource("2_tbgi4")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="left"]
+[node name="MarginContainer" type="MarginContainer" parent="left" unique_id=420048213]
 layout_mode = 0
 offset_left = 145.0
 offset_right = 657.0
 offset_bottom = 512.0
 script = ExtResource("2_jyhfs")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="left/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="left/MarginContainer" unique_id=1493830159]
 z_index = 1
 layout_mode = 2
 script = ExtResource("3_jyhfs")
 
-[node name="tacocount" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="tacocount" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=1339029182]
 layout_mode = 2
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("10_a8y0u")
@@ -1158,7 +1184,7 @@ theme_override_font_sizes/font_size = 60
 text = "0 Tacos"
 horizontal_alignment = 1
 
-[node name="persecondcount" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="persecondcount" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=1330586576]
 layout_mode = 2
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
@@ -1166,7 +1192,7 @@ theme_override_font_sizes/font_size = 20
 text = "0 PER SECOND"
 horizontal_alignment = 1
 
-[node name="notenoughmoneylabel" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="notenoughmoneylabel" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=1835595216]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -1175,7 +1201,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "You Don't Have Enough Tacos"
 horizontal_alignment = 1
 
-[node name="gtacoactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="gtacoactivated" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=1197796870]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
@@ -1184,7 +1210,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "Golden Taco Activated. Tacos per Click Increased By 5x"
 horizontal_alignment = 1
 
-[node name="dsauceactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="dsauceactivated" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=1641737641]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
@@ -1193,7 +1219,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "Disco Sauce Activated. Clicks per Second Increased By 50x"
 horizontal_alignment = 1
 
-[node name="coverflowactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="coverflowactivated" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=1979829785]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
@@ -1202,7 +1228,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "Cosmic Overflow Activated. Entropy per Second Increased By 25x"
 horizontal_alignment = 1
 
-[node name="overclockactivated" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="overclockactivated" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=726329696]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
@@ -1211,7 +1237,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "Overclock Activated. T.A.C.O Multipliers Increased By 10x"
 horizontal_alignment = 1
 
-[node name="achievementunlocked" type="Label" parent="left/MarginContainer/VBoxContainer"]
+[node name="achievementunlocked" type="Label" parent="left/MarginContainer/VBoxContainer" unique_id=385962100]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7599104, 0.7599108, 3.85046e-07, 1)
@@ -1220,35 +1246,31 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "Achievement Unlocked"
 horizontal_alignment = 1
 
-[node name="tacobutton" type="TextureButton" parent="left/MarginContainer"]
+[node name="tacobutton" type="TextureButton" parent="left/MarginContainer" unique_id=816647767]
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 2
 size_flags_horizontal = 4
 stretch_mode = 0
 
-[node name="taco" type="AnimatedSprite2D" parent="left/MarginContainer/tacobutton"]
+[node name="taco" type="AnimatedSprite2D" parent="left/MarginContainer/tacobutton" unique_id=466993944]
 position = Vector2(254, 322)
 scale = Vector2(5.4, 5.4)
 sprite_frames = SubResource("SpriteFrames_gqmmt")
-animation = &"f_taco"
-frame = 9
-frame_progress = 0.25334266
+animation = &"s_taco"
 
-[node name="sunburst2" type="AnimationPlayer" parent="left"]
-libraries = {
-&"": SubResource("AnimationLibrary_o6xl0")
-}
-autoplay = "spin"
+[node name="sunburst2" type="AnimationPlayer" parent="left" unique_id=94857157]
+libraries/ = SubResource("AnimationLibrary_o6xl0")
+autoplay = &"spin"
 
-[node name="entropy" type="Node2D" parent="left"]
+[node name="entropy" type="Node2D" parent="left" unique_id=498435184]
 script = SubResource("GDScript_eb6dy")
 
-[node name="Sprite2D" type="Sprite2D" parent="left/entropy"]
+[node name="Sprite2D" type="Sprite2D" parent="left/entropy" unique_id=248278581]
 position = Vector2(24.999996, 30.25)
 scale = Vector2(2, 2)
 texture = ExtResource("13_a8y0u")
 
-[node name="entropycount" type="Label" parent="left/entropy"]
+[node name="entropycount" type="Label" parent="left/entropy" unique_id=1319021144]
 offset_left = 55.0
 offset_right = 102.0
 offset_bottom = 57.0
@@ -1258,7 +1280,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 41
 
-[node name="entropypersecondcount" type="Label" parent="left/entropy"]
+[node name="entropypersecondcount" type="Label" parent="left/entropy" unique_id=928858295]
 custom_minimum_size = Vector2(200, 0)
 offset_left = 9.0
 offset_top = 60.0
@@ -1270,7 +1292,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "0 PER SECOND"
 
-[node name="achievementsbutton" type="Button" parent="left"]
+[node name="achievementsbutton" type="Button" parent="left" unique_id=484414067]
 layout_mode = 0
 offset_left = 657.0
 offset_top = 6.0
@@ -1282,7 +1304,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
 text = "Achievements"
 
-[node name="cosmeticsbutton" type="Button" parent="left"]
+[node name="cosmeticsbutton" type="Button" parent="left" unique_id=2109382826]
 layout_mode = 0
 offset_left = 657.0
 offset_top = 41.0
@@ -1294,7 +1316,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
 text = "Cosmetics"
 
-[node name="skilltreebutton" type="Button" parent="left"]
+[node name="skilltreebutton" type="Button" parent="left" unique_id=318224810]
 visible = false
 layout_mode = 0
 offset_left = 657.0
@@ -1307,23 +1329,21 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_trceg")
 text = "Command Line"
 
-[node name="passivegainstimer" type="Timer" parent="."]
+[node name="passivegainstimer" type="Timer" parent="." unique_id=307120041]
 wait_time = 0.5
 autostart = true
 
-[node name="gtacotimer" type="Timer" parent="."]
+[node name="gtacotimer" type="Timer" parent="." unique_id=661485828]
 wait_time = 10.0
 one_shot = true
 
-[node name="dsaucetimer" type="Timer" parent="."]
+[node name="dsaucetimer" type="Timer" parent="." unique_id=1970954770]
 wait_time = 10.0
 
-[node name="overclock" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jkv2x")
-}
+[node name="overclock" type="AnimationPlayer" parent="." unique_id=661644539]
+libraries/ = SubResource("AnimationLibrary_jkv2x")
 
-[node name="scroller" type="ScrollContainer" parent="."]
+[node name="scroller" type="ScrollContainer" parent="." unique_id=309213810]
 z_index = 1
 layout_mode = 0
 offset_left = 781.0
@@ -1331,11 +1351,11 @@ offset_right = 1151.0
 offset_bottom = 649.0
 vertical_scroll_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="scroller"]
+[node name="VBoxContainer" type="VBoxContainer" parent="scroller" unique_id=1620891066]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="right" type="Panel" parent="scroller/VBoxContainer"]
+[node name="right" type="Panel" parent="scroller/VBoxContainer" unique_id=1053884674]
 z_index = 1
 custom_minimum_size = Vector2(360, 2500)
 layout_mode = 2
@@ -1343,7 +1363,7 @@ size_flags_vertical = 3
 theme = SubResource("Theme_tipki")
 theme_override_styles/panel = SubResource("StyleBoxFlat_85g3d")
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right" unique_id=1568262873]
 layout_mode = 0
 offset_left = 31.0
 offset_top = 12.0
@@ -1354,7 +1374,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_tbgi4")
 text = "UPGRADES"
 
-[node name="amtperclickupg1" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="amtperclickupg1" type="Button" parent="scroller/VBoxContainer/right" unique_id=2018843802]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 105.0
@@ -1362,12 +1382,12 @@ offset_right = 357.0
 offset_bottom = 172.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="amountperclickupgrade1" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg1"]
+[node name="amountperclickupgrade1" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg1" unique_id=1255757656]
 position = Vector2(30, 17)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="amountperclickupgrade1label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg1"]
+[node name="amountperclickupgrade1label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg1" unique_id=1047332502]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 33.00009
@@ -1375,7 +1395,7 @@ offset_right = 283.0
 offset_bottom = 108.00009
 theme_override_fonts/font = ExtResource("10_a8y0u")
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg1"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg1" unique_id=2097242420]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 7.0
@@ -1384,7 +1404,7 @@ offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +1"
 
-[node name="autoclickupg1" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="autoclickupg1" type="Button" parent="scroller/VBoxContainer/right" unique_id=831410349]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 188.0
@@ -1392,12 +1412,12 @@ offset_right = 357.0
 offset_bottom = 255.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg1" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg1"]
+[node name="autoclickupg1" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg1" unique_id=327673184]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="autoclickupgsprite1" type="Label" parent="scroller/VBoxContainer/right/autoclickupg1"]
+[node name="autoclickupgsprite1" type="Label" parent="scroller/VBoxContainer/right/autoclickupg1" unique_id=1953609304]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1409,7 +1429,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg1"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg1" unique_id=1505260938]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1419,7 +1439,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +1"
 
-[node name="golden taco" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="golden taco" type="Button" parent="scroller/VBoxContainer/right" unique_id=868274232]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 273.0
@@ -1427,12 +1447,12 @@ offset_right = 357.0
 offset_bottom = 340.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="golden taco sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/golden taco"]
+[node name="golden taco sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/golden taco" unique_id=1793562011]
 position = Vector2(30, 17)
 rotation = 0.8377581
 texture = ExtResource("7_o6xl0")
 
-[node name="golden taco label" type="Label" parent="scroller/VBoxContainer/right/golden taco"]
+[node name="golden taco label" type="Label" parent="scroller/VBoxContainer/right/golden taco" unique_id=1508687474]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1444,7 +1464,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/golden taco"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/golden taco" unique_id=2144745807]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 11.0
@@ -1453,7 +1473,7 @@ offset_bottom = 34.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "GOLDEN TACO"
 
-[node name="amtperclickupg2" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="amtperclickupg2" type="Button" parent="scroller/VBoxContainer/right" unique_id=174300473]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 360.0
@@ -1461,12 +1481,12 @@ offset_right = 357.0
 offset_bottom = 427.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="amountperclickupgrade2" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg2"]
+[node name="amountperclickupgrade2" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg2" unique_id=1354041802]
 position = Vector2(30, 16)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="amountperclickupgrade2label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg2"]
+[node name="amountperclickupgrade2label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg2" unique_id=1759972045]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 33.00009
@@ -1474,7 +1494,7 @@ offset_right = 283.0
 offset_bottom = 108.00009
 theme_override_fonts/font = ExtResource("10_a8y0u")
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg2"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg2" unique_id=1314216222]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 7.0
@@ -1483,7 +1503,7 @@ offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +10"
 
-[node name="autoclickupg2" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="autoclickupg2" type="Button" parent="scroller/VBoxContainer/right" unique_id=1116433589]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 455.0
@@ -1491,12 +1511,12 @@ offset_right = 357.0
 offset_bottom = 522.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg2" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg2"]
+[node name="autoclickupg2" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg2" unique_id=574591547]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="autoclickupgsprite2" type="Label" parent="scroller/VBoxContainer/right/autoclickupg2"]
+[node name="autoclickupgsprite2" type="Label" parent="scroller/VBoxContainer/right/autoclickupg2" unique_id=936296486]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1508,7 +1528,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg2"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg2" unique_id=2085329535]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1518,7 +1538,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +10"
 
-[node name="disco_sauce" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="disco_sauce" type="Button" parent="scroller/VBoxContainer/right" unique_id=1737581355]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 549.0
@@ -1526,12 +1546,12 @@ offset_right = 357.0
 offset_bottom = 616.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="disco_sauce_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/disco_sauce"]
+[node name="disco_sauce_sprite" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/disco_sauce" unique_id=358593914]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="disco_sauce_label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce"]
+[node name="disco_sauce_label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce" unique_id=326532864]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1543,7 +1563,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/disco_sauce" unique_id=877860503]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1553,7 +1573,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "DISCO SAUCE"
 
-[node name="T_A_C_O_BUTTON" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="T_A_C_O_BUTTON" type="Button" parent="scroller/VBoxContainer/right" unique_id=1857571595]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 640.0
@@ -1561,12 +1581,12 @@ offset_right = 357.0
 offset_bottom = 707.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="T_A_C_O_SPRITE" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON"]
+[node name="T_A_C_O_SPRITE" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON" unique_id=884204252]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="T_A_C_O_LABEL" type="Label" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON"]
+[node name="T_A_C_O_LABEL" type="Label" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON" unique_id=225223485]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1578,7 +1598,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/T_A_C_O_BUTTON" unique_id=1334792172]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1588,7 +1608,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "T.A.C.O"
 
-[node name="entropyupg1button" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="entropyupg1button" type="Button" parent="scroller/VBoxContainer/right" unique_id=1373264841]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 736.0
@@ -1596,12 +1616,12 @@ offset_right = 358.0
 offset_bottom = 803.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="entropyupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg1button"]
+[node name="entropyupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg1button" unique_id=1718297946]
 position = Vector2(18.899988, 31.100012)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="entropyupg1label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button"]
+[node name="entropyupg1label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button" unique_id=245679729]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1613,7 +1633,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg1button" unique_id=1699324902]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 4.0
@@ -1623,7 +1643,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE ENTROPY PER SECOND +1"
 
-[node name="entropyupg2button2" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="entropyupg2button2" type="Button" parent="scroller/VBoxContainer/right" unique_id=903797896]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 832.0
@@ -1631,7 +1651,7 @@ offset_right = 358.0
 offset_bottom = 899.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="entropyupg2label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2"]
+[node name="entropyupg2label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2" unique_id=1412561598]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1643,7 +1663,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg2button2" unique_id=794800186]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 4.0
@@ -1653,12 +1673,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE ENTROPY PER SECOND +10"
 
-[node name="entropyupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg2button2"]
+[node name="entropyupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg2button2" unique_id=1910872415]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="amtperclickupg3" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="amtperclickupg3" type="Button" parent="scroller/VBoxContainer/right" unique_id=496271782]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 928.0
@@ -1666,12 +1686,12 @@ offset_right = 357.0
 offset_bottom = 995.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="amountperclickupgrade3" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg3"]
+[node name="amountperclickupgrade3" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg3" unique_id=555313057]
 position = Vector2(30, 16)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="amountperclickupgrade3label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg3"]
+[node name="amountperclickupgrade3label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg3" unique_id=238640257]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 33.00009
@@ -1679,7 +1699,7 @@ offset_right = 283.0
 offset_bottom = 108.00009
 theme_override_fonts/font = ExtResource("10_a8y0u")
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg3"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg3" unique_id=651736155]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 7.0
@@ -1688,7 +1708,7 @@ offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +100"
 
-[node name="autoclickupg3" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="autoclickupg3" type="Button" parent="scroller/VBoxContainer/right" unique_id=443689174]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1020.0
@@ -1696,12 +1716,12 @@ offset_right = 357.0
 offset_bottom = 1087.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg3" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg3"]
+[node name="autoclickupg3" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg3" unique_id=1231115250]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="autoclickupgsprite3" type="Label" parent="scroller/VBoxContainer/right/autoclickupg3"]
+[node name="autoclickupgsprite3" type="Label" parent="scroller/VBoxContainer/right/autoclickupg3" unique_id=1682154439]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1713,7 +1733,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg3"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg3" unique_id=207395420]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1723,7 +1743,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +100"
 
-[node name="cosmic_overflow" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="cosmic_overflow" type="Button" parent="scroller/VBoxContainer/right" unique_id=1563897837]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1110.0
@@ -1731,12 +1751,12 @@ offset_right = 357.0
 offset_bottom = 1177.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="cosmic_overflow_sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/cosmic_overflow"]
+[node name="cosmic_overflow_sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/cosmic_overflow" unique_id=861352340]
 position = Vector2(19.25, 30.08)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="cosmic_overflow_label" type="Label" parent="scroller/VBoxContainer/right/cosmic_overflow"]
+[node name="cosmic_overflow_label" type="Label" parent="scroller/VBoxContainer/right/cosmic_overflow" unique_id=1802007990]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1748,7 +1768,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/cosmic_overflow"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/cosmic_overflow" unique_id=640162710]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1758,7 +1778,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "COSMIC OVERFLOW"
 
-[node name="TACO_overclock" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="TACO_overclock" type="Button" parent="scroller/VBoxContainer/right" unique_id=917604111]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1200.0
@@ -1766,12 +1786,12 @@ offset_right = 357.0
 offset_bottom = 1267.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="TACO_overclock_sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/TACO_overclock"]
+[node name="TACO_overclock_sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/TACO_overclock" unique_id=1682279979]
 position = Vector2(19.25, 30.08)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="TACO_overclock_label" type="Label" parent="scroller/VBoxContainer/right/TACO_overclock"]
+[node name="TACO_overclock_label" type="Label" parent="scroller/VBoxContainer/right/TACO_overclock" unique_id=663884055]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1783,7 +1803,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/TACO_overclock"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/TACO_overclock" unique_id=1343463226]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1793,7 +1813,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "TACO Overclock"
 
-[node name="entropyupg3button3" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="entropyupg3button3" type="Button" parent="scroller/VBoxContainer/right" unique_id=1290839295]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1290.0
@@ -1801,7 +1821,7 @@ offset_right = 357.0
 offset_bottom = 1357.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="entropyupg3label" type="Label" parent="scroller/VBoxContainer/right/entropyupg3button3"]
+[node name="entropyupg3label" type="Label" parent="scroller/VBoxContainer/right/entropyupg3button3" unique_id=793038365]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1813,7 +1833,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg3button3"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg3button3" unique_id=1137496310]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1823,12 +1843,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE ENTROPY PER SECOND +100"
 
-[node name="entropyupg3sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg3button3"]
+[node name="entropyupg3sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg3button3" unique_id=1882859706]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="tacoupg1button" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="tacoupg1button" type="Button" parent="scroller/VBoxContainer/right" unique_id=834390860]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1380.0
@@ -1836,7 +1856,7 @@ offset_right = 357.0
 offset_bottom = 1447.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="tacoupg1label" type="Label" parent="scroller/VBoxContainer/right/tacoupg1button"]
+[node name="tacoupg1label" type="Label" parent="scroller/VBoxContainer/right/tacoupg1button" unique_id=1533966938]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1848,7 +1868,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg1button"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg1button" unique_id=391212529]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 4.0
@@ -1858,12 +1878,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE T.A.C.O MULTIPLIER +1"
 
-[node name="tacoupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg1button"]
+[node name="tacoupg1sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg1button" unique_id=1808647631]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="tacoupg2button" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="tacoupg2button" type="Button" parent="scroller/VBoxContainer/right" unique_id=1951568317]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1470.0
@@ -1871,7 +1891,7 @@ offset_right = 357.0
 offset_bottom = 1537.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="tacoupg2label" type="Label" parent="scroller/VBoxContainer/right/tacoupg2button"]
+[node name="tacoupg2label" type="Label" parent="scroller/VBoxContainer/right/tacoupg2button" unique_id=493221380]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1883,7 +1903,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg2button"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg2button" unique_id=1663240313]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 4.0
@@ -1893,12 +1913,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE T.A.C.O MULTIPLIER +10"
 
-[node name="tacoupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg2button"]
+[node name="tacoupg2sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg2button" unique_id=2000028096]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="amtperclickupg4" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="amtperclickupg4" type="Button" parent="scroller/VBoxContainer/right" unique_id=1779307065]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1560.0
@@ -1906,12 +1926,12 @@ offset_right = 357.0
 offset_bottom = 1627.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="amountperclickupgrade4" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg4"]
+[node name="amountperclickupgrade4" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg4" unique_id=1342247891]
 position = Vector2(30, 16)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="amountperclickupgrade4label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg4"]
+[node name="amountperclickupgrade4label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg4" unique_id=1544123732]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 33.00009
@@ -1919,7 +1939,7 @@ offset_right = 283.0
 offset_bottom = 108.00009
 theme_override_fonts/font = ExtResource("10_a8y0u")
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg4"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg4" unique_id=1293174898]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 7.0
@@ -1928,7 +1948,7 @@ offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +1000"
 
-[node name="autoclickupg4" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="autoclickupg4" type="Button" parent="scroller/VBoxContainer/right" unique_id=1573425976]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1650.0
@@ -1936,12 +1956,12 @@ offset_right = 357.0
 offset_bottom = 1717.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg4" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg4"]
+[node name="autoclickupg4" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg4" unique_id=1843107531]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="autoclickupgsprite4" type="Label" parent="scroller/VBoxContainer/right/autoclickupg4"]
+[node name="autoclickupgsprite4" type="Label" parent="scroller/VBoxContainer/right/autoclickupg4" unique_id=792889489]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1953,7 +1973,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg4"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg4" unique_id=1042749336]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -1963,7 +1983,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +1000"
 
-[node name="tacoupg3button" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="tacoupg3button" type="Button" parent="scroller/VBoxContainer/right" unique_id=1484483362]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1740.0
@@ -1971,7 +1991,7 @@ offset_right = 357.0
 offset_bottom = 1807.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="tacoupg3label" type="Label" parent="scroller/VBoxContainer/right/tacoupg3button"]
+[node name="tacoupg3label" type="Label" parent="scroller/VBoxContainer/right/tacoupg3button" unique_id=114251575]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -1983,7 +2003,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg3button"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg3button" unique_id=1116939767]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 4.0
@@ -1993,12 +2013,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE T.A.C.O MULTIPLIER +100"
 
-[node name="tacoupg3sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg3button"]
+[node name="tacoupg3sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg3button" unique_id=798227780]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="entropyupg4button4" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="entropyupg4button4" type="Button" parent="scroller/VBoxContainer/right" unique_id=684950960]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1830.0
@@ -2006,7 +2026,7 @@ offset_right = 357.0
 offset_bottom = 1897.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="entropyupg4label" type="Label" parent="scroller/VBoxContainer/right/entropyupg4button4"]
+[node name="entropyupg4label" type="Label" parent="scroller/VBoxContainer/right/entropyupg4button4" unique_id=1153548728]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -2018,7 +2038,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg4button4"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg4button4" unique_id=1198948165]
 layout_mode = 0
 offset_left = 38.0
 offset_top = 4.0
@@ -2028,12 +2048,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE ENTROPY PER SECOND +1000"
 
-[node name="entropyupg4sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg4button4"]
+[node name="entropyupg4sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg4button4" unique_id=869524336]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="tacoupg4button" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="tacoupg4button" type="Button" parent="scroller/VBoxContainer/right" unique_id=905598368]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 1920.0
@@ -2041,7 +2061,7 @@ offset_right = 357.0
 offset_bottom = 1987.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="tacoupg4label" type="Label" parent="scroller/VBoxContainer/right/tacoupg4button"]
+[node name="tacoupg4label" type="Label" parent="scroller/VBoxContainer/right/tacoupg4button" unique_id=1157372442]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -2053,7 +2073,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg4button"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/tacoupg4button" unique_id=1380019442]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 4.0
@@ -2063,12 +2083,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE T.A.C.O MULTIPLIER +1000"
 
-[node name="tacoupg4sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg4button"]
+[node name="tacoupg4sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/tacoupg4button" unique_id=2108262157]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="amtperclickupg5" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="amtperclickupg5" type="Button" parent="scroller/VBoxContainer/right" unique_id=1307003019]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 2010.0
@@ -2076,12 +2096,12 @@ offset_right = 357.0
 offset_bottom = 2077.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="amountperclickupgrade5" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg5"]
+[node name="amountperclickupgrade5" type="Sprite2D" parent="scroller/VBoxContainer/right/amtperclickupg5" unique_id=1408326976]
 position = Vector2(30, 16)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="amountperclickupgrade5label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg5"]
+[node name="amountperclickupgrade5label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg5" unique_id=306947679]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 33.00009
@@ -2089,7 +2109,7 @@ offset_right = 283.0
 offset_bottom = 108.00009
 theme_override_fonts/font = ExtResource("10_a8y0u")
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg5"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/amtperclickupg5" unique_id=1947005666]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 7.0
@@ -2098,7 +2118,7 @@ offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("10_a8y0u")
 text = "UPGRADE AMOUNT PER CLICK +1M"
 
-[node name="autoclickupg5" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="autoclickupg5" type="Button" parent="scroller/VBoxContainer/right" unique_id=698020823]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 2100.0
@@ -2106,12 +2126,12 @@ offset_right = 357.0
 offset_bottom = 2167.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="autoclickupg5" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg5"]
+[node name="autoclickupg5" type="AnimatedSprite2D" parent="scroller/VBoxContainer/right/autoclickupg5" unique_id=1198350460]
 position = Vector2(31, 20)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="autoclickupgsprite5" type="Label" parent="scroller/VBoxContainer/right/autoclickupg5"]
+[node name="autoclickupgsprite5" type="Label" parent="scroller/VBoxContainer/right/autoclickupg5" unique_id=1567747163]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -2123,7 +2143,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg5"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/autoclickupg5" unique_id=321976282]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 4.0
@@ -2133,7 +2153,7 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE GAINED PER SECOND +1M"
 
-[node name="entropyupg5button5" type="Button" parent="scroller/VBoxContainer/right"]
+[node name="entropyupg5button5" type="Button" parent="scroller/VBoxContainer/right" unique_id=137154324]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 2190.0
@@ -2141,7 +2161,7 @@ offset_right = 357.0
 offset_bottom = 2257.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tefeu")
 
-[node name="entropyupg5label" type="Label" parent="scroller/VBoxContainer/right/entropyupg5button5"]
+[node name="entropyupg5label" type="Label" parent="scroller/VBoxContainer/right/entropyupg5button5" unique_id=658162168]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 37.00009
@@ -2153,7 +2173,7 @@ text = "
 
 "
 
-[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg5button5"]
+[node name="Label" type="Label" parent="scroller/VBoxContainer/right/entropyupg5button5" unique_id=489812331]
 layout_mode = 0
 offset_left = 38.0
 offset_top = 4.0
@@ -2163,12 +2183,12 @@ theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 16
 text = "UPGRADE ENTROPY PER SECOND +1M"
 
-[node name="entropyupg5sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg5button5"]
+[node name="entropyupg5sprite" type="Sprite2D" parent="scroller/VBoxContainer/right/entropyupg5button5" unique_id=1875589171]
 position = Vector2(19.249989, 30.08001)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("13_a8y0u")
 
-[node name="T_A_C_O" type="Panel" parent="."]
+[node name="T_A_C_O" type="Panel" parent="." unique_id=2081679686]
 layout_mode = 0
 offset_left = -5.0
 offset_top = 214.0
@@ -2176,15 +2196,15 @@ offset_right = 235.0
 offset_bottom = 460.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_eb6dy")
 
-[node name="MarginContainer" type="MarginContainer" parent="T_A_C_O"]
+[node name="MarginContainer" type="MarginContainer" parent="T_A_C_O" unique_id=2021756923]
 layout_mode = 0
 offset_right = 244.0
 offset_bottom = 250.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="T_A_C_O/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="T_A_C_O/MarginContainer" unique_id=711530311]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="T_A_C_O/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="T_A_C_O/MarginContainer/VBoxContainer" unique_id=410973527]
 layout_mode = 2
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
@@ -2192,22 +2212,22 @@ theme_override_font_sizes/font_size = 35
 text = "T.A.C.O"
 horizontal_alignment = 1
 
-[node name="amountperclickupgrade2" type="Sprite2D" parent="T_A_C_O/MarginContainer"]
+[node name="amountperclickupgrade2" type="Sprite2D" parent="T_A_C_O/MarginContainer" unique_id=678977768]
 position = Vector2(30, 74)
 rotation = 0.8377581
 texture = ExtResource("1_o5qli")
 
-[node name="passivegainsupgradesprite" type="AnimatedSprite2D" parent="T_A_C_O/MarginContainer"]
+[node name="passivegainsupgradesprite" type="AnimatedSprite2D" parent="T_A_C_O/MarginContainer" unique_id=1586349906]
 position = Vector2(31.000002, 120)
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_choun")
 
-[node name="entropyupgradesprite" type="Sprite2D" parent="T_A_C_O/MarginContainer"]
+[node name="entropyupgradesprite" type="Sprite2D" parent="T_A_C_O/MarginContainer" unique_id=934339782]
 position = Vector2(23.6875, 175.48236)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_a8y0u")
 
-[node name="amountsperclickslider" type="HSlider" parent="T_A_C_O"]
+[node name="amountsperclickslider" type="HSlider" parent="T_A_C_O" unique_id=1251557137]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 71.0
@@ -2218,7 +2238,7 @@ max_value = 10.0
 step = 0.5
 value = 0.5
 
-[node name="click_multiplier_label" type="Label" parent="T_A_C_O"]
+[node name="click_multiplier_label" type="Label" parent="T_A_C_O" unique_id=452813274]
 layout_mode = 0
 offset_left = 203.0
 offset_top = 69.0
@@ -2228,7 +2248,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 14
 
-[node name="passivegains_multiplier_label" type="Label" parent="T_A_C_O"]
+[node name="passivegains_multiplier_label" type="Label" parent="T_A_C_O" unique_id=509928720]
 layout_mode = 0
 offset_left = 203.0
 offset_top = 119.0
@@ -2238,7 +2258,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 14
 
-[node name="passivegainsperclickslider" type="HSlider" parent="T_A_C_O"]
+[node name="passivegainsperclickslider" type="HSlider" parent="T_A_C_O" unique_id=892827219]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 122.0
@@ -2249,7 +2269,7 @@ max_value = 10.0
 step = 0.5
 value = 0.5
 
-[node name="entropy_multiplier_label" type="Label" parent="T_A_C_O"]
+[node name="entropy_multiplier_label" type="Label" parent="T_A_C_O" unique_id=1377499525]
 layout_mode = 0
 offset_left = 204.0
 offset_top = 162.0
@@ -2259,7 +2279,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("10_a8y0u")
 theme_override_font_sizes/font_size = 14
 
-[node name="entropymultiplierperclickslider" type="HSlider" parent="T_A_C_O"]
+[node name="entropymultiplierperclickslider" type="HSlider" parent="T_A_C_O" unique_id=1860354235]
 layout_mode = 0
 offset_left = 46.0
 offset_top = 167.0
@@ -2270,48 +2290,46 @@ max_value = 10.0
 step = 0.5
 value = 0.5
 
-[node name="coverflowtimer" type="Timer" parent="."]
+[node name="coverflowtimer" type="Timer" parent="." unique_id=57699042]
 wait_time = 10.0
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=994834221]
 position = Vector2(0, 114)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=1074716783 groups=["coverflow"]]
 position = Vector2(192, 2044.0001)
 rotation = -1.5707964
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
-[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Node2D" unique_id=1644434602 groups=["coverflow"]]
 position = Vector2(576, 2044)
 rotation = -1.5707964
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
-[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Node2D" groups=["coverflow"]]
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Node2D" unique_id=1948709276 groups=["coverflow"]]
 position = Vector2(951.21875, 2044)
 rotation = -1.5707964
 scale = Vector2(12, 11.51368)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 
-[node name="overclocktimer" type="Timer" parent="."]
+[node name="overclocktimer" type="Timer" parent="." unique_id=877325051]
 wait_time = 10.0
 
-[node name="bgm" type="AudioStreamPlayer" parent="."]
+[node name="bgm" type="AudioStreamPlayer" parent="." unique_id=207976160]
 stream = ExtResource("13_trceg")
 
-[node name="click" type="AudioStreamPlayer" parent="."]
+[node name="click" type="AudioStreamPlayer" parent="." unique_id=1061084800]
 stream = ExtResource("14_a8y0u")
 volume_db = 24.0
 
-[node name="collected" type="AudioStreamPlayer" parent="."]
+[node name="collected" type="AudioStreamPlayer" parent="." unique_id=392809373]
 stream = ExtResource("15_jkv2x")
 
-[node name="disco" type="AnimationPlayer" parent="."]
+[node name="disco" type="AnimationPlayer" parent="." unique_id=1224888258]
 root_node = NodePath("../left")
-libraries = {
-&"": SubResource("AnimationLibrary_vxglm")
-}
+libraries/ = SubResource("AnimationLibrary_vxglm")
 
 [connection signal="entropy_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_entropy_changed"]
 [connection signal="key_to_tree_changed" from="." to="left/MarginContainer/VBoxContainer" method="_on_main_key_to_tree_changed"]

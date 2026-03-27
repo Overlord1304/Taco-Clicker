@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=3 uid="uid://nyrfmbxc7r22"]
+[gd_scene format=3 uid="uid://nyrfmbxc7r22"]
 
 [ext_resource type="FontFile" uid="uid://b1ecuue8wn2td" path="res://fonts/Fredoka-Regular.ttf" id="1_73qxo"]
 [ext_resource type="Script" uid="uid://cjwrdkq1n43il" path="res://scripts/cosmetics.gd" id="1_g72wv"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://01unjw7vfmfo" path="res://sprites/dtaco golden.png" id="3_g72wv"]
 [ext_resource type="Texture2D" uid="uid://bru26pm8rutlf" path="res://sprites/gtaco.png" id="4_hgeww"]
 [ext_resource type="Texture2D" uid="uid://c83jx6vodcu1q" path="res://sprites/Sprite-0005.png" id="5_7q0yd"]
+[ext_resource type="Texture2D" uid="uid://dvk6cp1y36awt" path="res://sprites/staco.png" id="5_uruhn"]
 [ext_resource type="Texture2D" uid="uid://clmpk4o2t0ypj" path="res://sprites/stormbound-taco.png" id="6_jyvna"]
+[ext_resource type="Texture2D" uid="uid://c5rb1yngkrxdy" path="res://sprites/staco golden.png" id="6_n1y4d"]
 [ext_resource type="Texture2D" uid="uid://delpm676n28qy" path="res://sprites/stormbound-taco-gold.png" id="7_ohflc"]
 [ext_resource type="Texture2D" uid="uid://bkdv7ylm8f88o" path="res://sprites/etaco.png" id="9_pej0c"]
 [ext_resource type="Texture2D" uid="uid://c08w4pimfw5hq" path="res://sprites/voidtaco.png" id="9_r2m3p"]
@@ -52,6 +54,36 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g72wv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3xqi"]
+atlas = ExtResource("5_uruhn")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wuaeo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3xqi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fm7x"]
+atlas = ExtResource("6_n1y4d")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vv5pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fm7x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7q0yd"]
 atlas = ExtResource("2_rhjr3")
@@ -913,7 +945,7 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgeww"]
 
-[node name="cosmetics" type="Control"]
+[node name="cosmetics" type="Control" unique_id=970268742]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -922,7 +954,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g72wv")
 
-[node name="s" type="ScrollContainer" parent="."]
+[node name="s" type="ScrollContainer" parent="." unique_id=345639577]
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 1
 anchors_preset = 15
@@ -932,12 +964,12 @@ offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="s"]
+[node name="Panel" type="Panel" parent="s" unique_id=1581913514]
 custom_minimum_size = Vector2(4000, 648)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_snucm")
 
-[node name="h" type="HBoxContainer" parent="s/Panel"]
+[node name="h" type="HBoxContainer" parent="s/Panel" unique_id=1689215745]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -948,12 +980,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 64
 
-[node name="NormalTaco" type="Panel" parent="s/Panel/h"]
+[node name="NormalTaco" type="Panel" parent="s/Panel/h" unique_id=106206432]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="title" type="Label" parent="s/Panel/h/NormalTaco"]
+[node name="title" type="Label" parent="s/Panel/h/NormalTaco" unique_id=200345726]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -969,17 +1001,17 @@ theme_override_font_sizes/font_size = 55
 text = "Normal Taco"
 horizontal_alignment = 1
 
-[node name="ntaco" type="AnimatedSprite2D" parent="s/Panel/h/NormalTaco"]
+[node name="ntaco" type="AnimatedSprite2D" parent="s/Panel/h/NormalTaco" unique_id=829568363]
 position = Vector2(151.00002, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_4tf48")
 
-[node name="ngtaco" type="AnimatedSprite2D" parent="s/Panel/h/NormalTaco"]
+[node name="ngtaco" type="AnimatedSprite2D" parent="s/Panel/h/NormalTaco" unique_id=994627169]
 position = Vector2(367, 213.00003)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_qfxs3")
 
-[node name="cost" type="Label" parent="s/Panel/h/NormalTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/NormalTaco" unique_id=1516444137]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -992,10 +1024,10 @@ grow_horizontal = 2
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_73qxo")
 theme_override_font_sizes/font_size = 60
-text = "50M"
+text = "FREE"
 horizontal_alignment = 1
 
-[node name="ntaco_equip" type="Button" parent="s/Panel/h/NormalTaco"]
+[node name="ntaco_equip" type="Button" parent="s/Panel/h/NormalTaco" unique_id=59361877]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1014,12 +1046,78 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="DiamondTaco" type="Panel" parent="s/Panel/h"]
+[node name="StormlockTaco" type="Panel" parent="s/Panel/h" unique_id=684471619]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="title" type="Label" parent="s/Panel/h/DiamondTaco"]
+[node name="title" type="Label" parent="s/Panel/h/StormlockTaco" unique_id=1927634226]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.5
+offset_top = 22.0
+offset_right = 270.5
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 55
+text = "?????????"
+horizontal_alignment = 1
+
+[node name="staco" type="AnimatedSprite2D" parent="s/Panel/h/StormlockTaco" unique_id=1404008153]
+position = Vector2(151.00002, 213.00002)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_wuaeo")
+
+[node name="sgtaco" type="AnimatedSprite2D" parent="s/Panel/h/StormlockTaco" unique_id=1698662056]
+position = Vector2(367, 213.00003)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_vv5pv")
+
+[node name="cost" type="Label" parent="s/Panel/h/StormlockTaco" unique_id=89793987]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -267.5
+offset_top = 335.0
+offset_right = 270.5
+offset_bottom = 409.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+text = "67"
+horizontal_alignment = 1
+
+[node name="staco_buy" type="Button" parent="s/Panel/h/StormlockTaco" unique_id=1841748260]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -131.0
+offset_right = 159.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_73qxo")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
+text = "BUY"
+
+[node name="DiamondTaco" type="Panel" parent="s/Panel/h" unique_id=629126749]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="title" type="Label" parent="s/Panel/h/DiamondTaco" unique_id=632362785]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1035,17 +1133,17 @@ theme_override_font_sizes/font_size = 55
 text = "Diamond Taco"
 horizontal_alignment = 1
 
-[node name="dtaco" type="AnimatedSprite2D" parent="s/Panel/h/DiamondTaco"]
+[node name="dtaco" type="AnimatedSprite2D" parent="s/Panel/h/DiamondTaco" unique_id=1552397524]
 position = Vector2(135.00002, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_pej0c")
 
-[node name="dtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/DiamondTaco"]
+[node name="dtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/DiamondTaco" unique_id=1745364079]
 position = Vector2(393.00003, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_uruhn")
 
-[node name="cost" type="Label" parent="s/Panel/h/DiamondTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/DiamondTaco" unique_id=863181115]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1061,7 +1159,7 @@ theme_override_font_sizes/font_size = 60
 text = "50M"
 horizontal_alignment = 1
 
-[node name="dtaco_buy" type="Button" parent="s/Panel/h/DiamondTaco"]
+[node name="dtaco_buy" type="Button" parent="s/Panel/h/DiamondTaco" unique_id=823709813]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1080,11 +1178,11 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="StormboundTaco" type="Panel" parent="s/Panel/h"]
+[node name="StormboundTaco" type="Panel" parent="s/Panel/h" unique_id=316907601]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
-[node name="title" type="Label" parent="s/Panel/h/StormboundTaco"]
+[node name="title" type="Label" parent="s/Panel/h/StormboundTaco" unique_id=1494687897]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1100,17 +1198,17 @@ theme_override_font_sizes/font_size = 55
 text = "Stormbound Taco"
 horizontal_alignment = 1
 
-[node name="sbtaco" type="AnimatedSprite2D" parent="s/Panel/h/StormboundTaco"]
+[node name="sbtaco" type="AnimatedSprite2D" parent="s/Panel/h/StormboundTaco" unique_id=599185507]
 position = Vector2(135.00002, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_04jup")
 
-[node name="sbtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/StormboundTaco"]
+[node name="sbtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/StormboundTaco" unique_id=1395389758]
 position = Vector2(393.00003, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_v4n0m")
 
-[node name="cost" type="Label" parent="s/Panel/h/StormboundTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/StormboundTaco" unique_id=715424372]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1126,7 +1224,7 @@ theme_override_font_sizes/font_size = 60
 text = "150M"
 horizontal_alignment = 1
 
-[node name="sbtaco_buy" type="Button" parent="s/Panel/h/StormboundTaco"]
+[node name="sbtaco_buy" type="Button" parent="s/Panel/h/StormboundTaco" unique_id=1129361309]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1145,11 +1243,11 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="VoidTaco" type="Panel" parent="s/Panel/h"]
+[node name="VoidTaco" type="Panel" parent="s/Panel/h" unique_id=1268048241]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
-[node name="title" type="Label" parent="s/Panel/h/VoidTaco"]
+[node name="title" type="Label" parent="s/Panel/h/VoidTaco" unique_id=1141618401]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1165,17 +1263,17 @@ theme_override_font_sizes/font_size = 55
 text = "Void Taco"
 horizontal_alignment = 1
 
-[node name="vtaco" type="AnimatedSprite2D" parent="s/Panel/h/VoidTaco"]
+[node name="vtaco" type="AnimatedSprite2D" parent="s/Panel/h/VoidTaco" unique_id=199042284]
 position = Vector2(124, 213.00003)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_0ttio")
 
-[node name="vtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/VoidTaco"]
+[node name="vtacogolden" type="AnimatedSprite2D" parent="s/Panel/h/VoidTaco" unique_id=726857391]
 position = Vector2(379, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_33x0w")
 
-[node name="cost" type="Label" parent="s/Panel/h/VoidTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/VoidTaco" unique_id=1709751543]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1191,7 +1289,7 @@ theme_override_font_sizes/font_size = 60
 text = "500M"
 horizontal_alignment = 1
 
-[node name="vtaco_buy" type="Button" parent="s/Panel/h/VoidTaco"]
+[node name="vtaco_buy" type="Button" parent="s/Panel/h/VoidTaco" unique_id=1451324539]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1210,11 +1308,11 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="AmethystTaco" type="Panel" parent="s/Panel/h"]
+[node name="AmethystTaco" type="Panel" parent="s/Panel/h" unique_id=1717205874]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
-[node name="title" type="Label" parent="s/Panel/h/AmethystTaco"]
+[node name="title" type="Label" parent="s/Panel/h/AmethystTaco" unique_id=1272221621]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1230,17 +1328,17 @@ theme_override_font_sizes/font_size = 55
 text = "Amethyst Taco"
 horizontal_alignment = 1
 
-[node name="ataco" type="AnimatedSprite2D" parent="s/Panel/h/AmethystTaco"]
+[node name="ataco" type="AnimatedSprite2D" parent="s/Panel/h/AmethystTaco" unique_id=2074078003]
 position = Vector2(124, 213.00003)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_akbw1")
 
-[node name="atacogolden" type="AnimatedSprite2D" parent="s/Panel/h/AmethystTaco"]
+[node name="atacogolden" type="AnimatedSprite2D" parent="s/Panel/h/AmethystTaco" unique_id=2060022563]
 position = Vector2(379, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_bu2j2")
 
-[node name="cost" type="Label" parent="s/Panel/h/AmethystTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/AmethystTaco" unique_id=1879809308]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1256,7 +1354,7 @@ theme_override_font_sizes/font_size = 60
 text = "650M"
 horizontal_alignment = 1
 
-[node name="ataco_buy" type="Button" parent="s/Panel/h/AmethystTaco"]
+[node name="ataco_buy" type="Button" parent="s/Panel/h/AmethystTaco" unique_id=1476810586]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1275,11 +1373,11 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="EntropyTaco" type="Panel" parent="s/Panel/h"]
+[node name="EntropyTaco" type="Panel" parent="s/Panel/h" unique_id=1034548469]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
-[node name="title" type="Label" parent="s/Panel/h/EntropyTaco"]
+[node name="title" type="Label" parent="s/Panel/h/EntropyTaco" unique_id=1916702511]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1295,17 +1393,17 @@ theme_override_font_sizes/font_size = 55
 text = "Entropy Taco"
 horizontal_alignment = 1
 
-[node name="etaco" type="AnimatedSprite2D" parent="s/Panel/h/EntropyTaco"]
+[node name="etaco" type="AnimatedSprite2D" parent="s/Panel/h/EntropyTaco" unique_id=1463019991]
 position = Vector2(124, 213.00003)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_njvs7")
 
-[node name="etacogolden" type="AnimatedSprite2D" parent="s/Panel/h/EntropyTaco"]
+[node name="etacogolden" type="AnimatedSprite2D" parent="s/Panel/h/EntropyTaco" unique_id=670739172]
 position = Vector2(379, 213.00002)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_ly5qe")
 
-[node name="cost" type="Label" parent="s/Panel/h/EntropyTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/EntropyTaco" unique_id=1514213912]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1321,7 +1419,7 @@ theme_override_font_sizes/font_size = 60
 text = "750M"
 horizontal_alignment = 1
 
-[node name="etaco_buy" type="Button" parent="s/Panel/h/EntropyTaco"]
+[node name="etaco_buy" type="Button" parent="s/Panel/h/EntropyTaco" unique_id=2078093796]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1340,11 +1438,11 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="FireTaco" type="Panel" parent="s/Panel/h"]
+[node name="FireTaco" type="Panel" parent="s/Panel/h" unique_id=561921709]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
-[node name="title" type="Label" parent="s/Panel/h/FireTaco"]
+[node name="title" type="Label" parent="s/Panel/h/FireTaco" unique_id=479809734]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1360,17 +1458,17 @@ theme_override_font_sizes/font_size = 55
 text = "Fire Taco"
 horizontal_alignment = 1
 
-[node name="ftaco" type="AnimatedSprite2D" parent="s/Panel/h/FireTaco"]
+[node name="ftaco" type="AnimatedSprite2D" parent="s/Panel/h/FireTaco" unique_id=1662491975]
 position = Vector2(124, 213.00003)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_t3xqi")
 
-[node name="ftacogolden" type="AnimatedSprite2D" parent="s/Panel/h/FireTaco"]
+[node name="ftacogolden" type="AnimatedSprite2D" parent="s/Panel/h/FireTaco" unique_id=1495962165]
 position = Vector2(379, 213.00002)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6fm7x")
 
-[node name="cost" type="Label" parent="s/Panel/h/FireTaco"]
+[node name="cost" type="Label" parent="s/Panel/h/FireTaco" unique_id=2011773972]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1386,7 +1484,7 @@ theme_override_font_sizes/font_size = 60
 text = "1B"
 horizontal_alignment = 1
 
-[node name="ftaco_buy" type="Button" parent="s/Panel/h/FireTaco"]
+[node name="ftaco_buy" type="Button" parent="s/Panel/h/FireTaco" unique_id=688540664]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1405,7 +1503,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g72wv")
 text = "BUY"
 
-[node name="notenoughmoneylabel" type="Label" parent="."]
+[node name="notenoughmoneylabel" type="Label" parent="." unique_id=895657086]
 visible = false
 layout_mode = 1
 anchors_preset = 5
@@ -1423,7 +1521,7 @@ theme_override_font_sizes/font_size = 36
 text = "You Don't Have Enough Tacos"
 horizontal_alignment = 1
 
-[node name="Back" type="Button" parent="."]
+[node name="Back" type="Button" parent="." unique_id=410684418]
 z_index = 35
 layout_mode = 1
 anchors_preset = -1
@@ -1443,6 +1541,7 @@ icon_alignment = 1
 expand_icon = true
 
 [connection signal="pressed" from="s/Panel/h/NormalTaco/ntaco_equip" to="." method="_on_ntaco_equip_pressed"]
+[connection signal="pressed" from="s/Panel/h/StormlockTaco/staco_buy" to="." method="_on_staco_equip_pressed"]
 [connection signal="pressed" from="s/Panel/h/DiamondTaco/dtaco_buy" to="." method="_on_dtaco_buy_pressed"]
 [connection signal="pressed" from="s/Panel/h/StormboundTaco/sbtaco_buy" to="." method="_on_sbtaco_buy_pressed"]
 [connection signal="pressed" from="s/Panel/h/VoidTaco/vtaco_buy" to="." method="_on_vtaco_buy_pressed"]
