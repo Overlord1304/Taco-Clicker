@@ -84,4 +84,6 @@ var ftaco_bought = false
 var ftaco_equipped = false
 var staco_bought = false
 var staco_equipped = false
+var itaco_bought = false
+var itaco_equipped = false
 var pending_taco_reward = 0

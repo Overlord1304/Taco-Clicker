@@ -324,6 +324,8 @@ func _process(delta):
 			bg.bg_color = Color("0000009d") 
 		elif Global.ftaco_equipped:
 			bg.bg_color = Color("ff0000a2")
+		elif Global.itaco_equipped:
+			bg.bg_color = Color("1c0031")
 		else:
 			bg.bg_color = Color("0099f6")   
 
@@ -356,6 +358,8 @@ func _process(delta):
 					$left/MarginContainer/tacobutton/taco.play("f_gtaco")
 				elif Global.staco_equipped:
 					$left/MarginContainer/tacobutton/taco.play("s_gtaco")
+				elif Global.itaco_equipped:
+					$left/MarginContainer/tacobutton/taco.play("i_gtaco")
 				golden_taco_activated = true
 				update_amount_per_click()
 				gtaco_activated_count += 1
@@ -613,7 +617,9 @@ func save_data():
 		"ftaco_bought": Global.ftaco_bought,
 		"ftaco_equipped": Global.ftaco_equipped,
 		"staco_bought": Global.staco_bought,
-		"staco_equipped": Global.staco_equipped
+		"staco_equipped": Global.staco_equipped,
+		"itaco_bought": Global.itaco_bought,
+		"itaco_equipped": Global.itaco_equipped
 	}
 	var file = FileAccess.open(saves, FileAccess.WRITE)
 	file.store_var(data)
@@ -792,6 +798,8 @@ func load_data():
 			Global.ftaco_equipped = data.get("ftaco_equipped",false)
 			Global.staco_bought = data.get("staco_bought",false)
 			Global.staco_equipped = data.get("staco_equipped",false)
+			Global.itaco_bought = data.get("itaco_bought",false)
+			Global.itaco_equipped = data.get("itaco_equipped",false)
 			update_amount_per_click()
 			update_passive_gains()
 			update_entropy_gains()
@@ -903,6 +911,8 @@ func _on_gtacotimer_timeout() -> void:
 		$left/MarginContainer/tacobutton/taco.play("f_taco")
 	elif Global.staco_equipped:
 		$left/MarginContainer/tacobutton/taco.play("s_taco")
+	elif Global.itaco_equipped:
+		$left/MarginContainer/tacobutton/taco.play("i_taco")
 func _on_amtperclickupg_2_button_down():
 	if tacos >= upg4cost:
 		$collected.play()
@@ -1401,7 +1411,8 @@ func update_taco_skin():
 		$left/MarginContainer/tacobutton/taco.play("f_taco")
 	elif Global.staco_bought:
 		$left/MarginContainer/tacobutton/taco.play("s_taco")
-
+	elif Global.itaco_bought:
+		$left/MarginContainer/tacobutton/taco.play("i_taco")
 func _on_amtperclickupg_5_pressed() -> void:
 	if tacos >= upg22cost:
 		$collected.play()
